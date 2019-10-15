@@ -45,40 +45,22 @@ public class ArduinoConnection {
 
         // Instantiate the RequestQueue
         RequestQueue queue = Volley.newRequestQueue(this.context);
-        String url ="http://" + ipAddress + ":80";
+        String url = "http://192.168.1.124/5/off:80";
 
-        // Request a string response from the provided URL.
-        StringRequest request = new StringRequest(Request.Method.POST, url,
+        // Request a string response from the provided URL
+        StringRequest request = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("Respobse", response);
+                        Log.e("onResponse", response.substring(0, 50));
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("Error.Response", "That didn't work!");
-                    }
-                }){
+                }, new Response.ErrorListener() {
             @Override
-            protected Map<String, String> getParams(){
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("PIN", "5");
-                params.put("status", "ON");
-
-                return params;
+            public void onErrorResponse(VolleyError error) {
+                Log.e("onErrorResponse", "That didn't work!");
             }
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type", "application/json");
-
-                return params;
-            }
-        };
-
+        });
+        // Add the request to the RequestQueue.
         queue.add(request);
     }
 }

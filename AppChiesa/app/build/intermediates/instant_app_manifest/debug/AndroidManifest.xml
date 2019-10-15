@@ -7,7 +7,7 @@
 
     <uses-sdk
         android:minSdkVersion="21"
-        android:targetSdkVersion="29" />
+        android:targetSdkVersion="28" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -20,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:testOnly="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true" >
         <activity android:name="com.simo.appchiesa.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
