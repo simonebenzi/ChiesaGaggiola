@@ -6,7 +6,10 @@
 // Load Wi-Fi library
 #include <WiFiNINA.h>
 
-// Replace with your network credentials
+// the IP address for the shield:
+IPAddress ip(192, 168, 0, 177);
+
+// Wifi network credentials
 const char* ssid     = "TIM-18143925";
 const char* pass = "CN2ltmwLXDvmVfWtC1ogJU95";
 
@@ -23,8 +26,10 @@ String pin5State = "off";
 String pin6State = "off";
 
 // Assign output variables to GPIO pins
-const int pin5 = 5;
-const int pin6 = 6;
+const int ch4 = 5;
+const int ch5 = 6;
+const int ch9 = 7;
+const int ch12a = 8;
 
 void setup() {
   Serial.begin(9600);
@@ -32,11 +37,15 @@ void setup() {
     ; // wait for serial port to connect. Needed for native USB port only
   }
   // Initialize the output variables as outputs
-  pinMode(pin5, OUTPUT);
-  pinMode(pin6, OUTPUT);
+  pinMode(ch4, OUTPUT);
+  pinMode(ch5, OUTPUT);
+  pinMode(ch9, OUTPUT);
+  pinMode(ch12a, OUTPUT);
   // Set outputs to LOW
-  digitalWrite(pin5, LOW);
-  digitalWrite(pin6, LOW);
+  digitalWrite(ch4, LOW);
+  digitalWrite(ch5, LOW);
+  digitalWrite(ch9, LOW);
+  digitalWrite(ch12a, LOW);
 
   // check for the WiFi module:
   if (WiFi.status() == WL_NO_MODULE) {
@@ -50,6 +59,9 @@ void setup() {
     Serial.println("Please upgrade the firmware");
   }
 
+  // Set the Arduino's static IP address
+  WiFi.config(ip);
+  
   // attempt to connect to Wifi network:
   while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to SSID: ");
@@ -89,22 +101,38 @@ void loop() {
             client.println();
 
             // turns the GPIOs on and off
-            if (header.indexOf("GET /5/on") >= 0) {
-              Serial.println("Pin 5 on");
+            if (header.indexOf("GET /ch4/on") >= 0) {
+              Serial.println("CH.4 is on");
               pin5State = "on";
-              digitalWrite(pin5, HIGH);
-            } else if (header.indexOf("GET /5/off") >= 0) {
-              Serial.println("Pin 5 off");
+              digitalWrite(ch4, HIGH);
+            } else if (header.indexOf("GET /ch4/off") >= 0) {
+              Serial.println("CH.4 is off");
               pin5State = "off";
-              digitalWrite(pin5, LOW);
-            } else if (header.indexOf("GET /27/on") >= 0) {
-              Serial.println("Pin 6 on");
+              digitalWrite(ch4, LOW);
+            } else if (header.indexOf("GET /ch5/on") >= 0) {
+              Serial.println("CH.5 is on");
               pin6State = "on";
-              digitalWrite(pin6, HIGH);
-            } else if (header.indexOf("GET /27/off") >= 0) {
-              Serial.println("Pin 6 off");
+              digitalWrite(ch5, HIGH);
+            } else if (header.indexOf("GET /ch5/off") >= 0) {
+              Serial.println("CH.5 is off");
               pin6State = "off";
-              digitalWrite(pin6, LOW);
+              digitalWrite(ch5, LOW);
+            } else if (header.indexOf("GET /ch9/on") >= 0) {
+              Serial.println("CH.9 is on");
+              pin6State = "on";
+              digitalWrite(ch9, HIGH);
+            } else if (header.indexOf("GET /ch9/off") >= 0) {
+              Serial.println("CH.9 is off");
+              pin6State = "off";
+              digitalWrite(ch9, LOW);
+            } else if (header.indexOf("GET /ch12a/on") >= 0) {
+              Serial.println("CH.12a is on");
+              pin6State = "on";
+              digitalWrite(ch12a, HIGH);
+            } else if (header.indexOf("GET /ch12a/off") >= 0) {
+              Serial.println("CH.12a is off");
+              pin6State = "off";
+              digitalWrite(ch12a, LOW);
             }
 
             // Display the HTML web page

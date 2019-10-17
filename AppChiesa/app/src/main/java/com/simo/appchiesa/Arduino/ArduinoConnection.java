@@ -18,21 +18,89 @@ public class ArduinoConnection {
     private String requestCommand;
 
     // ArduinoConnection constructor
-    public ArduinoConnection(Context context, String parameterValue, String ipAddress, String requestCommand) {
+    public ArduinoConnection(Context context) {
 
         this.context = context;
-        this.ipAddress = ipAddress;
-        this.parameterValue = parameterValue;
-        this.requestCommand = requestCommand;
     }
 
     public void scenarioActivation(String scenario) {
-
-
+        if(scenario.equals("chiesa")){
+            this.lightActivation("ch4");
+            this.lightActivation("ch5");
+            this.lightActivation("ch9");
+            this.lightActivation("ch12a");
+        }
+        else if(scenario.equals("rosario")){
+            this.lightActivation("ch4");
+            this.lightActivation("ch5");
+            this.lightActivation("ch9");
+            this.lightActivation("ch12a");
+            this.lightActivation("ch6b");
+            this.lightActivation("ch10");
+        }
+        else if(scenario.equals("messa")){
+            this.lightActivation("ch4");
+            this.lightActivation("ch5");
+            this.lightActivation("ch9");
+            this.lightActivation("ch12a");
+            this.lightActivation("ch6b");
+            this.lightActivation("ch10");
+            this.lightActivation("ch6a");
+            this.lightActivation("ch11");
+        }
+        else if(scenario.equals("solenni")){
+            this.lightActivation("ch4");
+            this.lightActivation("ch5");
+            this.lightActivation("ch9");
+            this.lightActivation("ch12a");
+            this.lightActivation("ch6b");
+            this.lightActivation("ch10");
+            this.lightActivation("ch6a");
+            this.lightActivation("ch11");
+            this.lightActivation("ch3");
+            this.lightActivation("ch12b");
+            this.lightActivation("ch15");
+        }
     }
 
-    public void scenarioADeactivation(String scenario) {
-
+    public void scenarioDeactivation(String scenario) {
+        if(scenario.equals("chiesa")){
+            this.lightDeactivation("ch4");
+            this.lightDeactivation("ch5");
+            this.lightDeactivation("ch9");
+            this.lightDeactivation("ch12a");
+        }
+        else if(scenario.equals("rosario")){
+            this.lightDeactivation("ch4");
+            this.lightDeactivation("ch5");
+            this.lightDeactivation("ch9");
+            this.lightDeactivation("ch12a");
+            this.lightDeactivation("ch6b");
+            this.lightDeactivation("ch10");
+        }
+        else if(scenario.equals("messa")){
+            this.lightDeactivation("ch4");
+            this.lightDeactivation("ch5");
+            this.lightDeactivation("ch9");
+            this.lightDeactivation("ch12a");
+            this.lightDeactivation("ch6b");
+            this.lightDeactivation("ch10");
+            this.lightDeactivation("ch6a");
+            this.lightDeactivation("ch11");
+        }
+        else if(scenario.equals("solenni")){
+            this.lightDeactivation("ch4");
+            this.lightDeactivation("ch5");
+            this.lightDeactivation("ch9");
+            this.lightDeactivation("ch12a");
+            this.lightDeactivation("ch6b");
+            this.lightDeactivation("ch10");
+            this.lightDeactivation("ch6a");
+            this.lightDeactivation("ch11");
+            this.lightDeactivation("ch3");
+            this.lightDeactivation("ch12b");
+            this.lightDeactivation("ch15");
+        }
 
     }
 
