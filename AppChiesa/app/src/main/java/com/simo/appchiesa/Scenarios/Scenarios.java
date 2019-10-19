@@ -63,7 +63,7 @@ public class Scenarios {
             string = string;
 
 
-        intImg = context.getResources().getIdentifier("scenario_" +
+        intImg = context.getResources().getIdentifier("luce_" +
                 string.toLowerCase(), "mipmap", context.getPackageName()); //salva l'id della bitmap corretta
 
         newImage = BitmapFactory.decodeResource(context.getResources(), intImg);

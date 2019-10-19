@@ -31,32 +31,14 @@ public class ArduinoConnection {
             this.lightActivation("ch12a");
         }
         else if(scenario.equals("rosario")){
-            this.lightActivation("ch4");
-            this.lightActivation("ch5");
-            this.lightActivation("ch9");
-            this.lightActivation("ch12a");
             this.lightActivation("ch6b");
             this.lightActivation("ch10");
         }
         else if(scenario.equals("messa")){
-            this.lightActivation("ch4");
-            this.lightActivation("ch5");
-            this.lightActivation("ch9");
-            this.lightActivation("ch12a");
-            this.lightActivation("ch6b");
-            this.lightActivation("ch10");
             this.lightActivation("ch6a");
             this.lightActivation("ch11");
         }
         else if(scenario.equals("solenni")){
-            this.lightActivation("ch4");
-            this.lightActivation("ch5");
-            this.lightActivation("ch9");
-            this.lightActivation("ch12a");
-            this.lightActivation("ch6b");
-            this.lightActivation("ch10");
-            this.lightActivation("ch6a");
-            this.lightActivation("ch11");
             this.lightActivation("ch3");
             this.lightActivation("ch12b");
             this.lightActivation("ch15");
@@ -71,32 +53,14 @@ public class ArduinoConnection {
             this.lightDeactivation("ch12a");
         }
         else if(scenario.equals("rosario")){
-            this.lightDeactivation("ch4");
-            this.lightDeactivation("ch5");
-            this.lightDeactivation("ch9");
-            this.lightDeactivation("ch12a");
             this.lightDeactivation("ch6b");
             this.lightDeactivation("ch10");
         }
         else if(scenario.equals("messa")){
-            this.lightDeactivation("ch4");
-            this.lightDeactivation("ch5");
-            this.lightDeactivation("ch9");
-            this.lightDeactivation("ch12a");
-            this.lightDeactivation("ch6b");
-            this.lightDeactivation("ch10");
             this.lightDeactivation("ch6a");
             this.lightDeactivation("ch11");
         }
         else if(scenario.equals("solenni")){
-            this.lightDeactivation("ch4");
-            this.lightDeactivation("ch5");
-            this.lightDeactivation("ch9");
-            this.lightDeactivation("ch12a");
-            this.lightDeactivation("ch6b");
-            this.lightDeactivation("ch10");
-            this.lightDeactivation("ch6a");
-            this.lightDeactivation("ch11");
             this.lightDeactivation("ch3");
             this.lightDeactivation("ch12b");
             this.lightDeactivation("ch15");
@@ -107,7 +71,7 @@ public class ArduinoConnection {
     public void lightActivation(String lightCircuit){
         // Instantiate the RequestQueue
         RequestQueue queue = Volley.newRequestQueue(this.context);
-        String url = "http://192.168.1.124/" + lightCircuit + "/on:80";
+        String url = "http://192.168.1.142/" + lightCircuit + "/on:80";
 
         // Request a string response from the provided URL
         StringRequest request = new StringRequest(Request.Method.GET, url,
@@ -129,7 +93,7 @@ public class ArduinoConnection {
     public void lightDeactivation(String lightCircuit){
         // Instantiate the RequestQueue
         RequestQueue queue = Volley.newRequestQueue(this.context);
-        String url = "http://192.168.1.124/" + lightCircuit + "/off:80";
+        String url = "http://192.168.1.142/" + lightCircuit + "/off:80";
 
         // Request a string response from the provided URL
         StringRequest request = new StringRequest(Request.Method.GET, url,

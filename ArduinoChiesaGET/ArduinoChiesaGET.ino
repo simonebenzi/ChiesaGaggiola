@@ -7,7 +7,7 @@
 #include <WiFiNINA.h>
 
 // the IP address for the shield:
-IPAddress ip(192, 168, 0, 177);
+IPAddress ip(192, 168, 1, 124);
 
 // Wifi network credentials
 const char* ssid     = "TIM-18143925";
@@ -30,6 +30,7 @@ const int ch4 = 5;
 const int ch5 = 6;
 const int ch9 = 7;
 const int ch12a = 8;
+const int ch6b = 3;
 
 void setup() {
   Serial.begin(9600);
@@ -41,11 +42,13 @@ void setup() {
   pinMode(ch5, OUTPUT);
   pinMode(ch9, OUTPUT);
   pinMode(ch12a, OUTPUT);
+  pinMode(ch6b, OUTPUT);
   // Set outputs to LOW
   digitalWrite(ch4, LOW);
   digitalWrite(ch5, LOW);
   digitalWrite(ch9, LOW);
   digitalWrite(ch12a, LOW);
+  digitalWrite(ch6b, LOW);
 
   // check for the WiFi module:
   if (WiFi.status() == WL_NO_MODULE) {
@@ -133,6 +136,14 @@ void loop() {
               Serial.println("CH.12a is off");
               pin6State = "off";
               digitalWrite(ch12a, LOW);
+            }else if (header.indexOf("GET /ch6b/on") >= 0) {
+              Serial.println("CH.6b is on");
+              pin6State = "on";
+              digitalWrite(ch6b, HIGH);
+            } else if (header.indexOf("GET /ch6b/off") >= 0) {
+              Serial.println("CH.6b is off");
+              pin6State = "off";
+              digitalWrite(ch6b, LOW);
             }
 
             // Display the HTML web page
