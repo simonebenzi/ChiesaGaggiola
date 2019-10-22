@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:2:1-36:12
+ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:2:1-51:12
 MERGED from [androidx.appcompat:appcompat:1.0.0] C:\Users\simob\.gradle\caches\transforms-2\files-2.1\2c6c92180058c66e00493c649cc15d98\appcompat-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\simob\.gradle\caches\transforms-2\files-2.1\c1763829f79bc3811543d2bb9a22b866\constraintlayout-1.1.3\AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.volley:volley:1.1.1] C:\Users\simob\.gradle\caches\transforms-2\files-2.1\35212c87852256e47c1f0b47e37597f1\jetified-volley-1.1.1\AndroidManifest.xml:2:1-11:12
@@ -32,25 +32,25 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\simob\.gradle
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\simob\.gradle\caches\transforms-2\files-2.1\c073c929da6ad4e112abaac7d3212747\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\simob\.gradle\caches\transforms-2\files-2.1\e72949b043b8df7a6068dab5e7cd21f2\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\simob\.gradle\caches\transforms-2\files-2.1\2d1f640c1b4beb33089ff5c91bbd7f31\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:2:1-51:12
 	package
 		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:3:5-33
 		INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:2:1-36:12
+		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:2:1-51:12
 		INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:2:1-36:12
+		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:2:1-51:12
 		INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:5:5-33:19
+ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:5:5-48:19
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\simob\.gradle\caches\transforms-2\files-2.1\c1763829f79bc3811543d2bb9a22b866\constraintlayout-1.1.3\AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\simob\.gradle\caches\transforms-2\files-2.1\c1763829f79bc3811543d2bb9a22b866\constraintlayout-1.1.3\AndroidManifest.xml:9:5-20
 MERGED from [com.android.volley:volley:1.1.1] C:\Users\simob\.gradle\caches\transforms-2\files-2.1\35212c87852256e47c1f0b47e37597f1\jetified-volley-1.1.1\AndroidManifest.xml:9:5-20
@@ -75,46 +75,60 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\si
 		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:12:9-40
 	android:usesCleartextTraffic
 		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:10:9-44
-activity#com.simo.appchiesa.ScenariosActivity
-ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:13:9-22:20
+activity#com.simo.appchiesa.Intro
+ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:14:9-24:20
 	android:screenOrientation
-		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:16:13-49
+		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:17:13-49
 	android:theme
-		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:15:13-71
+		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:16:13-71
 	android:name
-		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:14:13-46
+		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:15:13-34
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:17:13-21:29
+ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:19:13-23:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:18:17-69
+ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:20:17-69
 	android:name
-		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:18:25-66
+		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:20:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:20:17-77
+ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:22:17-77
 	android:name
-		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:20:27-74
-activity#com.simo.appchiesa.LightsActivity
-ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:23:9-32:20
+		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:22:27-74
+activity#com.simo.appchiesa.ScenariosActivity
+ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:26:9-35:20
 	android:screenOrientation
-		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:26:13-49
+		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:29:13-49
 	android:theme
-		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:25:13-71
+		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:28:13-71
 	android:name
-		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:24:13-43
-intent-filter#action:name:android.intent.action.Lights+category:name:android.intent.category.DEFAULT
-ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:27:13-31:29
-action#android.intent.action.Lights
-ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:28:17-71
+		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:27:13-46
+intent-filter#action:name:android.intent.action.Home+category:name:android.intent.category.DEFAULT
+ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:30:13-34:29
+action#android.intent.action.Home
+ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:31:17-69
 	android:name
-		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:28:25-68
+		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:31:25-66
 category#android.intent.category.DEFAULT
-ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:30:17-76
+ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:33:17-76
 	android:name
-		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:30:27-73
+		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:33:27-73
+activity#com.simo.appchiesa.LightsActivity
+ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:37:9-46:20
+	android:screenOrientation
+		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:40:13-49
+	android:theme
+		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:39:13-71
+	android:name
+		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:38:13-43
+intent-filter#action:name:android.intent.action.Lights+category:name:android.intent.category.DEFAULT
+ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:41:13-45:29
+action#android.intent.action.Lights
+ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:42:17-71
+	android:name
+		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:42:25-68
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:35:5-66
+ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:50:5-66
 	android:name
-		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:35:22-64
+		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:50:22-64
 uses-sdk
 INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml
