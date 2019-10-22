@@ -11,17 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="df201d1d-544f-4241-9c58-a729829dc314" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/Arduino/ArduinoConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/Arduino/ArduinoConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/ScenariosActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/LightCircuits/LightCircuits.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/LightCircuits/LightCircuits.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/LightsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/LightsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/lights.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/lights.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,63 +46,11 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/LightsActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/lights.xml">
+          <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4440">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#12082#12980#0" expanded="true" />
-                <element signature="e#12979#12980#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/Scenarios/Scenarios.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="867">
-              <caret line="62" column="28" selection-start-line="62" selection-start-column="28" selection-end-line="62" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/LightCircuits/LightCircuits.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="59" column="36" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/Arduino/ArduinoConnection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1523">
-              <caret line="112" column="33" selection-start-line="112" selection-start-column="33" selection-end-line="112" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/ScenariosActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="364">
+              <caret line="352" column="47" selection-start-line="352" selection-start-column="47" selection-end-line="352" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -145,11 +83,11 @@
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_settings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/scenarios.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/Home.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/lights.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/LightCircuits/LightCircuits.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/ScenariosActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/Arduino/ArduinoConnection.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/LightsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/lights.xml" />
       </list>
     </option>
   </component>
@@ -389,10 +327,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" weight="0.31073827" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.31073827" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -415,7 +352,7 @@
       <window_info anchor="right" id="Gradle" order="2" weight="0.3295302" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info anchor="right" id="Preview" order="5" sideWeight="0.49716714" weight="0.3281879" />
+      <window_info active="true" anchor="right" id="Preview" order="5" sideWeight="0.49716714" visible="true" weight="0.3281879" />
     </layout>
   </component>
   <component name="XDebuggerManager">
@@ -513,14 +450,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/lights.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/ScenariosActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -563,13 +492,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/simo/appchiesa/LightsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4440">
+        <state relative-caret-position="-4595">
           <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#12082#12980#0" expanded="true" />
             <element signature="e#12979#12980#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/lights.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="352" column="47" selection-start-line="352" selection-start-column="47" selection-end-line="352" selection-end-column="47" />
         </state>
       </provider>
     </entry>
