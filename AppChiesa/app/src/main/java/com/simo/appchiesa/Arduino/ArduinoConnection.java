@@ -9,6 +9,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.simo.appchiesa.ScenariosActivity;
+
+import java.util.ArrayList;
 
 public class ArduinoConnection {
     //declare variable needed
@@ -16,54 +19,100 @@ public class ArduinoConnection {
     private Context context;
     private String parameterValue;
     private String requestCommand;
+    private ArrayList<String> arrayLights;
+    private ArrayList<String> arrayScenarios;
 
     // ArduinoConnection constructor
-    public ArduinoConnection(Context context) {
+    public ArduinoConnection(Context context, ArrayList<String> arrayLights) {
 
         this.context = context;
+        this.arrayLights = arrayLights;
+        this.arrayScenarios = arrayScenarios;
     }
 
     public void scenarioActivation(String scenario) {
         if(scenario.equals("chiesa")){
-            this.lightActivation("ch4");
-            this.lightActivation("ch5");
-            this.lightActivation("ch9");
+            if(ScenariosActivity.arrayLights.get(0).equals("off")){
+                this.lightActivation("ch4");
+            }
+            if(ScenariosActivity.arrayLights.get(1).equals("off")){
+                this.lightActivation("ch5");
+            }
+            if(ScenariosActivity.arrayLights.get(6).equals("off")){
+                this.lightActivation("ch9");
+            }
+            if(ScenariosActivity.arrayLights.get(9).equals("off"))
             this.lightActivation("ch12a");
         }
         else if(scenario.equals("rosario")){
-            this.lightActivation("ch6b");
-            this.lightActivation("ch10");
+            if(ScenariosActivity.arrayLights.get(3).equals("off")){
+                this.lightActivation("ch6b");
+            }
+            if(ScenariosActivity.arrayLights.get(7).equals("off")){
+                this.lightActivation("ch10");
+            }
         }
         else if(scenario.equals("messa")){
-            this.lightActivation("ch6a");
-            this.lightActivation("ch11");
+            if(ScenariosActivity.arrayLights.get(2).equals("off")){
+                this.lightActivation("ch6a");
+            }
+            if(ScenariosActivity.arrayLights.get(8).equals("off")){
+                this.lightActivation("ch11");
+            }
         }
         else if(scenario.equals("solenni")){
-            this.lightActivation("ch3");
-            this.lightActivation("ch12b");
-            this.lightActivation("ch15");
+            if(ScenariosActivity.arrayLights.get(14).equals("off")){
+                this.lightActivation("ch3");
+            }
+            if(ScenariosActivity.arrayLights.get(10).equals("off")){
+                this.lightActivation("ch12b");
+            }
+            if(ScenariosActivity.arrayLights.get(13).equals("off")){
+                this.lightActivation("ch15");
+            }
         }
     }
 
     public void scenarioDeactivation(String scenario) {
         if(scenario.equals("chiesa")){
-            this.lightDeactivation("ch4");
-            this.lightDeactivation("ch5");
-            this.lightDeactivation("ch9");
-            this.lightDeactivation("ch12a");
+            if(ScenariosActivity.arrayLights.get(0).equals("off")){
+                this.lightDeactivation("ch4");
+            }
+            if(ScenariosActivity.arrayLights.get(1).equals("off")){
+                this.lightDeactivation("ch5");
+            }
+            if(ScenariosActivity.arrayLights.get(6).equals("off")){
+                this.lightDeactivation("ch9");
+            }
+            if(ScenariosActivity.arrayLights.get(9).equals("off")){
+                this.lightDeactivation("ch12a");
+            }
         }
         else if(scenario.equals("rosario")){
-            this.lightDeactivation("ch6b");
+            if(ScenariosActivity.arrayLights.get(3).equals("off")){
+                this.lightDeactivation("ch6b");
+            }
+            if(ScenariosActivity.arrayLights.get(7).equals("off"))
             this.lightDeactivation("ch10");
         }
         else if(scenario.equals("messa")){
-            this.lightDeactivation("ch6a");
-            this.lightDeactivation("ch11");
+            if(ScenariosActivity.arrayLights.get(2).equals("off")){
+                this.lightDeactivation("ch6a");
+            }
+            if(ScenariosActivity.arrayLights.get(8).equals("off")){
+                this.lightDeactivation("ch11");
+            }
         }
         else if(scenario.equals("solenni")){
-            this.lightDeactivation("ch3");
-            this.lightDeactivation("ch12b");
-            this.lightDeactivation("ch15");
+            if(ScenariosActivity.arrayLights.get(14).equals("off")){
+                this.lightDeactivation("ch3");
+            }
+            if(ScenariosActivity.arrayLights.get(10).equals("off")){
+                this.lightDeactivation("ch12b");
+            }
+            if(ScenariosActivity.arrayLights.get(13).equals("off")){
+                this.lightDeactivation("ch15");
+            }
         }
 
     }

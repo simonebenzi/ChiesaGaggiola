@@ -16,7 +16,7 @@ import com.simo.appchiesa.Scenarios.Scenarios;
 import java.util.ArrayList;
 
 
-public class Home extends Activity {
+public class ScenariosActivity extends Activity {
 
     public static Context homeContext;
     private Button BttspegniTutto, bttLights;
@@ -24,8 +24,8 @@ public class Home extends Activity {
     private EditText arduinoIP;
     private LightCircuits lightCircuits;
     private Scenarios scenarios;
-    private ArrayList<String> arrayLights;
-    private ArrayList<String> arrayScenarios;
+    public static ArrayList<String> arrayLights;
+    public static ArrayList<String> arrayScenarios;
     private ArduinoConnection arduino;
 
     @Override
@@ -44,9 +44,9 @@ public class Home extends Activity {
 
         lightCircuits = new LightCircuits();
         scenarios = new Scenarios();
-        arduino = new ArduinoConnection(homeContext);
+        arduino = new ArduinoConnection(homeContext, arrayLights);
 
-        // Carico gli stati degli scenari
+        // Carico gli stati degli scenari e delle luci
         arrayLights = lightCircuits.loadLights(homeContext);
         arrayScenarios = scenarios.loadScenarios(homeContext);
 
@@ -275,7 +275,7 @@ public class Home extends Activity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent();
-                i.setClass(Home.this, LightsActivity.class);
+                i.setClass(ScenariosActivity.this, LightsActivity.class);
                 startActivity(i);
             }
         });

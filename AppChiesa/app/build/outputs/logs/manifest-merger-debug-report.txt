@@ -75,14 +75,14 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\si
 		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:12:9-40
 	android:usesCleartextTraffic
 		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:10:9-44
-activity#com.simo.appchiesa.Home
+activity#com.simo.appchiesa.ScenariosActivity
 ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:13:9-22:20
 	android:screenOrientation
 		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:16:13-49
 	android:theme
 		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:15:13-71
 	android:name
-		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:14:13-33
+		ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:14:13-46
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
 ADDED from C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:17:13-21:29
 action#android.intent.action.MAIN

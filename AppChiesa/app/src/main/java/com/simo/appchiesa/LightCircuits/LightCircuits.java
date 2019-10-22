@@ -15,7 +15,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class LightCircuits {
 
-    public ArrayList<String> ArrayLights;     // 0(CH.4) 1(CH.5) 2(CH.6a) 3(CH.6b) 4(CH.7) 5(CH.8) 6(CH.9)  7(CH.10) 8(CH.11) 9(CH.12a) 10(CH.12b) 11(CH.13) 12(CH.14) 13(CH.15)
+    public ArrayList<String> ArrayLights;     // 0(CH.4) 1(CH.5) 2(CH.6a) 3(CH.6b) 4(CH.7) 5(CH.8) 6(CH.9)  7(CH.10) 8(CH.11) 9(CH.12a) 10(CH.12b) 11(CH.13) 12(CH.14) 13(CH.15) 14(CH.3)
 
     public LightCircuits(){
         this.ArrayLights = new ArrayList<String>();
@@ -57,6 +57,7 @@ public class LightCircuits {
             arrayLightsLoaded.add(11, "off");
             arrayLightsLoaded.add(12, "off");
             arrayLightsLoaded.add(13, "off");
+            arrayLightsLoaded.add(14, "off");
 
             return arrayLightsLoaded;
         } else

@@ -36,8 +36,8 @@
 23-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:10:9-44
 24        <activity
 24-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:13:9-22:20
-25            android:name="com.simo.appchiesa.Home"
-25-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:14:13-33
+25            android:name="com.simo.appchiesa.ScenariosActivity"
+25-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:14:13-46
 26            android:screenOrientation="portrait"
 26-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:16:13-49
 27            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
