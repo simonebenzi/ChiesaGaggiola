@@ -71,7 +71,7 @@ public class ArduinoConnection {
     public void lightActivation(String lightCircuit){
         // Instantiate the RequestQueue
         RequestQueue queue = Volley.newRequestQueue(this.context);
-        String url = "http://192.168.1.142/" + lightCircuit + "/on:80";
+        String url = "http://192.168.1.150/" + lightCircuit + "/on:80";
 
         // Request a string response from the provided URL
         StringRequest request = new StringRequest(Request.Method.GET, url,
@@ -93,7 +93,7 @@ public class ArduinoConnection {
     public void lightDeactivation(String lightCircuit){
         // Instantiate the RequestQueue
         RequestQueue queue = Volley.newRequestQueue(this.context);
-        String url = "http://192.168.1.142/" + lightCircuit + "/off:80";
+        String url = "http://192.168.1.150/" + lightCircuit + "/off:80";
 
         // Request a string response from the provided URL
         StringRequest request = new StringRequest(Request.Method.GET, url,

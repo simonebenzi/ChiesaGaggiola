@@ -159,13 +159,25 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/BspegniTutto"
+    android:id="@+id/BspegniTutto"
+    android:layout_width="250dp"
+    android:layout_height="40dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="0dp"
+    android:background="@drawable/rounded_button_sfondo_bianco"
+    android:text="Spegni Tutte Le Luci"
+    android:textColor="@color/LightManagerBlue"
+    android:textSize="20dp"
+    android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/bttLights"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/rounded_button_sfondo_bianco"
-        android:text="Spegni Tutte Le Luci"
+        android:text="Gestione Luci"
         android:textColor="@color/LightManagerBlue"
         android:textSize="20dp"
         android:textStyle="bold"/>

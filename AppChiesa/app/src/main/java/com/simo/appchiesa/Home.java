@@ -2,6 +2,7 @@ package com.simo.appchiesa;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,15 +15,12 @@ import com.simo.appchiesa.Scenarios.Scenarios;
 
 import java.util.ArrayList;
 
-//import com.example.Settings;
-//import com.example.broadcastreceiver.WiFiReceiver;
-//import com.example.interfaces.RoomFound;
 
 public class Home extends Activity {
 
-    public static Context context;
-    private Button BttspegniTutto;
-    private ImageButton iBsetting, iBOpenChiesa, iBRosario, iBMessa, iBSolenni, iBbagno;
+    public static Context homeContext;
+    private Button BttspegniTutto, bttLights;
+    private ImageButton iBOpenChiesa, iBRosario, iBMessa, iBSolenni, iBbagno;
     private EditText arduinoIP;
     private LightCircuits lightCircuits;
     private Scenarios scenarios;
@@ -33,25 +31,26 @@ public class Home extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home);
+        setContentView(R.layout.scenarios);
 
-        // iBsetting = findViewById(R.id.iBsetting);
+        bttLights = findViewById(R.id.bttLights);
         BttspegniTutto = findViewById(R.id.BspegniTutto);
         iBOpenChiesa = findViewById(R.id.iBChiesa);
         iBRosario = findViewById(R.id.iBRosario);
         iBMessa = findViewById(R.id.iBMessa);
         iBSolenni = findViewById(R.id.iBSolenni);
 
-        context = getApplicationContext();
+        homeContext = getApplicationContext();
 
         lightCircuits = new LightCircuits();
         scenarios = new Scenarios();
-        arduino = new ArduinoConnection(context);
+        arduino = new ArduinoConnection(homeContext);
 
-        // Carico gli stati delle luci
-        arrayLights = lightCircuits.loadLights(context);
-        arrayScenarios = scenarios.loadScenarios(context);
-        // Carico le immagini degli imageButtons e nel caso uno sia on accendo led arduino
+        // Carico gli stati degli scenari
+        arrayLights = lightCircuits.loadLights(homeContext);
+        arrayScenarios = scenarios.loadScenarios(homeContext);
+
+        // Carico le immagini degli imageButtons
         /*if (ArrayLights.get(0).equals("on")) {
 
             new CountDownTimer(1, 1000) {
@@ -60,7 +59,7 @@ public class Home extends Activity {
                 }
 
                 public void onFinish() {
-                    new ArduinoConnection(context, pinIngresso, "pin", ipArduino, "80").execute();
+                    new ArduinoConnection(homeContext, pinIngresso, "pin", ipArduino, "80").execute();
                 }
             }.start();*/
         iBOpenChiesa.setImageBitmap(Scenarios.setImageScenarios(arrayScenarios.get(0), iBOpenChiesa.getContext()));
@@ -73,7 +72,7 @@ public class Home extends Activity {
                 }
 
                 public void onFinish() {
-                    new ArduinoConnection(context, pinSalotto, "pin", ipArduino, "80").execute();
+                    new ArduinoConnection(homeContext, pinSalotto, "pin", ipArduino, "80").execute();
                 }
             }.start();*/
         iBRosario.setImageBitmap(Scenarios.setImageScenarios(arrayScenarios.get(1), iBRosario.getContext()));
@@ -83,7 +82,7 @@ public class Home extends Activity {
         iBSolenni.setImageBitmap(Scenarios.setImageScenarios(arrayScenarios.get(3), iBSolenni.getContext()));
 
         // Carica le impostazioni
-//        ArrayList<String> ArraySettings = settings.LoadSettings(context);
+//        ArrayList<String> ArraySettings = settings.LoadSettings(homeContext);
 
         // Controlla se l'ip di arduino é impostato e in caso affermativo lo inserisce
         /* if (!ArraySettings.get(12).equals(""))
@@ -102,16 +101,7 @@ public class Home extends Activity {
                     arduino.scenarioDeactivation("chiesa");
                 }
 
-                scenarios.saveScenarios(arrayScenarios, context);
-                /*new CountDownTimer(1000, 1000) {
-
-                    public void onTick(long millisUntilFinished) {
-                    }
-
-                    public void onFinish() {*/
-                //new ArduinoConnection(context, pinIngresso, "pin", ipArduino, "80").execute();
-                    /*}
-                }.start();*/
+                scenarios.saveScenarios(arrayScenarios, homeContext);
             }
         });
 
@@ -138,14 +128,14 @@ public class Home extends Activity {
                     arduino.scenarioDeactivation("rosario");
                 }
 
-                scenarios.saveScenarios(arrayScenarios, context);
+                scenarios.saveScenarios(arrayScenarios, homeContext);
                 /*new CountDownTimer(1, 1000) {
 
                     public void onTick(long millisUntilFinished) {
                     }
 
                     public void onFinish() {*/
-                //new ArduinoConnection(context, pinSalotto, "pin", ipArduino, "80").execute();
+                //new ArduinoConnection(homeContext, pinSalotto, "pin", ipArduino, "80").execute();
                     /*}
                 }.start();*/
             }
@@ -186,7 +176,7 @@ public class Home extends Activity {
                     arduino.scenarioDeactivation("messa");
                 }
 
-                scenarios.saveScenarios(arrayScenarios, context);
+                scenarios.saveScenarios(arrayScenarios, homeContext);
             }
         });
 
@@ -239,7 +229,7 @@ public class Home extends Activity {
                     arduino.scenarioDeactivation("solenni");
                 }
 
-                scenarios.saveScenarios(arrayScenarios, context);
+                scenarios.saveScenarios(arrayScenarios, homeContext);
             }
         });
 
@@ -277,18 +267,18 @@ public class Home extends Activity {
                     arduino.scenarioDeactivation("solenni");
                 }
 
-                scenarios.saveScenarios(arrayScenarios, context);
+                scenarios.saveScenarios(arrayScenarios, homeContext);
             }
         });
 
-        /* iBsetting.setOnClickListener(new View.OnClickListener() {
+        bttLights.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent();
-                i.setClass(Home.this, SettingActivity.class);
+                i.setClass(Home.this, LightsActivity.class);
                 startActivity(i);
             }
-        }); */
+        });
     }
 
     @Override

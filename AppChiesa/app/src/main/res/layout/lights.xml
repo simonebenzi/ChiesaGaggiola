@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/ibReturn"
+        android:layout_width="50dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="0dp"
+        android:background="@drawable/ic_keyboard_arrow_left" />
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollIndicators="none">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvCH4"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="35dp"
+                android:text="Faretti Navata"
+                android:textColor="@color/grey"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/ibCH4"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="25dp"
+                android:layout_toEndOf="@+id/tvCH4"
+                android:background="@drawable/rounded_button_sfondo_bianco"
+                android:src="@mipmap/luce_off" />
+
+            <TextView
+                android:id="@+id/tvCH5"
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/tvCH4"
+                android:layout_gravity="start"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="50dp"
+                android:text="Striscia LED Navata"
+                android:textColor="@color/grey"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/ibCH5"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="35dp"
+                android:layout_toEndOf="@+id/tvCH5"
+                android:layout_below="@+id/ibCH4"
+                android:background="@drawable/rounded_button_sfondo_bianco"
+                android:src="@mipmap/luce_off" />
+
+            <TextView
+                android:id="@+id/tvCH6a"
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/tvCH5"
+                android:layout_gravity="start"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="36dp"
+                android:text="Lampadari Navata Retro"
+                android:textColor="@color/grey"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/ibCH6a"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="35dp"
+                android:layout_toEndOf="@+id/tvCH6a"
+                android:layout_below="@+id/ibCH5"
+                android:background="@drawable/rounded_button_sfondo_bianco"
+                android:src="@mipmap/luce_off" />
+
+            <TextView
+                android:id="@+id/tvCH6b"
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/tvCH6a"
+                android:layout_gravity="start"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="36dp"
+                android:text="Lampadari Navata Fronte"
+                android:textColor="@color/grey"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/ibCH6b"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="35dp"
+                android:layout_toEndOf="@+id/tvCH6b"
+                android:layout_below="@+id/ibCH6a"
+                android:background="@drawable/rounded_button_sfondo_bianco"
+                android:src="@mipmap/luce_off" />
+
+            <TextView
+                android:id="@+id/tvCH7"
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/tvCH6b"
+                android:layout_gravity="start"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="36dp"
+                android:text="Luci LED\nVia Crucis"
+                android:textColor="@color/grey"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/ibCH7"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="35dp"
+                android:layout_toEndOf="@+id/tvCH7"
+                android:layout_below="@+id/ibCH6b"
+                android:background="@drawable/rounded_button_sfondo_bianco"
+                android:src="@mipmap/luce_off" />
+
+            <TextView
+                android:id="@+id/tvCH8"
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/tvCH7"
+                android:layout_gravity="start"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="36dp"
+                android:text="Illuminazione Confessionali"
+                android:textColor="@color/grey"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/ibCH8"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="35dp"
+                android:layout_toEndOf="@+id/tvCH8"
+                android:layout_below="@+id/ibCH7"
+                android:background="@drawable/rounded_button_sfondo_bianco"
+                android:src="@mipmap/luce_off" />
+
+            <TextView
+                android:id="@+id/tvCH9"
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/tvCH8"
+                android:layout_gravity="start"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="36dp"
+                android:text="Striscia LED Cappelle"
+                android:textColor="@color/grey"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/ibCH9"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="35dp"
+                android:layout_toEndOf="@+id/tvCH9"
+                android:layout_below="@+id/ibCH8"
+                android:background="@drawable/rounded_button_sfondo_bianco"
+                android:src="@mipmap/luce_off" />
+
+            <TextView
+                android:id="@+id/tvCH10"
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/tvCH9"
+                android:layout_gravity="start"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="36dp"
+                android:text="Faretti LED Cappelle"
+                android:textColor="@color/grey"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/ibCH10"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="35dp"
+                android:layout_toEndOf="@+id/tvCH10"
+                android:layout_below="@+id/ibCH9"
+                android:background="@drawable/rounded_button_sfondo_bianco"
+                android:src="@mipmap/luce_off" />
+
+            <TextView
+                android:id="@+id/tvCH11"
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/tvCH10"
+                android:layout_gravity="start"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="36dp"
+                android:text="Illuminazione Presbiterio"
+                android:textColor="@color/grey"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/ibCH11"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="35dp"
+                android:layout_toEndOf="@+id/tvCH11"
+                android:layout_below="@+id/ibCH10"
+                android:background="@drawable/rounded_button_sfondo_bianco"
+                android:src="@mipmap/luce_off" />
+
+            <TextView
+                android:id="@+id/tvCH12a"
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/tvCH11"
+                android:layout_gravity="start"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="36dp"
+                android:text="Faretti Alti Coro"
+                android:textColor="@color/grey"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/ibCH12a"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="35dp"
+                android:layout_toEndOf="@+id/tvCH12a"
+                android:layout_below="@+id/ibCH11"
+                android:background="@drawable/rounded_button_sfondo_bianco"
+                android:src="@mipmap/luce_off" />
+
+            <TextView
+                android:id="@+id/tvCH12b"
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/tvCH12a"
+                android:layout_gravity="start"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="36dp"
+                android:text="Faretti Bassi Coro"
+                android:textColor="@color/grey"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/ibCH12b"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="35dp"
+                android:layout_toEndOf="@+id/tvCH12b"
+                android:layout_below="@+id/ibCH12a"
+                android:background="@drawable/rounded_button_sfondo_bianco"
+                android:src="@mipmap/luce_off" />
+
+            <TextView
+                android:id="@+id/tvCH13"
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/tvCH12b"
+                android:layout_gravity="start"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="36dp"
+                android:text="Luce Organo"
+                android:textColor="@color/grey"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/ibCH13"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="35dp"
+                android:layout_toEndOf="@+id/tvCH13"
+                android:layout_below="@+id/ibCH12b"
+                android:background="@drawable/rounded_button_sfondo_bianco"
+                android:src="@mipmap/luce_off" />
+
+            <TextView
+                android:id="@+id/tvCH14"
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/tvCH13"
+                android:layout_gravity="start"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="36dp"
+                android:text="Illuminazione Sagrestia"
+                android:textColor="@color/grey"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/ibCH14"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="35dp"
+                android:layout_toEndOf="@+id/tvCH14"
+                android:layout_below="@+id/ibCH13"
+                android:background="@drawable/rounded_button_sfondo_bianco"
+                android:src="@mipmap/luce_off" />
+
+            <TextView
+                android:id="@+id/tvCH15"
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/tvCH14"
+                android:layout_gravity="start"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="36dp"
+                android:text="Faro Alto Presbiterio"
+                android:textColor="@color/grey"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/ibCH15"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="35dp"
+                android:layout_toEndOf="@+id/tvCH15"
+                android:layout_below="@+id/ibCH14"
+                android:background="@drawable/rounded_button_sfondo_bianco"
+                android:src="@mipmap/luce_off" />
+
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>
