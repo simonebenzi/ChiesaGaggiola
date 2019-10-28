@@ -22,9 +22,9 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Ingresso"
+            android:text="Apertura Chiesa"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="0dp"
             android:textStyle="bold"
             android:textSize="35dp"
             android:textColor="@color/grey"
@@ -53,7 +53,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Salotto"
+            android:text="Rosario"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="10dp"
             android:textStyle="bold"
@@ -84,7 +84,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cucina"
+            android:text="Messa"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="10dp"
             android:textStyle="bold"
@@ -114,9 +114,9 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="0dp"
             android:layout_weight="1"
-            android:text="Camera"
+            android:text="Funzione Solenne"
             android:textColor="@color/grey"
             android:textSize="35dp"
             android:textStyle="bold" />
@@ -131,34 +131,6 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="-30dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:text="Bagno"
-            android:textColor="@color/grey"
-            android:textSize="35dp"
-            android:textStyle="bold" />
-
-        <ImageButton
-            android:id="@+id/iBbagno"
-            android:layout_width="50dp"
-            android:layout_height="70dp"
-            android:layout_marginLeft="60dp"
-            android:src="@mipmap/luce_off"
-            android:background="@drawable/rounded_button_sfondo_bianco" />
-
-    </LinearLayout>
 
     <Button
     android:id="@+id/BspegniTutto"
@@ -168,7 +140,7 @@
     android:layout_marginTop="0dp"
     android:background="@drawable/rounded_button_sfondo_bianco"
     android:text="Spegni Tutte Le Luci"
-    android:textColor="@color/LightManagerBlue"
+    android:textColor="@color/black"
     android:textSize="20dp"
     android:textStyle="bold"/>
 
@@ -180,7 +152,7 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/rounded_button_sfondo_bianco"
         android:text="Gestione Luci"
-        android:textColor="@color/LightManagerBlue"
+        android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"/>
 

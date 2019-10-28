@@ -95,10 +95,15 @@ public class ScenariosActivity extends Activity {
                     iBOpenChiesa.setImageBitmap(Scenarios.setImageScenarios("on", iBOpenChiesa.getContext()));
                     arrayScenarios.set(0, "on");
                     arduino.scenarioActivation("chiesa");
-                } else {
+                }
+                else if (arrayScenarios.get(0).equals("on") && arrayScenarios.get(1).equals("off") && arrayScenarios.get(2).equals("off") && arrayScenarios.get(3).equals("off")){
                     iBOpenChiesa.setImageBitmap(Scenarios.setImageScenarios("off", iBOpenChiesa.getContext()));
                     arrayScenarios.set(0, "off");
                     arduino.scenarioDeactivation("chiesa");
+                }
+                else {
+                    iBOpenChiesa.setImageBitmap(Scenarios.setImageScenarios("off", iBOpenChiesa.getContext()));
+                    arrayScenarios.set(0, "off");
                 }
 
                 scenarios.saveScenarios(arrayScenarios, homeContext);
@@ -113,19 +118,26 @@ public class ScenariosActivity extends Activity {
                     arrayScenarios.set(1, "on");
                     arduino.scenarioActivation("chiesa");
                     arduino.scenarioActivation("rosario");
-                } else if (arrayScenarios.get(1).equals("off") && arrayScenarios.get(0).equals("on")) {
+                }
+                else if (arrayScenarios.get(1).equals("off") && arrayScenarios.get(0).equals("on")) {
                     iBRosario.setImageBitmap(Scenarios.setImageScenarios("on", iBRosario.getContext()));
                     arrayScenarios.set(1, "on");
                     arduino.scenarioActivation("rosario");
-                }else if (arrayScenarios.get(1).equals("on") && arrayScenarios.get(0).equals("on")) {
+                }
+                else if (arrayScenarios.get(1).equals("on") && arrayScenarios.get(0).equals("on") && arrayScenarios.get(2).equals("off") && arrayScenarios.get(3).equals("off")) {
                     iBRosario.setImageBitmap(Scenarios.setImageScenarios("off", iBRosario.getContext()));
                     arrayScenarios.set(1, "off");
                     arduino.scenarioDeactivation("rosario");
-                }else if (arrayScenarios.get(1).equals("on") && arrayScenarios.get(0).equals("off")) {
+                }
+                else if (arrayScenarios.get(1).equals("on") && arrayScenarios.get(0).equals("off") && arrayScenarios.get(2).equals("off") && arrayScenarios.get(3).equals("off")) {
                     iBRosario.setImageBitmap(Scenarios.setImageScenarios("off", iBRosario.getContext()));
                     arrayScenarios.set(1, "off");
                     arduino.scenarioDeactivation("chiesa");
                     arduino.scenarioDeactivation("rosario");
+                }
+                else if (arrayScenarios.get(1).equals("on") && (arrayScenarios.get(2).equals("on") || arrayScenarios.get(3).equals("on"))){
+                    iBRosario.setImageBitmap(Scenarios.setImageScenarios("off", iBRosario.getContext()));
+                    arrayScenarios.set(1, "off");
                 }
 
                 scenarios.saveScenarios(arrayScenarios, homeContext);
@@ -150,30 +162,39 @@ public class ScenariosActivity extends Activity {
                     arduino.scenarioActivation("chiesa");
                     arduino.scenarioActivation("rosario");
                     arduino.scenarioActivation("messa");
-                } else if (arrayScenarios.get(2).equals("off") && arrayScenarios.get(1).equals("off") && arrayScenarios.get(0).equals("on")) {
+                }
+                else if (arrayScenarios.get(2).equals("off") && arrayScenarios.get(1).equals("off") && arrayScenarios.get(0).equals("on")) {
                     iBMessa.setImageBitmap(Scenarios.setImageScenarios("on", iBMessa.getContext()));
                     arrayScenarios.set(2, "on");
                     arduino.scenarioActivation("rosario");
                     arduino.scenarioActivation("messa");
-                }else if (arrayScenarios.get(2).equals("off") && arrayScenarios.get(1).equals("on")) {
+                }
+                else if (arrayScenarios.get(2).equals("off") && arrayScenarios.get(1).equals("on")) {
                     iBMessa.setImageBitmap(Scenarios.setImageScenarios("on", iBMessa.getContext()));
                     arrayScenarios.set(2, "on");
                     arduino.scenarioActivation("messa");
-                }else if (arrayScenarios.get(2).equals("on") && arrayScenarios.get(1).equals("on")) {
+                }
+                else if (arrayScenarios.get(2).equals("on") && arrayScenarios.get(1).equals("on") && arrayScenarios.get(3).equals("off")) {
                     iBMessa.setImageBitmap(Scenarios.setImageScenarios("off", iBMessa.getContext()));
                     arrayScenarios.set(2, "off");
                     arduino.scenarioDeactivation("messa");
-                }else if (arrayScenarios.get(2).equals("on") && arrayScenarios.get(1).equals("off") && arrayScenarios.get(0).equals("off")) {
+                }
+                else if (arrayScenarios.get(2).equals("on") && arrayScenarios.get(1).equals("off") && arrayScenarios.get(0).equals("off") && arrayScenarios.get(3).equals("off")) {
                     iBMessa.setImageBitmap(Scenarios.setImageScenarios("off", iBMessa.getContext()));
                     arrayScenarios.set(2, "off");
                     arduino.scenarioDeactivation("chiesa");
                     arduino.scenarioDeactivation("rosario");
                     arduino.scenarioDeactivation("messa");
-                }else if (arrayScenarios.get(2).equals("on") && arrayScenarios.get(1).equals("off") && arrayScenarios.get(0).equals("on")) {
+                }
+                else if (arrayScenarios.get(2).equals("on") && arrayScenarios.get(1).equals("off") && arrayScenarios.get(0).equals("on") && arrayScenarios.get(3).equals("off")) {
                     iBMessa.setImageBitmap(Scenarios.setImageScenarios("off", iBMessa.getContext()));
                     arrayScenarios.set(2, "off");
                     arduino.scenarioDeactivation("rosario");
                     arduino.scenarioDeactivation("messa");
+                }
+                else if (arrayScenarios.get(2).equals("on") && arrayScenarios.get(3).equals("on")){
+                    iBMessa.setImageBitmap(Scenarios.setImageScenarios("off", iBMessa.getContext()));
+                    arrayScenarios.set(2, "off");
                 }
 
                 scenarios.saveScenarios(arrayScenarios, homeContext);

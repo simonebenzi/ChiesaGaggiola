@@ -10,8 +10,8 @@
 IPAddress ip(192, 168, 1, 124);
 
 // Wifi network credentials
-const char* ssid     = "TIM-18143925";
-const char* pass = "CN2ltmwLXDvmVfWtC1ogJU95";
+const char* ssid     = "FASTWEB-7N6SPT";
+const char* pass = "12RD23JE7I";
 
 int status = WL_IDLE_STATUS;
 
@@ -25,12 +25,15 @@ String header;
 String pin5State = "off";
 String pin6State = "off";
 
-// Assign output variables to GPIO pins
+// Assign output variables to IO pins
 const int ch4 = 5;
 const int ch5 = 6;
-const int ch9 = 7;
-const int ch12a = 8;
+const int ch10 = 7;
+const int ch6a = 8;
 const int ch6b = 3;
+const int ch11 = 9;
+const int ch3 = 10;
+const int ch12b = 4;
 
 void setup() {
   Serial.begin(9600);
@@ -40,15 +43,21 @@ void setup() {
   // Initialize the output variables as outputs
   pinMode(ch4, OUTPUT);
   pinMode(ch5, OUTPUT);
-  pinMode(ch9, OUTPUT);
-  pinMode(ch12a, OUTPUT);
+  pinMode(ch10, OUTPUT);
+  pinMode(ch11, OUTPUT);
+  pinMode(ch6a, OUTPUT);
   pinMode(ch6b, OUTPUT);
+  pinMode(ch3, OUTPUT);
+  pinMode(ch12b, OUTPUT);
   // Set outputs to LOW
   digitalWrite(ch4, LOW);
   digitalWrite(ch5, LOW);
-  digitalWrite(ch9, LOW);
-  digitalWrite(ch12a, LOW);
+  digitalWrite(ch10, LOW);
+  digitalWrite(ch11, LOW);
+  digitalWrite(ch6a, LOW);
   digitalWrite(ch6b, LOW);
+  digitalWrite(ch3, LOW);
+  digitalWrite(ch12b, LOW);
 
   // check for the WiFi module:
   if (WiFi.status() == WL_NO_MODULE) {
@@ -64,7 +73,7 @@ void setup() {
 
   // Set the Arduino's static IP address
   WiFi.config(ip);
-  
+
   // attempt to connect to Wifi network:
   while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to SSID: ");
@@ -120,23 +129,23 @@ void loop() {
               Serial.println("CH.5 is off");
               pin6State = "off";
               digitalWrite(ch5, LOW);
-            } else if (header.indexOf("GET /ch9/on") >= 0) {
-              Serial.println("CH.9 is on");
+            } else if (header.indexOf("GET /ch10/on") >= 0) {
+              Serial.println("CH.10 is on");
               pin6State = "on";
-              digitalWrite(ch9, HIGH);
-            } else if (header.indexOf("GET /ch9/off") >= 0) {
-              Serial.println("CH.9 is off");
+              digitalWrite(ch10, HIGH);
+            } else if (header.indexOf("GET /ch10/off") >= 0) {
+              Serial.println("CH.10 is off");
               pin6State = "off";
-              digitalWrite(ch9, LOW);
-            } else if (header.indexOf("GET /ch12a/on") >= 0) {
-              Serial.println("CH.12a is on");
+              digitalWrite(ch10, LOW);
+            } else if (header.indexOf("GET /ch6a/on") >= 0) {
+              Serial.println("CH.6a is on");
               pin6State = "on";
-              digitalWrite(ch12a, HIGH);
-            } else if (header.indexOf("GET /ch12a/off") >= 0) {
-              Serial.println("CH.12a is off");
+              digitalWrite(ch6a, HIGH);
+            } else if (header.indexOf("GET /ch6a/off") >= 0) {
+              Serial.println("CH.6a is off");
               pin6State = "off";
-              digitalWrite(ch12a, LOW);
-            }else if (header.indexOf("GET /ch6b/on") >= 0) {
+              digitalWrite(ch6a, LOW);
+            } else if (header.indexOf("GET /ch6b/on") >= 0) {
               Serial.println("CH.6b is on");
               pin6State = "on";
               digitalWrite(ch6b, HIGH);
@@ -144,6 +153,30 @@ void loop() {
               Serial.println("CH.6b is off");
               pin6State = "off";
               digitalWrite(ch6b, LOW);
+            } else if (header.indexOf("GET /ch11/on") >= 0) {
+              Serial.println("CH.11 is on");
+              pin6State = "on";
+              digitalWrite(ch11, HIGH);
+            } else if (header.indexOf("GET /ch11/off") >= 0) {
+              Serial.println("CH.11 is off");
+              pin6State = "off";
+              digitalWrite(ch11, LOW);
+            } else if (header.indexOf("GET /ch3/on") >= 0) {
+              Serial.println("CH.3 is on");
+              pin6State = "on";
+              digitalWrite(ch3, HIGH);
+            } else if (header.indexOf("GET /ch3/off") >= 0) {
+              Serial.println("CH.3 is off");
+              pin6State = "off";
+              digitalWrite(ch3, LOW);
+            } else if (header.indexOf("GET /ch12b/on") >= 0) {
+              Serial.println("CH.12b is on");
+              pin6State = "on";
+              digitalWrite(ch12b, HIGH);
+            } else if (header.indexOf("GET /ch12b/off") >= 0) {
+              Serial.println("CH.12b is off");
+              pin6State = "off";
+              digitalWrite(ch12b, LOW);
             }
 
             // Display the HTML web page
