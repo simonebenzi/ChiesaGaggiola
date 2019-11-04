@@ -5,5 +5,5 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="@mipmap/introxxxhdpi">
+    android:background="@mipmap/intro_xxxhdpi">
 </LinearLayout>
