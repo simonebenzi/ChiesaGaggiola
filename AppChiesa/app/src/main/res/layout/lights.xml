@@ -7,12 +7,12 @@
 
     <include layout="@layout/toolbar_lights" />
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollIndicators="none">
 
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
@@ -351,6 +351,46 @@
                 android:layout_below="@+id/ibCH14"
                 android:background="@drawable/rounded_button_sfondo_bianco"
                 android:src="@mipmap/luce_off" />
+
+            <TextView
+                android:id="@+id/tvCH3"
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/tvCH15"
+                android:layout_gravity="start"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="36dp"
+                android:text="Cubotti Fondo e Navata"
+                android:textColor="@color/grey"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/ibCH3"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="35dp"
+                android:layout_toEndOf="@+id/tvCH3"
+                android:layout_below="@+id/ibCH15"
+                android:background="@drawable/rounded_button_sfondo_bianco"
+                android:src="@mipmap/luce_off" />
+
+            <Button
+                android:id="@+id/bttSpegniTuttoLights"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/ibCH3"
+                android:layout_gravity="center"
+                android:layout_marginStart="-285dp"
+                android:layout_marginTop="31dp"
+                android:layout_marginBottom="15dp"
+                android:layout_toEndOf="@+id/ibCH3"
+                android:background="@drawable/rounded_button_sfondo_bianco"
+                android:text="Spegni Tutte Le Luci"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
     </ScrollView>

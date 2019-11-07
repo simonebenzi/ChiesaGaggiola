@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.simo.appchiesa.Arduino.ArduinoConnection;
@@ -15,17 +14,19 @@ import com.simo.appchiesa.Scenarios.Scenarios;
 
 import java.util.ArrayList;
 
+import static com.simo.appchiesa.Settings.Settings.loadSettings;
+
 
 public class ScenariosActivity extends Activity {
 
     public static Context homeContext;
-    private Button BttspegniTutto, bttLights;
-    private ImageButton iBOpenChiesa, iBRosario, iBMessa, iBSolenni, iBbagno;
-    private EditText arduinoIP;
+    private Button bttSpegniTuttoScenarios, bttLights;
+    private ImageButton iBOpenChiesa, iBRosario, iBMessa, iBSolenni, iBSettings;
     private LightCircuits lightCircuits;
     private Scenarios scenarios;
     public static ArrayList<String> arrayLights;
     public static ArrayList<String> arrayScenarios;
+    public static ArrayList<String> arraySettings;
     private ArduinoConnection arduino;
 
     @Override
@@ -34,11 +35,12 @@ public class ScenariosActivity extends Activity {
         setContentView(R.layout.scenarios);
 
         bttLights = findViewById(R.id.bttLights);
-        BttspegniTutto = findViewById(R.id.BspegniTutto);
+        bttSpegniTuttoScenarios = findViewById(R.id.bttSpegniTuttoScenarios);
         iBOpenChiesa = findViewById(R.id.iBChiesa);
         iBRosario = findViewById(R.id.iBRosario);
         iBMessa = findViewById(R.id.iBMessa);
         iBSolenni = findViewById(R.id.iBSolenni);
+        iBSettings = findViewById(R.id.ibSettings);
 
         homeContext = getApplicationContext();
 
@@ -49,6 +51,7 @@ public class ScenariosActivity extends Activity {
         // Carico gli stati degli scenari e delle luci
         arrayLights = lightCircuits.loadLights(homeContext);
         arrayScenarios = scenarios.loadScenarios(homeContext);
+        arraySettings = loadSettings(homeContext);
 
         // Carico le immagini degli imageButtons
         /*if (ArrayLights.get(0).equals("on")) {
@@ -255,7 +258,7 @@ public class ScenariosActivity extends Activity {
         });
 
 
-        BttspegniTutto.setOnClickListener(new View.OnClickListener() {
+        bttSpegniTuttoScenarios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -298,6 +301,16 @@ public class ScenariosActivity extends Activity {
                 Intent i = new Intent();
                 i.setClass(ScenariosActivity.this, LightsActivity.class);
                 startActivity(i);
+            }
+        });
+
+        iBSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.setClass(ScenariosActivity.this, SettingsActivity.class);
+                startActivity(i);
+                finish();
             }
         });
     }

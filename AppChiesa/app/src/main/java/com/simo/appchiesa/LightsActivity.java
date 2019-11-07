@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.simo.appchiesa.Arduino.ArduinoConnection;
@@ -13,7 +14,8 @@ import com.simo.appchiesa.LightCircuits.LightCircuits;
 
 public class LightsActivity extends Activity {
 
-    private ImageButton ibReturn, ibCH4, ibCH5, ibCH6a, ibCH6b, ibCH7, ibCH8, ibCH9, ibCH10, ibCH11, ibCH12a, ibCH12b, ibCH13, ibCH14, ibCH15;
+    private Button bttSpegniTuttoLights;
+    private ImageButton ibReturnLights, ibCH4, ibCH5, ibCH6a, ibCH6b, ibCH7, ibCH8, ibCH9, ibCH10, ibCH11, ibCH12a, ibCH12b, ibCH13, ibCH14, ibCH15, ibCH3;
     private LightCircuits lightCircuits;
     private ArduinoConnection arduino;
 
@@ -23,7 +25,7 @@ public class LightsActivity extends Activity {
         final Context context = ScenariosActivity.homeContext;
         setContentView(R.layout.lights);
 
-        ibReturn = findViewById(R.id.ibReturn);
+        ibReturnLights = findViewById(R.id.ibReturnLights);
         ibCH4 = findViewById(R.id.ibCH4);
         ibCH5 = findViewById(R.id.ibCH5);
         ibCH6a = findViewById(R.id.ibCH6a);
@@ -38,6 +40,8 @@ public class LightsActivity extends Activity {
         ibCH13 = findViewById(R.id.ibCH13);
         ibCH14 = findViewById(R.id.ibCH14);
         ibCH15 = findViewById(R.id.ibCH15);
+        ibCH3 = findViewById(R.id.ibCH3);
+        bttSpegniTuttoLights = findViewById(R.id.bttSpegniTuttoLights);
 
         lightCircuits = new LightCircuits();
         arduino = new ArduinoConnection(context, ScenariosActivity.arrayLights);
@@ -337,7 +341,116 @@ public class LightsActivity extends Activity {
             }
         });
 
-        ibReturn.setOnClickListener(new View.OnClickListener() {
+        bttSpegniTuttoLights.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(ScenariosActivity.arrayLights.get(0).equals("on")){
+                    ibCH4.setImageBitmap(LightCircuits.setImageLights("off", ibCH4.getContext()));
+                    ScenariosActivity.arrayLights.set(0, "off");
+                    if(ScenariosActivity.arrayScenarios.get(0).equals("off") && ScenariosActivity.arrayScenarios.get(1).equals("off")
+                            && ScenariosActivity.arrayScenarios.get(2).equals("off") && ScenariosActivity.arrayScenarios.get(3).equals("off")){
+                        arduino.lightDeactivation("ch4");
+                    }
+                }
+                if(ScenariosActivity.arrayLights.get(1).equals("on")){
+                    ibCH5.setImageBitmap(LightCircuits.setImageLights("off", ibCH5.getContext()));
+                    ScenariosActivity.arrayLights.set(1, "off");
+                    if(ScenariosActivity.arrayScenarios.get(0).equals("off") && ScenariosActivity.arrayScenarios.get(1).equals("off")
+                            && ScenariosActivity.arrayScenarios.get(2).equals("off") && ScenariosActivity.arrayScenarios.get(3).equals("off")){
+                        arduino.lightDeactivation("ch5");
+                    }
+                }
+                if(ScenariosActivity.arrayLights.get(2).equals("on")){
+                    ibCH6a.setImageBitmap(LightCircuits.setImageLights("off", ibCH6a.getContext()));
+                    ScenariosActivity.arrayLights.set(2, "off");
+                    if(ScenariosActivity.arrayScenarios.get(2).equals("off") && ScenariosActivity.arrayScenarios.get(3).equals("off")){
+                        arduino.lightDeactivation("ch6a");
+                    }
+                }
+                if(ScenariosActivity.arrayLights.get(3).equals("on")){
+                    ibCH6b.setImageBitmap(LightCircuits.setImageLights("off", ibCH6b.getContext()));
+                    ScenariosActivity.arrayLights.set(3, "off");
+                    if(ScenariosActivity.arrayScenarios.get(1).equals("off") && ScenariosActivity.arrayScenarios.get(2).equals("off")
+                            && ScenariosActivity.arrayScenarios.get(3).equals("off")){
+                        arduino.lightDeactivation("ch6b");
+                    }
+                }
+                if(ScenariosActivity.arrayLights.get(4).equals("on")){
+                    ibCH7.setImageBitmap(LightCircuits.setImageLights("off", ibCH7.getContext()));
+                    ScenariosActivity.arrayLights.set(4, "off");
+                    arduino.lightDeactivation("ch7");
+                }
+                if(ScenariosActivity.arrayLights.get(5).equals("on")){
+                    ibCH8.setImageBitmap(LightCircuits.setImageLights("off", ibCH8.getContext()));
+                    ScenariosActivity.arrayLights.set(5, "off");
+                    arduino.lightDeactivation("ch8");
+                }
+                if(ScenariosActivity.arrayLights.get(6).equals("on")){
+                    ibCH9.setImageBitmap(LightCircuits.setImageLights("off", ibCH9.getContext()));
+                    ScenariosActivity.arrayLights.set(6, "off");
+                    if(ScenariosActivity.arrayScenarios.get(0).equals("off") && ScenariosActivity.arrayScenarios.get(1).equals("off")
+                            && ScenariosActivity.arrayScenarios.get(2).equals("off") && ScenariosActivity.arrayScenarios.get(3).equals("off")){
+                        arduino.lightDeactivation("ch9");
+                    }
+                }
+                if(ScenariosActivity.arrayLights.get(7).equals("on")){
+                    ibCH10.setImageBitmap(LightCircuits.setImageLights("off", ibCH10.getContext()));
+                    ScenariosActivity.arrayLights.set(7, "off");
+                    if(ScenariosActivity.arrayScenarios.get(1).equals("off") && ScenariosActivity.arrayScenarios.get(2).equals("off")
+                            && ScenariosActivity.arrayScenarios.get(3).equals("off")){
+                        arduino.lightDeactivation("ch10");
+                    }
+                }
+                if(ScenariosActivity.arrayLights.get(8).equals("on")){
+                    ibCH11.setImageBitmap(LightCircuits.setImageLights("off", ibCH11.getContext()));
+                    ScenariosActivity.arrayLights.set(8, "off");
+                    if(ScenariosActivity.arrayScenarios.get(2).equals("off") && ScenariosActivity.arrayScenarios.get(3).equals("off")){
+                        arduino.lightDeactivation("ch11");
+                    }
+                }
+                if(ScenariosActivity.arrayLights.get(9).equals("on")){
+                    ibCH12a.setImageBitmap(LightCircuits.setImageLights("off", ibCH12a.getContext()));
+                    ScenariosActivity.arrayLights.set(9, "off");
+                    if(ScenariosActivity.arrayScenarios.get(0).equals("off") && ScenariosActivity.arrayScenarios.get(1).equals("off")
+                            && ScenariosActivity.arrayScenarios.get(2).equals("off") && ScenariosActivity.arrayScenarios.get(3).equals("off")){
+                        arduino.lightDeactivation("ch12a");
+                    }
+                }
+                if(ScenariosActivity.arrayLights.get(10).equals("on")){
+                    ibCH12b.setImageBitmap(LightCircuits.setImageLights("off", ibCH12b.getContext()));
+                    ScenariosActivity.arrayLights.set(10, "off");
+                    if(ScenariosActivity.arrayScenarios.get(3).equals("off")){
+                        arduino.lightDeactivation("ch12b");
+                    }
+                }
+                if(ScenariosActivity.arrayLights.get(11).equals("on")){
+                    ibCH13.setImageBitmap(LightCircuits.setImageLights("off", ibCH13.getContext()));
+                    ScenariosActivity.arrayLights.set(11, "off");
+                    arduino.lightDeactivation("ch13");
+                }
+                if(ScenariosActivity.arrayLights.get(12).equals("on")){
+                    ibCH14.setImageBitmap(LightCircuits.setImageLights("off", ibCH14.getContext()));
+                    ScenariosActivity.arrayLights.set(12, "off");
+                    arduino.lightDeactivation("ch14");
+                }
+                if(ScenariosActivity.arrayLights.get(13).equals("on")){
+                    ibCH15.setImageBitmap(LightCircuits.setImageLights("off", ibCH15.getContext()));
+                    ScenariosActivity.arrayLights.set(13, "off");
+                    if(ScenariosActivity.arrayScenarios.get(3).equals("off")){
+                        arduino.lightDeactivation("ch15");
+                    }
+                }
+                if(ScenariosActivity.arrayLights.get(14).equals("on")){
+                    ibCH3.setImageBitmap(LightCircuits.setImageLights("off", ibCH3.getContext()));
+                    ScenariosActivity.arrayLights.set(14, "off");
+                    if(ScenariosActivity.arrayScenarios.get(3).equals("off")){
+                        arduino.lightDeactivation("ch3");
+                    }
+                }
+            }
+        });
+
+        ibReturnLights.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent();

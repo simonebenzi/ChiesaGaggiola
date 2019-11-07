@@ -7,12 +7,12 @@
     <ImageButton
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:id="@+id/ibSettings"
-        android:src="@drawable/ic_settings"
+        android:id="@+id/ibReturnSettings"
+        android:src="@drawable/ic_keyboard_arrow_left"
         android:background="@color/church_control_yellow"
         android:scaleType="centerCrop"
-        android:layout_gravity="right"
-        android:layout_marginRight="15dp"/>
+        android:layout_gravity="left"
+        android:layout_marginLeft="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
