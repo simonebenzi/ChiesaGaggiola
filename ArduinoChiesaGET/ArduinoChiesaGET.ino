@@ -1,7 +1,4 @@
-/*********
-  Rui Santos
-  Complete project details at https://randomnerdtutorials.com
-*********/
+/* Controllo Relè App Chiesa Gaggiola (La Spezia) */
 
 // Load Wi-Fi library
 #include <WiFiNINA.h>
@@ -22,8 +19,14 @@ WiFiServer server(80);
 String header;
 
 // Auxiliar variables to store the current output state
-String pin5State = "off";
-String pin6State = "off";
+String ch4State = "off";
+String ch5State = "off";
+String ch10State = "off";
+String ch6aState = "off";
+String ch6bState = "off";
+String ch11State = "off";
+String ch3State = "off";
+String ch12bState = "off";
 
 // Assign output variables to IO pins
 const int ch4 = 5;
@@ -115,67 +118,67 @@ void loop() {
             // turns the GPIOs on and off
             if (header.indexOf("GET /ch4/on") >= 0) {
               Serial.println("CH.4 is on");
-              pin5State = "on";
+              ch4State = "on";
               digitalWrite(ch4, HIGH);
             } else if (header.indexOf("GET /ch4/off") >= 0) {
               Serial.println("CH.4 is off");
-              pin5State = "off";
+              ch4State = "off";
               digitalWrite(ch4, LOW);
             } else if (header.indexOf("GET /ch5/on") >= 0) {
               Serial.println("CH.5 is on");
-              pin6State = "on";
+              ch5State = "on";
               digitalWrite(ch5, HIGH);
             } else if (header.indexOf("GET /ch5/off") >= 0) {
               Serial.println("CH.5 is off");
-              pin6State = "off";
+              ch5State = "off";
               digitalWrite(ch5, LOW);
             } else if (header.indexOf("GET /ch10/on") >= 0) {
               Serial.println("CH.10 is on");
-              pin6State = "on";
+              ch10State = "on";
               digitalWrite(ch10, HIGH);
             } else if (header.indexOf("GET /ch10/off") >= 0) {
               Serial.println("CH.10 is off");
-              pin6State = "off";
+              ch10State = "off";
               digitalWrite(ch10, LOW);
             } else if (header.indexOf("GET /ch6a/on") >= 0) {
               Serial.println("CH.6a is on");
-              pin6State = "on";
+              ch6aState = "on";
               digitalWrite(ch6a, HIGH);
             } else if (header.indexOf("GET /ch6a/off") >= 0) {
               Serial.println("CH.6a is off");
-              pin6State = "off";
+              ch6aState = "off";
               digitalWrite(ch6a, LOW);
             } else if (header.indexOf("GET /ch6b/on") >= 0) {
               Serial.println("CH.6b is on");
-              pin6State = "on";
+              ch6bState = "on";
               digitalWrite(ch6b, HIGH);
             } else if (header.indexOf("GET /ch6b/off") >= 0) {
               Serial.println("CH.6b is off");
-              pin6State = "off";
+              ch6bState = "off";
               digitalWrite(ch6b, LOW);
             } else if (header.indexOf("GET /ch11/on") >= 0) {
               Serial.println("CH.11 is on");
-              pin6State = "on";
+              ch11State = "on";
               digitalWrite(ch11, HIGH);
             } else if (header.indexOf("GET /ch11/off") >= 0) {
               Serial.println("CH.11 is off");
-              pin6State = "off";
+              ch11State = "off";
               digitalWrite(ch11, LOW);
             } else if (header.indexOf("GET /ch3/on") >= 0) {
               Serial.println("CH.3 is on");
-              pin6State = "on";
+              ch3State = "on";
               digitalWrite(ch3, HIGH);
             } else if (header.indexOf("GET /ch3/off") >= 0) {
               Serial.println("CH.3 is off");
-              pin6State = "off";
+              ch3State = "off";
               digitalWrite(ch3, LOW);
             } else if (header.indexOf("GET /ch12b/on") >= 0) {
               Serial.println("CH.12b is on");
-              pin6State = "on";
+              ch12bState = "on";
               digitalWrite(ch12b, HIGH);
             } else if (header.indexOf("GET /ch12b/off") >= 0) {
               Serial.println("CH.12b is off");
-              pin6State = "off";
+              ch12bState = "off";
               digitalWrite(ch12b, LOW);
             }
 
@@ -194,18 +197,18 @@ void loop() {
             client.println("<body><h1>ESP32 Web Server</h1>");
 
             // Display current state, and ON/OFF buttons for GPIO 26
-            client.println("<p>GPIO 26 - State " + pin5State + "</p>");
+            client.println("<p>GPIO 26 - State " + ch12bState + "</p>");
             // If the output26State is off, it displays the ON button
-            if (pin5State == "off") {
+            if (ch12bState == "off") {
               client.println("<p><a href=\"/26/on\"><button class=\"button\">ON</button></a></p>");
             } else {
               client.println("<p><a href=\"/26/off\"><button class=\"button button2\">OFF</button></a></p>");
             }
 
             // Display current state, and ON/OFF buttons for GPIO 27
-            client.println("<p>GPIO 27 - State " + pin6State + "</p>");
+            client.println("<p>GPIO 27 - State " + ch12bState + "</p>");
             // If the output27State is off, it displays the ON button
-            if (pin6State == "off") {
+            if (ch12bState == "off") {
               client.println("<p><a href=\"/27/on\"><button class=\"button\">ON</button></a></p>");
             } else {
               client.println("<p><a href=\"/27/off\"><button class=\"button button2\">OFF</button></a></p>");
