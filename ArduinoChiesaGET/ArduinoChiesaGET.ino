@@ -7,8 +7,10 @@
 IPAddress ip(192, 168, 1, 124);
 
 // Wifi network credentials
-const char* ssid     = "FASTWEB-7N6SPT";
-const char* pass = "12RD23JE7I";
+// const char* ssid     = "FASTWEB-7N6SPT"; OR+
+//const char* pass = "12RD23JE7I"; OR+
+const char* ssid = "TIM-18143925";
+const char* pass = "CN2ltmwLXDvmVfWtC1ogJU95";
 
 int status = WL_IDLE_STATUS;
 

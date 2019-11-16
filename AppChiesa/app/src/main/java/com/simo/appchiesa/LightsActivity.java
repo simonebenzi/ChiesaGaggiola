@@ -61,6 +61,7 @@ public class LightsActivity extends Activity {
         ibCH13.setImageBitmap(LightCircuits.setImageLights(ScenariosActivity.arrayLights.get(11), ibCH13.getContext()));
         ibCH14.setImageBitmap(LightCircuits.setImageLights(ScenariosActivity.arrayLights.get(12), ibCH14.getContext()));
         ibCH15.setImageBitmap(LightCircuits.setImageLights(ScenariosActivity.arrayLights.get(13), ibCH15.getContext()));
+        ibCH3.setImageBitmap(LightCircuits.setImageLights(ScenariosActivity.arrayLights.get(14), ibCH3.getContext()));
 
         // Gestione pressione dei bottoni
         ibCH4.setOnClickListener(new View.OnClickListener() {
@@ -341,6 +342,27 @@ public class LightsActivity extends Activity {
             }
         });
 
+        ibCH3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ScenariosActivity.arrayLights.get(14).equals("off")) {
+                    ibCH3.setImageBitmap(LightCircuits.setImageLights("on", ibCH3.getContext()));
+                    ScenariosActivity.arrayLights.set(14, "on");
+                    if(ScenariosActivity.arrayScenarios.get(3).equals("off")){
+                        arduino.lightActivation("ch3");
+                    }
+                } else {
+                    ibCH3.setImageBitmap(LightCircuits.setImageLights("off", ibCH3.getContext()));
+                    ScenariosActivity.arrayLights.set(14, "off");
+                    if(ScenariosActivity.arrayScenarios.get(3).equals("off")){
+                        arduino.lightDeactivation("ch3");
+                    }
+                }
+
+                lightCircuits.saveLights(ScenariosActivity.arrayLights, context);
+            }
+        });
+
         bttSpegniTuttoLights.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -447,6 +469,8 @@ public class LightsActivity extends Activity {
                         arduino.lightDeactivation("ch3");
                     }
                 }
+
+                lightCircuits.saveLights(ScenariosActivity.arrayLights, context);
             }
         });
 
