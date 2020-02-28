@@ -14,6 +14,10 @@ const char* pass = "CN2ltmwLXDvmVfWtC1ogJU95";
 
 int status = WL_IDLE_STATUS;
 
+// Logic changed in logic-low
+const int low = HIGH;
+const int high = LOW;
+
 // Set web server port number to 80
 WiFiServer server(80);
 
@@ -55,14 +59,14 @@ void setup() {
   pinMode(ch3, OUTPUT);
   pinMode(ch12b, OUTPUT);
   // Set outputs to LOW
-  digitalWrite(ch4, LOW);
-  digitalWrite(ch5, LOW);
-  digitalWrite(ch10, LOW);
-  digitalWrite(ch11, LOW);
-  digitalWrite(ch6a, LOW);
-  digitalWrite(ch6b, LOW);
-  digitalWrite(ch3, LOW);
-  digitalWrite(ch12b, LOW);
+  digitalWrite(ch4, low);
+  digitalWrite(ch5, low);
+  digitalWrite(ch10, low);
+  digitalWrite(ch11, low);
+  digitalWrite(ch6a, low);
+  digitalWrite(ch6b, low);
+  digitalWrite(ch3, low);
+  digitalWrite(ch12b, low);
 
   // check for the WiFi module:
   if (WiFi.status() == WL_NO_MODULE) {
@@ -121,67 +125,67 @@ void loop() {
             if (header.indexOf("GET /ch4/on") >= 0) {
               Serial.println("CH.4 is on");
               ch4State = "on";
-              digitalWrite(ch4, HIGH);
+              digitalWrite(ch4, high);
             } else if (header.indexOf("GET /ch4/off") >= 0) {
               Serial.println("CH.4 is off");
               ch4State = "off";
-              digitalWrite(ch4, LOW);
+              digitalWrite(ch4, low);
             } else if (header.indexOf("GET /ch5/on") >= 0) {
               Serial.println("CH.5 is on");
               ch5State = "on";
-              digitalWrite(ch5, HIGH);
+              digitalWrite(ch5, high);
             } else if (header.indexOf("GET /ch5/off") >= 0) {
               Serial.println("CH.5 is off");
               ch5State = "off";
-              digitalWrite(ch5, LOW);
+              digitalWrite(ch5, low);
             } else if (header.indexOf("GET /ch10/on") >= 0) {
               Serial.println("CH.10 is on");
               ch10State = "on";
-              digitalWrite(ch10, HIGH);
+              digitalWrite(ch10, high);
             } else if (header.indexOf("GET /ch10/off") >= 0) {
               Serial.println("CH.10 is off");
               ch10State = "off";
-              digitalWrite(ch10, LOW);
+              digitalWrite(ch10, low);
             } else if (header.indexOf("GET /ch6a/on") >= 0) {
               Serial.println("CH.6a is on");
               ch6aState = "on";
-              digitalWrite(ch6a, HIGH);
+              digitalWrite(ch6a, high);
             } else if (header.indexOf("GET /ch6a/off") >= 0) {
               Serial.println("CH.6a is off");
               ch6aState = "off";
-              digitalWrite(ch6a, LOW);
+              digitalWrite(ch6a, low);
             } else if (header.indexOf("GET /ch6b/on") >= 0) {
               Serial.println("CH.6b is on");
               ch6bState = "on";
-              digitalWrite(ch6b, HIGH);
+              digitalWrite(ch6b, high);
             } else if (header.indexOf("GET /ch6b/off") >= 0) {
               Serial.println("CH.6b is off");
               ch6bState = "off";
-              digitalWrite(ch6b, LOW);
+              digitalWrite(ch6b, low);
             } else if (header.indexOf("GET /ch11/on") >= 0) {
               Serial.println("CH.11 is on");
               ch11State = "on";
-              digitalWrite(ch11, HIGH);
+              digitalWrite(ch11, high);
             } else if (header.indexOf("GET /ch11/off") >= 0) {
               Serial.println("CH.11 is off");
               ch11State = "off";
-              digitalWrite(ch11, LOW);
+              digitalWrite(ch11, low);
             } else if (header.indexOf("GET /ch3/on") >= 0) {
               Serial.println("CH.3 is on");
               ch3State = "on";
-              digitalWrite(ch3, HIGH);
+              digitalWrite(ch3, high);
             } else if (header.indexOf("GET /ch3/off") >= 0) {
               Serial.println("CH.3 is off");
               ch3State = "off";
-              digitalWrite(ch3, LOW);
+              digitalWrite(ch3, low);
             } else if (header.indexOf("GET /ch12b/on") >= 0) {
               Serial.println("CH.12b is on");
               ch12bState = "on";
-              digitalWrite(ch12b, HIGH);
+              digitalWrite(ch12b, high);
             } else if (header.indexOf("GET /ch12b/off") >= 0) {
               Serial.println("CH.12b is off");
               ch12bState = "off";
-              digitalWrite(ch12b, LOW);
+              digitalWrite(ch12b, low);
             }
 
             // Display the HTML web page
