@@ -1,115 +1,53 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.simo.appchiesa"
+3    package="com.or.appchiesa"
 4    android:versionCode="1"
 5    android:versionName="1.0" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
-8-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml
-9        android:targetSdkVersion="28" />
-9-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml
+8-->C:\Users\simob\Desktop\AppChiesa\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->C:\Users\simob\Desktop\AppChiesa\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:61:5-66
-11-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:61:22-64
+11-->C:\Users\simob\Desktop\AppChiesa\app\src\main\AndroidManifest.xml:5:5-66
+11-->C:\Users\simob\Desktop\AppChiesa\app\src\main\AndroidManifest.xml:5:22-64
 12
 13    <application
-13-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:5:5-59:19
+13-->C:\Users\simob\Desktop\AppChiesa\app\src\main\AndroidManifest.xml:7:5-22:19
 14        android:allowBackup="true"
-14-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:6:9-35
+14-->C:\Users\simob\Desktop\AppChiesa\app\src\main\AndroidManifest.xml:8:9-35
 15        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-15-->[androidx.core:core:1.0.0] C:\Users\simob\.gradle\caches\transforms-2\files-2.1\4de34232979cbe134bd28b81339a3afe\core-1.0.0\AndroidManifest.xml:22:18-86
+15-->[androidx.core:core:1.5.0] C:\Users\simob\.gradle\caches\transforms-2\files-2.1\cc5e9dcdc56dc39042f72c501235e83f\core-1.5.0\AndroidManifest.xml:24:18-86
 16        android:debuggable="true"
-17        android:icon="@mipmap/ic_launcher_chiesa"
-17-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:7:9-50
+17        android:icon="@mipmap/ic_launcher"
+17-->C:\Users\simob\Desktop\AppChiesa\app\src\main\AndroidManifest.xml:9:9-43
 18        android:label="@string/app_name"
-18-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:8:9-41
-19        android:roundIcon="@mipmap/ic_launcher_chiesa_round"
-19-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:9:9-61
+18-->C:\Users\simob\Desktop\AppChiesa\app\src\main\AndroidManifest.xml:10:9-41
+19        android:roundIcon="@mipmap/ic_launcher_round"
+19-->C:\Users\simob\Desktop\AppChiesa\app\src\main\AndroidManifest.xml:11:9-54
 20        android:supportsRtl="true"
-20-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:11:9-35
+20-->C:\Users\simob\Desktop\AppChiesa\app\src\main\AndroidManifest.xml:13:9-35
 21        android:testOnly="true"
-22        android:theme="@style/AppTheme"
-22-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:12:9-40
+22        android:theme="@style/Theme.AppChiesa"
+22-->C:\Users\simob\Desktop\AppChiesa\app\src\main\AndroidManifest.xml:14:9-47
 23        android:usesCleartextTraffic="true" >
-23-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:10:9-44
-24        <activity
-24-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:14:9-24:20
-25            android:name="com.simo.appchiesa.Intro"
-25-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:15:13-34
-26            android:screenOrientation="portrait"
-26-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:17:13-49
-27            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-27-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:16:13-71
-28            <intent-filter>
-28-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:19:13-23:29
-29                <action android:name="android.intent.action.MAIN" />
-29-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:20:17-69
-29-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:20:25-66
-30
-31                <category android:name="android.intent.category.LAUNCHER" />
-31-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:22:17-77
-31-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:22:27-74
-32            </intent-filter>
-33        </activity>
-34        <activity
-34-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:26:9-35:20
-35            android:name="com.simo.appchiesa.ScenariosActivity"
-35-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:27:13-46
-36            android:screenOrientation="portrait"
-36-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:29:13-49
-37            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-37-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:28:13-71
-38            <intent-filter>
-38-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:30:13-34:29
-39                <action android:name="android.intent.action.Home" />
-39-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:31:17-69
-39-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:31:25-66
-40
-41                <category android:name="android.intent.category.DEFAULT" />
-41-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:33:17-76
-41-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:33:27-73
-42            </intent-filter>
-43        </activity>
-44        <activity
-44-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:37:9-46:20
-45            android:name="com.simo.appchiesa.LightsActivity"
-45-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:38:13-43
-46            android:screenOrientation="portrait"
-46-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:40:13-49
-47            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-47-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:39:13-71
-48            <intent-filter>
-48-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:41:13-45:29
-49                <action android:name="android.intent.action.Lights" />
-49-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:42:17-71
-49-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:42:25-68
-50
-51                <category android:name="android.intent.category.DEFAULT" />
-51-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:33:17-76
-51-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:33:27-73
-52            </intent-filter>
-53        </activity>
-54        <activity
-54-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:48:9-57:20
-55            android:name="com.simo.appchiesa.SettingsActivity"
-55-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:49:13-45
-56            android:screenOrientation="portrait"
-56-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:51:13-49
-57            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-57-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:50:13-71
-58            <intent-filter>
-58-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:52:13-56:29
-59                <action android:name="android.intent.action.Settings" />
-59-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:53:17-73
-59-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:53:25-70
-60
-61                <category android:name="android.intent.category.DEFAULT" />
-61-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:33:17-76
-61-->C:\Users\simob\Desktop\Chiesa_LaSpezia\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:33:27-73
-62            </intent-filter>
-63        </activity>
-64    </application>
-65
-66</manifest>
+23-->C:\Users\simob\Desktop\AppChiesa\app\src\main\AndroidManifest.xml:12:9-44
+24        <activity android:name="com.or.appchiesa.MainActivity" >
+24-->C:\Users\simob\Desktop\AppChiesa\app\src\main\AndroidManifest.xml:15:9-21:20
+24-->C:\Users\simob\Desktop\AppChiesa\app\src\main\AndroidManifest.xml:15:19-47
+25            <intent-filter>
+25-->C:\Users\simob\Desktop\AppChiesa\app\src\main\AndroidManifest.xml:16:13-20:29
+26                <action android:name="android.intent.action.MAIN" />
+26-->C:\Users\simob\Desktop\AppChiesa\app\src\main\AndroidManifest.xml:17:17-69
+26-->C:\Users\simob\Desktop\AppChiesa\app\src\main\AndroidManifest.xml:17:25-66
+27
+28                <category android:name="android.intent.category.LAUNCHER" />
+28-->C:\Users\simob\Desktop\AppChiesa\app\src\main\AndroidManifest.xml:19:17-77
+28-->C:\Users\simob\Desktop\AppChiesa\app\src\main\AndroidManifest.xml:19:27-74
+29            </intent-filter>
+30        </activity>
+31    </application>
+32
+33</manifest>
