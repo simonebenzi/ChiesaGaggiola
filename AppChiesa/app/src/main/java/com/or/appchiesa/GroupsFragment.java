@@ -15,9 +15,12 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class GroupsFragment extends Fragment {
     private SwitchFragment fragSwitch;
     private RecyclerAdapter adapter;
+    private Switch aSwitch;
 
     interface SwitchFragment {
         void groupFragmentSwitch();
@@ -40,6 +43,8 @@ public class GroupsFragment extends Fragment {
         for (int i = 0; i < groupImages.length; i++) {
             groupImages[i] = Group.groups.get(i).getImageResourceId();
         }
+
+        aSwitch = new Switch(getContext());
 
         this.adapter = new RecyclerAdapter(groupNames, groupImages);
         groupRecycler.setAdapter(this.adapter);
@@ -98,11 +103,15 @@ public class GroupsFragment extends Fragment {
         if(!(clickedGroup.getState())) {
             Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb_group_on);
             imageView.setImageDrawable(drawable);
+            ArrayList<Light> groupLights = clickedGroup.getGroupLights();
+            aSwitch.switchGroupOn(groupLights);
             clickedGroup.setState(true);
         }
         else {
             Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb_group);
             imageView.setImageDrawable(drawable);
+            ArrayList<Light> groupLights = clickedGroup.getGroupLights();
+            aSwitch.switchGroupOff(groupLights);
             clickedGroup.setState(false);
         }
     }

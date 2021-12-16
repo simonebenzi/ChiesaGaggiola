@@ -7,16 +7,17 @@
 IPAddress ip(192, 168, 1, 124);
 
 // Wifi network credentials
-// const char* ssid     = "FASTWEB-7N6SPT"; OR+
-//const char* pass = "12RD23JE7I"; OR+
-const char* ssid = "TIM-18143925";
-const char* pass = "CN2ltmwLXDvmVfWtC1ogJU95";
-
+// const char* ssid     = "FASTWEB-7N6SPT"; //OR+
+//const char* pass = "12RD23JE7I"; //OR+
+//const char* ssid = "TIM-18143925"; // CAPIRE PERCHE NON VA!!
+//const char* pass = "CN2ltmwLXDvmVfWtC1ogJU95";
+const char* ssid = "Mi 10T"; // CELL
+const char* pass = "cellrouter";
 int status = WL_IDLE_STATUS;
 
 // Logic changed in logic-low
-const int low = HIGH;
-const int high = LOW;
+const int low = LOW;
+const int high = HIGH;
 
 // Set web server port number to 80
 WiFiServer server(80);
@@ -46,9 +47,9 @@ const int ch12b = 4;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
-  }
+//  while (!Serial) {
+//    ; // wait for serial port to connect. Needed for native USB port only
+//  }
   // Initialize the output variables as outputs
   pinMode(ch4, OUTPUT);
   pinMode(ch5, OUTPUT);

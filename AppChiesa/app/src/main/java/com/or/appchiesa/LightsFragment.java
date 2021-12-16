@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
-import android.widget.Toast;
+
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -90,14 +90,14 @@ public class LightsFragment extends Fragment {
         if(!(clickedLight.getState())) {
             Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb_on);
             imageView.setImageDrawable(drawable);
-            aSwitch.switchOn(clickedLight.getIpAddress(), 8081);
+            aSwitch.switchLightOn(clickedLight.getIpAddress(), clickedLight.getOpName());
             //Toast.makeText(getContext(), "Light switched on", Toast.LENGTH_LONG).show();
             clickedLight.setState(true);
         }
         else {
             Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb);
             imageView.setImageDrawable(drawable);
-            aSwitch.switchOff(clickedLight.getIpAddress(), 8081);
+            aSwitch.switchLightOff(clickedLight.getIpAddress(), clickedLight.getOpName());
             //Toast.makeText(getContext(), "Light switched off", Toast.LENGTH_LONG).show();
             clickedLight.setState(false);
         }

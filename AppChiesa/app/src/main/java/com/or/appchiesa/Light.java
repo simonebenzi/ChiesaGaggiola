@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Light {
     private String name;
+    private String opName;
     private int imageResourceId;
     private String ipAddress;
     private Boolean state;
@@ -38,14 +39,19 @@ public class Light {
         return imageResourceId;
     }
 
+    public String getOpName() {
+        return opName;
+    }
+
     public static List<Light> lights = new ArrayList<Light>(Arrays.asList(
-            new Light("Scrivania", "192.168.1.14", R.drawable.ic_bulb),
-            new Light("Lampadario", "192.168.1.14", R.drawable.ic_bulb),
-            new Light( "Comodino","192.168.1.14", R.drawable.ic_bulb)
+            new Light("Scrivania", "ch4", "192.168.36.221", R.drawable.ic_bulb),
+            new Light("Lampadario", "ch5", "192.168.36.221", R.drawable.ic_bulb),
+            new Light( "Comodino", "ch10","192.168.36.221", R.drawable.ic_bulb)
     ));
 
-    public Light(String name, String ipAddress, int imageResourceId) {
+    public Light(String name, String opName, String ipAddress, int imageResourceId) {
         this.name = name;
+        this.opName = opName;
         this.imageResourceId = imageResourceId;
         this.ipAddress = ipAddress;
         this.state = false;

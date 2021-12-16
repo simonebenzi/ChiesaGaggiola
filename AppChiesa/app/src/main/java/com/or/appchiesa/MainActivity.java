@@ -22,12 +22,17 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 
+//public class MainActivity extends AppCompatActivity
+//        implements AddLightDialogFragment.AddLightDialogInterface,
+//        AddGroupDialogFragment.AddGroupDialogInterface,
+//        ModifyGroupDialogFragment.ModifyGroupDialogInterface,
+//        ModifyLightDialogFragment.ModifyLightDialogInterface,
+//        GroupsFragment.SwitchFragment, TabLayoutMediator.TabConfigurationStrategy {
 public class MainActivity extends AppCompatActivity
-        implements AddLightDialogFragment.AddLightDialogInterface,
-        AddGroupDialogFragment.AddGroupDialogInterface,
+        implements TabLayoutMediator.TabConfigurationStrategy,
+        GroupsFragment.SwitchFragment,
         ModifyGroupDialogFragment.ModifyGroupDialogInterface,
-        ModifyLightDialogFragment.ModifyLightDialogInterface,
-        GroupsFragment.SwitchFragment, TabLayoutMediator.TabConfigurationStrategy {
+        ModifyLightDialogFragment.ModifyLightDialogInterface {
 
     private boolean isRotate = false;
     private final FragmentManager fm = getSupportFragmentManager();
@@ -160,14 +165,14 @@ public class MainActivity extends AppCompatActivity
         addLightDialogFragment.show(getSupportFragmentManager(), "add_light_dialog");
     }
 
-    @Override
-    public void getLightInfos(String lightName, String ipAddress) {
-        Light.lights.add(new Light(lightName, ipAddress, R.drawable.ic_bulb));
-        RecyclerAdapter adapter = lightsFragment.getAdapter();
-        // If adapter never been initialized doesn't update
-        if(adapter != null)
-            adapter.updateRecycle("light");
-    }
+//    @Override
+//    public void getLightInfos(String lightName, String ipAddress) {
+//        Light.lights.add(new Light(lightName, ipAddress, R.drawable.ic_bulb));
+//        RecyclerAdapter adapter = lightsFragment.getAdapter();
+//        // If adapter never been initialized doesn't update
+//        if(adapter != null)
+//            adapter.updateRecycle("light");
+//    }
 
     // Switch from groups to lights fragment clicking group card
     @Override
@@ -178,12 +183,12 @@ public class MainActivity extends AppCompatActivity
         transaction.commit();
     }
 
-    @Override
-    public void getGroupName(String group) {
-        Group.groups.add(new Group(group, R.drawable.ic_bulb_group));
-        RecyclerAdapter adapter = groupsFragment.getAdapter();
-        adapter.updateRecycle("group");
-    }
+//    @Override
+//    public void getGroupName(String group) {
+//        Group.groups.add(new Group(group, R.drawable.ic_bulb_group));
+//        RecyclerAdapter adapter = groupsFragment.getAdapter();
+//        adapter.updateRecycle("group");
+//    }
 
     @Override
     public void modifyGroupName(String groupName, int position) {
@@ -217,6 +222,5 @@ public class MainActivity extends AppCompatActivity
         titles.add(getResources().getString(R.string.scenari));
         titles.add(getResources().getString(R.string.luci));
         tab.setText(titles.get(position));
-
     }
 }
