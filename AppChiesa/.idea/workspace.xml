@@ -13,19 +13,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01169386-7320-49fb-9141-1a339e9bdf78" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/GroupsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/GroupsFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Light.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Light.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/LightsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/LightsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Switch.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Switch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/card_groups.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/card_groups.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_lights.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_lights.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ArduinoChiesaGET/ArduinoChiesaGET.ino" beforeDir="false" afterPath="$PROJECT_DIR$/../ArduinoChiesaGET/ArduinoChiesaGET.ino" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +26,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@M2HDU18515001283]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\simob\.android\avd\Nexus_7_API_29.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -42,6 +35,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="layoutResourceFile" />
         <option value="Class" />
       </list>
     </option>
@@ -153,10 +147,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="222" key="#com.intellij.ide.util.MemberChooser" timestamp="1639616817798">
+    <state x="765" y="222" key="#com.intellij.ide.util.MemberChooser" timestamp="1639700347776">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="765" y="222" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1032@0.0.1920.1032" timestamp="1639616817798" />
+    <state x="765" y="222" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1032@0.0.1920.1032" timestamp="1639700347776" />
     <state x="690" y="263" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1639527386675">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
@@ -165,6 +159,10 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="540" y="271" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1639358842533" />
+    <state x="60" y="274" key="AndroidCreateResourceFileDialog" timestamp="1639699540307">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="60" y="274" key="AndroidCreateResourceFileDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1639699540307" />
     <state x="798" y="321" key="AndroidCreateXmlResourceDialog" timestamp="1639527883898">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
@@ -197,6 +195,10 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="776" y="294" key="chooseDestDirectoryDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1639357596078" />
+    <state x="136" y="242" key="run.anything.popup" timestamp="1639696552000">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="136" y="242" key="run.anything.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1639696552000" />
     <state x="623" y="223" width="672" height="678" key="search.everywhere.popup" timestamp="1639527519446">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>

@@ -11,12 +11,19 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class LightsFragment extends Fragment {
     private RecyclerAdapter adapter;
+    private MainRecyclerAdapter mainRecyclerAdapter;
     private Switch aSwitch;
+
+    private ArrayList<Section> sectionList = new ArrayList<>();
 
     public RecyclerAdapter getAdapter() {
         return this.adapter;
@@ -25,7 +32,9 @@ public class LightsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        RecyclerView lightsRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_lights,
+        initData();
+
+        RecyclerView mainRecyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_lights,
                 container, false);
         String[] lightNames = new String[Light.lights.size()];
         for(int i = 0; i < lightNames.length; i++){
@@ -39,10 +48,9 @@ public class LightsFragment extends Fragment {
         // Initialize switch
         aSwitch = new Switch(getContext());
 
-        this.adapter = new RecyclerAdapter(lightNames, lightsImages);
-        lightsRecycler.setAdapter(adapter);
-        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
-        lightsRecycler.setLayoutManager(layoutManager);
+        this.mainRecyclerAdapter = new MainRecyclerAdapter(sectionList);
+        mainRecyclerView.setAdapter(mainRecyclerAdapter);
+        mainRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
         this.adapter.setListener(new RecyclerAdapter.Listener() {
             @Override
@@ -75,7 +83,7 @@ public class LightsFragment extends Fragment {
             }
         });
 
-        return lightsRecycler;
+        return mainRecyclerView;
     }
 
     private void displayModifyLightDialog(int position) {
@@ -101,5 +109,20 @@ public class LightsFragment extends Fragment {
             //Toast.makeText(getContext(), "Light switched off", Toast.LENGTH_LONG).show();
             clickedLight.setState(false);
         }
+    }
+
+    private void initData() {
+        String sectionOneName = "Navata";
+        ArrayList<String> sectionOneItems = new ArrayList<String>();
+        sectionOneItems.add("ch4");
+        sectionOneItems.add("ch5");
+        sectionOneItems.add("ch3");
+
+        String sectionTwoName = "Navata";
+        ArrayList<String> sectionTwoItems = new ArrayList<String>();
+        sectionTwoItems.add("ch7");
+
+        sectionList.add(new Section(sectionOneName, sectionOneItems));
+        sectionList.add(new Section(sectionTwoName, sectionTwoItems));
     }
 }

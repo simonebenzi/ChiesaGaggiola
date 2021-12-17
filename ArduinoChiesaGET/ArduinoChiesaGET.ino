@@ -34,35 +34,39 @@ String ch6bState = "off";
 String ch11State = "off";
 String ch3State = "off";
 String ch12bState = "off";
+String ch7State = "off";
+String ch9State = "off";
 
 // Assign output variables to IO pins
-const int ch4 = 5;
+const int ch3 = 2;
+const int ch7 = 5;
+const int ch4 = 11;
 const int ch5 = 6;
-const int ch10 = 7;
+const int ch9 = 7;
+const int ch10 = 12;
 const int ch6a = 8;
 const int ch6b = 3;
 const int ch11 = 9;
-const int ch3 = 10;
 const int ch12b = 4;
 
 void setup() {
   Serial.begin(9600);
-//  while (!Serial) {
-//    ; // wait for serial port to connect. Needed for native USB port only
-//  }
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for native USB port only
+  }
   // Initialize the output variables as outputs
-  pinMode(ch4, OUTPUT);
+  pinMode(ch7, OUTPUT);
   pinMode(ch5, OUTPUT);
-  pinMode(ch10, OUTPUT);
+  pinMode(ch9, OUTPUT);
   pinMode(ch11, OUTPUT);
   pinMode(ch6a, OUTPUT);
   pinMode(ch6b, OUTPUT);
   pinMode(ch3, OUTPUT);
   pinMode(ch12b, OUTPUT);
   // Set outputs to LOW
-  digitalWrite(ch4, low);
+  digitalWrite(ch7, low);
   digitalWrite(ch5, low);
-  digitalWrite(ch10, low);
+  digitalWrite(ch9, low);
   digitalWrite(ch11, low);
   digitalWrite(ch6a, low);
   digitalWrite(ch6b, low);
@@ -187,7 +191,24 @@ void loop() {
               Serial.println("CH.12b is off");
               ch12bState = "off";
               digitalWrite(ch12b, low);
+            } else if (header.indexOf("GET /ch7/on") >= 0) {
+              Serial.println("CH.7 is on");
+              ch7State = "on";
+              digitalWrite(ch7, high);
+            } else if (header.indexOf("GET /ch7/off") >= 0) {
+              Serial.println("CH.7 is off");
+              ch7State = "off";
+              digitalWrite(ch7, low);
+            } else if (header.indexOf("GET /ch9/on") >= 0) {
+              Serial.println("CH.9 is on");
+              ch7State = "on";
+              digitalWrite(ch9, high);
+            } else if (header.indexOf("GET /ch9/off") >= 0) {
+              Serial.println("CH.9 is off");
+              ch7State = "off";
+              digitalWrite(ch9, low);
             }
+            
 
             // Display the HTML web page
             client.println("<!DOCTYPE html><html>");
