@@ -30,8 +30,8 @@
 20        android:supportsRtl="true"
 20-->C:\Users\simob\Desktop\OR+\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:13:9-35
 21        android:testOnly="true"
-22        android:theme="@style/Theme.MaterialComponents.NoActionBar"
-22-->C:\Users\simob\Desktop\OR+\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:14:9-68
+22        android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+22-->C:\Users\simob\Desktop\OR+\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:14:9-77
 23        android:usesCleartextTraffic="true" >
 23-->C:\Users\simob\Desktop\OR+\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:12:9-44
 24        <activity android:name="com.or.appchiesa.MainActivity" >

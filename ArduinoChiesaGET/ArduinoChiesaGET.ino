@@ -16,8 +16,8 @@ const char* pass = "cellrouter";
 int status = WL_IDLE_STATUS;
 
 // Logic changed in logic-low
-const int low = LOW;
-const int high = HIGH;
+const int low = HIGH;
+const int high = LOW;
 
 // Set web server port number to 80
 WiFiServer server(80);
@@ -38,16 +38,16 @@ String ch7State = "off";
 String ch9State = "off";
 
 // Assign output variables to IO pins
-const int ch3 = 2;
+const int ch3 = 0;
+const int ch4 = 1;
+const int ch5 = 2;
+const int ch6a = 3;
+const int ch6b = 4;
 const int ch7 = 5;
-const int ch4 = 11;
-const int ch5 = 6;
-const int ch9 = 7;
-const int ch10 = 12;
-const int ch6a = 8;
-const int ch6b = 3;
-const int ch11 = 9;
-const int ch12b = 4;
+const int ch9 = 6;
+const int ch10 = 7;
+const int ch11 = 8;
+const int ch12b = 9;
 
 void setup() {
   Serial.begin(9600);
@@ -55,23 +55,25 @@ void setup() {
     ; // wait for serial port to connect. Needed for native USB port only
   }
   // Initialize the output variables as outputs
-  pinMode(ch7, OUTPUT);
+  pinMode(ch3, OUTPUT);
+  pinMode(ch4, OUTPUT);
   pinMode(ch5, OUTPUT);
-  pinMode(ch9, OUTPUT);
-  pinMode(ch11, OUTPUT);
   pinMode(ch6a, OUTPUT);
   pinMode(ch6b, OUTPUT);
-  pinMode(ch3, OUTPUT);
-  pinMode(ch12b, OUTPUT);
+  pinMode(ch7, OUTPUT);
+  pinMode(ch9, OUTPUT);
+  pinMode(ch11, OUTPUT);
+
+  
   // Set outputs to LOW
-  digitalWrite(ch7, low);
+  digitalWrite(ch3, low);
+  digitalWrite(ch4, low);
   digitalWrite(ch5, low);
-  digitalWrite(ch9, low);
-  digitalWrite(ch11, low);
   digitalWrite(ch6a, low);
   digitalWrite(ch6b, low);
-  digitalWrite(ch3, low);
-  digitalWrite(ch12b, low);
+  digitalWrite(ch7, low);
+  digitalWrite(ch9, low);
+  digitalWrite(ch10, low);
 
   // check for the WiFi module:
   if (WiFi.status() == WL_NO_MODULE) {

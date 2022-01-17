@@ -7,19 +7,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RecyclerAdapter
-        extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+import java.util.ArrayList;
 
-    private String[] captions; // Contains names of groups/lights
+public class ChildRecyclerAdapter
+        extends RecyclerView.Adapter<ChildRecyclerAdapter.ViewHolder> {
+
+    private ArrayList<String> captions; // Contains names of groups/lights
     private int[] imageIds; // Contains image's ids
     private Listener listener;
 
-    interface Listener {
+    public interface Listener {
         void onClickCard(int position, ImageView imageView);
         void onClickPopup(int position, View menuImage);
     }
@@ -28,7 +30,7 @@ public class RecyclerAdapter
         this.listener = listener;
     }
 
-    public RecyclerAdapter(String[] captions, int[] imageIds) {
+    public ChildRecyclerAdapter(ArrayList<String> captions, int[] imageIds) {
         this.captions = captions;
         this.imageIds = imageIds;
     }
@@ -47,9 +49,9 @@ public class RecyclerAdapter
         final ImageView imageViewCard = (ImageView) cardView.findViewById(R.id.group_image);
         Drawable drawable = ContextCompat.getDrawable(cardView.getContext(), imageIds[position]);
         imageViewCard.setImageDrawable(drawable);
-        imageViewCard.setContentDescription(captions[position]);
+        imageViewCard.setContentDescription(captions.get(position));
         TextView textView = (TextView) cardView.findViewById(R.id.group_text);
-        textView.setText(captions[position]);
+        textView.setText(captions.get(position));
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,7 +72,7 @@ public class RecyclerAdapter
 
     @Override
     public int getItemCount() {
-        return captions.length;
+        return captions.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -85,9 +87,9 @@ public class RecyclerAdapter
 
     public void updateRecycle(String type) {
         if(type == "group") {
-            String[] groupNames = new String[Group.groups.size()];
-            for (int i = 0; i < groupNames.length; i++) {
-                groupNames[i] = Group.groups.get(i).getName();
+            ArrayList<String> groupNames = new ArrayList<String>();
+            for (int i = 0; i < groupNames.size(); i++) {
+                groupNames.add(i, Group.groups.get(i).getName());
             }
             this.captions = groupNames;
             int[] groupImages = new int[Group.groups.size()];
@@ -95,13 +97,13 @@ public class RecyclerAdapter
                 groupImages[i] = Group.groups.get(i).getImageResourceId();
             }
             this.imageIds = groupImages;
-            Log.e("NEW GROUP", groupNames[groupNames.length - 1]);
+            Log.e("NEW GROUP", groupNames.get(groupNames.size() - 1));
             notifyDataSetChanged();
         }
         else if(type == "light") {
-            String[] lightNames = new String[Light.lights.size()];
-            for (int i = 0; i < lightNames.length; i++) {
-                lightNames[i] = Light.lights.get(i).getName();
+            ArrayList<String> lightNames = new ArrayList<String>();
+            for (int i = 0; i < lightNames.size(); i++) {
+                lightNames.add(i, Light.lights.get(i).getName());
             }
             this.captions = lightNames;
             int[] lightsImages = new int[Light.lights.size()];
@@ -109,7 +111,7 @@ public class RecyclerAdapter
                 lightsImages[i] = Light.lights.get(i).getImageResourceId();
             }
             this.imageIds = lightsImages;
-            Log.e("NEW LIGHT", lightNames[lightNames.length - 1]);
+            Log.e("NEW LIGHT", lightNames.get(lightNames.size() - 1));
             notifyDataSetChanged();
         }
 

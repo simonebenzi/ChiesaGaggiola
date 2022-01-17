@@ -5,6 +5,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +20,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.chip.Chip;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -193,7 +197,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void modifyGroupName(String groupName, int position) {
         Group.groups.get(position).setName(groupName);
-        RecyclerAdapter adapter = groupsFragment.getAdapter();
+        ChildRecyclerAdapter adapter = groupsFragment.getAdapter();
         adapter.updateRecycle("group");
     }
 
@@ -201,7 +205,7 @@ public class MainActivity extends AppCompatActivity
     public void modifyLightDetails(String groupName, String ipAddress, int position) {
         Light.lights.get(position).setName(groupName);
         Light.lights.get(position).setIpAddress(ipAddress);
-        RecyclerAdapter adapter = lightsFragment.getAdapter();
+        ChildRecyclerAdapter adapter = lightsFragment.getMainRecyclerAdapter().getAdapter();
         adapter.updateRecycle("light");
     }
 

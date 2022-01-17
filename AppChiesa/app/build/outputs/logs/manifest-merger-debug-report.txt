@@ -84,7 +84,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\si
 	android:allowBackup
 		ADDED from C:\Users\simob\Desktop\OR+\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:8:9-35
 	android:theme
-		ADDED from C:\Users\simob\Desktop\OR+\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:14:9-68
+		ADDED from C:\Users\simob\Desktop\OR+\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:14:9-77
 	android:usesCleartextTraffic
 		ADDED from C:\Users\simob\Desktop\OR+\ProgettoChiesa\AppChiesa\app\src\main\AndroidManifest.xml:12:9-44
 activity#com.or.appchiesa.MainActivity

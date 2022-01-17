@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Section {
     private String name;
-    private ArrayList<String> items;
+    private ArrayList<Light> items;
 
-    public Section(String name, ArrayList<String> items) {
+    public Section(String name, ArrayList<Light> items) {
         this.name = name;
         this.items = items;
     }
@@ -15,7 +15,7 @@ public class Section {
         return name;
     }
 
-    public ArrayList<String> getItems() {
+    public ArrayList<Light> getItems() {
         return items;
     }
 

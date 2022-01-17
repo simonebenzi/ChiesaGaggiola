@@ -1,7 +1,15 @@
 package com.or.appchiesa;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.BoringLayout;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -11,55 +19,84 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 public class LightsFragment extends Fragment {
-    private RecyclerAdapter adapter;
+
     private MainRecyclerAdapter mainRecyclerAdapter;
     private Switch aSwitch;
 
     private ArrayList<Section> sectionList = new ArrayList<>();
 
-    public RecyclerAdapter getAdapter() {
-        return this.adapter;
+    public MainRecyclerAdapter getMainRecyclerAdapter() {
+        return this.mainRecyclerAdapter;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        initData();
+        // Initialize sections with corresponding lights
+        initSections();
 
         RecyclerView mainRecyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_lights,
                 container, false);
-        String[] lightNames = new String[Light.lights.size()];
-        for(int i = 0; i < lightNames.length; i++){
-            lightNames[i] = Light.lights.get(i).getName();
-        }
-        int[] lightsImages = new int[Light.lights.size()];
-        for(int i = 0; i < lightsImages.length; i++){
-            lightsImages[i] = Light.lights.get(i).getImageResourceId();
-        }
 
         // Initialize switch
         aSwitch = new Switch(getContext());
 
-        this.mainRecyclerAdapter = new MainRecyclerAdapter(sectionList);
-        mainRecyclerView.setAdapter(mainRecyclerAdapter);
-        mainRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-
-        this.adapter.setListener(new RecyclerAdapter.Listener() {
+        this.mainRecyclerAdapter = new MainRecyclerAdapter(sectionList, getContext());
+        this.mainRecyclerAdapter.setClickListener(new MainRecyclerAdapter.ClickListener() {
             @Override
-            public void onClickCard(int position, ImageView imageView) {
-                onClickLight(position, imageView);
+            public void onClickLight(int position, ImageView imageView, String sectionName) {
+                for(Section section: sectionList) {
+                    if(section.getName() == sectionName){
+                        Drawable drawable;
+                        boolean state = false;
+                        Light clickedLight = section.getItems().get(position);
+                        String opName = clickedLight.getOpName();
+                        String name = clickedLight.getName();
+
+                        SQLiteOpenHelper databaseHelper = new DatabaseHelper(getContext());
+                        try {
+                            SQLiteDatabase db = databaseHelper.getReadableDatabase();
+                            Cursor cursor = db.query("LIGHTS", new String[]{"NAME", "OP_NAME", "IP_ADDRESS",
+                                            "SECTION", "STATE", "IMAGE_RESOURCE_ID"},
+                                    "OP_NAME = ? AND NAME = ?", new String[]{opName, name},
+                                    null, null, null);
+                            Log.e("COLUMNS", Integer.toString(cursor.getColumnCount()));
+                            if(cursor.moveToFirst()){
+                                state = (cursor.getInt(4) == 1);
+                                Log.e("STATE", Boolean.toString(state));
+                            }
+                            if(!state){
+                                drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb_on);
+                                imageView.setImageDrawable(drawable);
+                                aSwitch.switchLightOn(clickedLight.getIpAddress(), clickedLight.getOpName());
+                            }else {
+                                drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb);
+                                imageView.setImageDrawable(drawable);
+                                aSwitch.switchLightOff(clickedLight.getIpAddress(), clickedLight.getOpName());
+                            }
+                            new UpdateStateTask().execute(opName, state);
+                            cursor.close();
+                            db.close();
+                        }
+                        catch(SQLException e) {
+                            Toast toast = Toast.makeText(getContext(),
+                                    "Database unavailable",
+                                    Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+                    }
+                }
             }
 
-            @Override
-            public void onClickPopup(final int position, View menuImage) {
+            public void onItemClick(int position, View menuImage) {
                 PopupMenu popupMenu = new PopupMenu(getContext(), menuImage);
                 popupMenu.inflate(R.menu.group_popup_menu);
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
@@ -72,7 +109,7 @@ public class LightsFragment extends Fragment {
                                 break;
                             case R.id.delete_item:
                                 Light.lights.remove(position);
-                                getAdapter().updateRecycle("light");
+                                mainRecyclerAdapter.getAdapter().updateRecycle("light");
                                 //Toast.makeText(getContext(), "Delete light clicked", Toast.LENGTH_LONG).show();
                                 break;
                         }
@@ -82,47 +119,199 @@ public class LightsFragment extends Fragment {
                 popupMenu.show();
             }
         });
+        mainRecyclerView.setAdapter(mainRecyclerAdapter);
+        mainRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
         return mainRecyclerView;
     }
 
-    private void displayModifyLightDialog(int position) {
+    public void displayModifyLightDialog(int position) {
         ModifyLightDialogFragment modifyLightDialogFragment =
                 new ModifyLightDialogFragment(position);
         modifyLightDialogFragment.show(getFragmentManager(), "modify_light_dialog");
     }
 
-    private void onClickLight(int position, ImageView imageView) {
-        Light clickedLight = Light.lights.get(position);
-
-        if(!(clickedLight.getState())) {
-            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb_on);
-            imageView.setImageDrawable(drawable);
-            aSwitch.switchLightOn(clickedLight.getIpAddress(), clickedLight.getOpName());
-            //Toast.makeText(getContext(), "Light switched on", Toast.LENGTH_LONG).show();
-            clickedLight.setState(true);
-        }
-        else {
-            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb);
-            imageView.setImageDrawable(drawable);
-            aSwitch.switchLightOff(clickedLight.getIpAddress(), clickedLight.getOpName());
-            //Toast.makeText(getContext(), "Light switched off", Toast.LENGTH_LONG).show();
-            clickedLight.setState(false);
-        }
-    }
-
-    private void initData() {
+    private void initSections() {
         String sectionOneName = "Navata";
-        ArrayList<String> sectionOneItems = new ArrayList<String>();
-        sectionOneItems.add("ch4");
-        sectionOneItems.add("ch5");
-        sectionOneItems.add("ch3");
+        ArrayList<Light> sectionOneItems = new ArrayList<Light>();
 
-        String sectionTwoName = "Navata";
-        ArrayList<String> sectionTwoItems = new ArrayList<String>();
-        sectionTwoItems.add("ch7");
+        String sectionTwoName = "Cappelle";
+        ArrayList<Light> sectionTwoItems = new ArrayList<Light>();
 
+        String sectionThreeName = "Presbiterio";
+        ArrayList<Light> sectionThreeItems = new ArrayList<Light>();
+
+        String sectionFourName = "Coro";
+        ArrayList<Light> sectionFourItems = new ArrayList<Light>();
+
+        String sectionFiveName = "Chiesa";
+        ArrayList<Light> sectionFiveItems = new ArrayList<Light>();
+
+        SQLiteOpenHelper databaseHelper = new DatabaseHelper(getContext());
+        try {
+            SQLiteDatabase db = databaseHelper.getReadableDatabase();
+            // Code to read
+            // Navata section
+            Cursor cursorNavata = db.query("LIGHTS", new String[]{"NAME", "OP_NAME", "IP_ADDRESS",
+                            "SECTION", "STATE", "IMAGE_RESOURCE_ID"},
+                    "SECTION = ?", new String[]{"Navata"},
+                    null, null, null);
+
+            if(cursorNavata.moveToFirst()) {
+                for(int i = 0; i < cursorNavata.getCount(); i++){
+                    String nameText = cursorNavata.getString(0);
+                    String opNameText = cursorNavata.getString(1);
+                    String ipAddressText = cursorNavata.getString(2);
+                    String sectionText = cursorNavata.getString(3);
+                    boolean state = (cursorNavata.getInt(4) == 1);
+                    int resourceId = cursorNavata.getInt(5);
+
+                    Light light = new Light(nameText, opNameText, ipAddressText, sectionText,
+                            resourceId, state);
+                    sectionOneItems.add(light);
+                    cursorNavata.moveToNext();
+                }
+            }
+            cursorNavata.close();
+            // Cappelle section
+            Cursor cursorCappelle = db.query("LIGHTS", new String[]{"NAME", "OP_NAME", "IP_ADDRESS",
+                            "SECTION", "STATE", "IMAGE_RESOURCE_ID"},
+                    "SECTION = ?", new String[]{"Cappelle"},
+                    null, null, null);
+
+            if(cursorCappelle.moveToFirst()) {
+                for(int i = 0; i < cursorCappelle.getCount(); i++){
+                    String nameText = cursorCappelle.getString(0);
+                    String opNameText = cursorCappelle.getString(1);
+                    String ipAddressText = cursorCappelle.getString(2);
+                    String sectionText = cursorCappelle.getString(3);
+                    boolean state = (cursorCappelle.getInt(4) == 1);
+                    int resourceId = cursorCappelle.getInt(5);
+
+                    Light light = new Light(nameText, opNameText, ipAddressText, sectionText,
+                            resourceId, state);
+                    sectionTwoItems.add(light);
+                    cursorCappelle.moveToNext();
+                }
+            }
+            cursorCappelle.close();
+            // Presbiterio section
+            Cursor cursorPresbiterio = db.query("LIGHTS", new String[]{"NAME", "OP_NAME", "IP_ADDRESS",
+                            "SECTION", "STATE", "IMAGE_RESOURCE_ID"},
+                    "SECTION = ?", new String[]{"Presbiterio"},
+                    null, null, null);
+
+            if(cursorPresbiterio.moveToFirst()) {
+                for(int i = 0; i < cursorPresbiterio.getCount(); i++){
+                    String nameText = cursorPresbiterio.getString(0);
+                    String opNameText = cursorPresbiterio.getString(1);
+                    String ipAddressText = cursorPresbiterio.getString(2);
+                    String sectionText = cursorPresbiterio.getString(3);
+                    boolean state = (cursorPresbiterio.getInt(4) == 1);
+                    int resourceId = cursorPresbiterio.getInt(5);
+
+                    Light light = new Light(nameText, opNameText, ipAddressText, sectionText,
+                            resourceId, state);
+                    sectionThreeItems.add(light);
+                    cursorPresbiterio.moveToNext();
+                }
+            }
+            cursorPresbiterio.close();
+            // Coro section
+            Cursor cursorCoro = db.query("LIGHTS", new String[]{"NAME", "OP_NAME", "IP_ADDRESS",
+                            "SECTION", "STATE", "IMAGE_RESOURCE_ID"},
+                    "SECTION = ?", new String[]{"Coro"},
+                    null, null, null);
+
+            if(cursorCoro.moveToFirst()) {
+                for(int i = 0; i < cursorCoro.getCount(); i++){
+                    String nameText = cursorCoro.getString(0);
+                    String opNameText = cursorCoro.getString(1);
+                    String ipAddressText = cursorCoro.getString(2);
+                    String sectionText = cursorCoro.getString(3);
+                    boolean state = (cursorCoro.getInt(4) == 1);
+                    int resourceId = cursorCoro.getInt(5);
+
+                    Light light = new Light(nameText, opNameText, ipAddressText, sectionText,
+                            resourceId, state);
+                    sectionFourItems.add(light);
+                    cursorCoro.moveToNext();
+                }
+            }
+            cursorCoro.close();
+            // Chiesa section
+            Cursor cursorChiesa = db.query("LIGHTS", new String[]{"NAME", "OP_NAME", "IP_ADDRESS",
+                            "SECTION", "STATE", "IMAGE_RESOURCE_ID"},
+                    "SECTION = ?", new String[]{"Chiesa"},
+                    null, null, null);
+
+            if(cursorChiesa.moveToFirst()) {
+                for(int i = 0; i < cursorChiesa.getCount(); i++){
+                    String nameText = cursorChiesa.getString(0);
+                    String opNameText = cursorChiesa.getString(1);
+                    String ipAddressText = cursorChiesa.getString(2);
+                    String sectionText = cursorChiesa.getString(3);
+                    boolean state = (cursorChiesa.getInt(4) == 1);
+                    int resourceId = cursorChiesa.getInt(5);
+
+                    Light light = new Light(nameText, opNameText, ipAddressText, sectionText,
+                            resourceId, state);
+                    sectionFiveItems.add(light);
+                    cursorChiesa.moveToNext();
+                }
+            }
+            cursorChiesa.close();
+
+            db.close();
+        }
+        catch(SQLException e) {
+            Toast toast = Toast.makeText(getContext(),
+                    "Database unavailable",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
+        // Fill section list
         sectionList.add(new Section(sectionOneName, sectionOneItems));
         sectionList.add(new Section(sectionTwoName, sectionTwoItems));
+        sectionList.add(new Section(sectionThreeName, sectionThreeItems));
+        sectionList.add(new Section(sectionFourName, sectionFourItems));
+        sectionList.add(new Section(sectionFiveName, sectionFiveItems));
+    }
+
+    private class UpdateStateTask extends AsyncTask<Object, Void, Boolean> {
+        private ContentValues stateValue;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+
+        }
+
+        @Override
+        protected Boolean doInBackground(Object... params) {
+            //code that you want to run in a background thread
+            String opName = (String) params[0];
+            boolean state = (boolean) params[1];
+            ContentValues stateValue = new ContentValues();
+            stateValue.put("STATE", !state);
+            SQLiteOpenHelper starbuzzDatabaseHelper = new DatabaseHelper(getContext());
+            try {
+                SQLiteDatabase db = starbuzzDatabaseHelper.getWritableDatabase();
+                db.update("LIGHTS",
+                        stateValue,
+                        "OP_NAME = ?",
+                        new String[]{opName});
+                db.close();
+                Log.e("NEW STATE", Boolean.toString(!state));
+                return true;
+            } catch (SQLException e) {
+                return false;
+            }
+        }
     }
 }

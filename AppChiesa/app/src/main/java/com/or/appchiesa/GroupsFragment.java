@@ -19,14 +19,14 @@ import java.util.ArrayList;
 
 public class GroupsFragment extends Fragment {
     private SwitchFragment fragSwitch;
-    private RecyclerAdapter adapter;
+    private ChildRecyclerAdapter adapter;
     private Switch aSwitch;
 
     interface SwitchFragment {
         void groupFragmentSwitch();
     }
 
-    public RecyclerAdapter getAdapter() {
+    public ChildRecyclerAdapter getAdapter() {
         return this.adapter;
     }
 
@@ -35,9 +35,9 @@ public class GroupsFragment extends Fragment {
                              Bundle savedInstanceState) {
         RecyclerView groupRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_groups,
                 container, false);
-        String[] groupNames = new String[Group.groups.size()];
-        for (int i = 0; i < groupNames.length; i++) {
-            groupNames[i] = Group.groups.get(i).getName();
+        ArrayList<String> groupNames = new ArrayList<>();
+        for (int i = 0; i < Group.groups.size(); i++) {
+            groupNames.add(i, Group.groups.get(i).getName());
         }
         int[] groupImages = new int[Group.groups.size()];
         for (int i = 0; i < groupImages.length; i++) {
@@ -46,12 +46,12 @@ public class GroupsFragment extends Fragment {
 
         aSwitch = new Switch(getContext());
 
-        this.adapter = new RecyclerAdapter(groupNames, groupImages);
+        this.adapter = new ChildRecyclerAdapter(groupNames, groupImages);
         groupRecycler.setAdapter(this.adapter);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         groupRecycler.setLayoutManager(layoutManager);
 
-        this.adapter.setListener(new RecyclerAdapter.Listener() {
+        this.adapter.setListener(new ChildRecyclerAdapter.Listener() {
             @Override
             public void onClickCard(int position, ImageView imageView) {
                 onClickGroup(position, imageView);
