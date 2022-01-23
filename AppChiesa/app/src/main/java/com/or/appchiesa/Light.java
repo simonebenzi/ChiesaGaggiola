@@ -50,7 +50,7 @@ public class Light {
 
     public static List<Light> lights = new ArrayList<Light>(Arrays.asList(
             new Light("Illuminazione di servizio", "ch1", "192.168.20.221", "Cappelle", R.drawable.ic_bulb),
-            new Light("ch1.1", "ch1.1", "192.168.20.221", "Cappelle",R.drawable.ic_bulb),
+            new Light("ch1_1", "ch1_1", "192.168.20.221", "Cappelle",R.drawable.ic_bulb),
             new Light("Bussola ingresso", "ch2", "192.168.20.221", "Chiesa",R.drawable.ic_bulb),
             new Light("Faretti santi", "ch4", "192.168.20.221", "Navata",R.drawable.ic_bulb),
             new Light("LED navata", "ch5", "192.168.20.221", "Navata",R.drawable.ic_bulb),

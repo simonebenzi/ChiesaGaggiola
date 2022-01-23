@@ -14,25 +14,13 @@
   <component name="ChangeListManager">
     <list default="true" id="01169386-7320-49fb-9141-1a339e9bdf78" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/GroupsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/GroupsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Light.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Light.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/LightsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/LightsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainRecyclerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainRecyclerAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/RecyclerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ChildRecyclerAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Section.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Section.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/section_row.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/section_row.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ArduinoChiesaGET/ArduinoChiesaGET.ino" beforeDir="false" afterPath="$PROJECT_DIR$/../ArduinoChiesaGET/ArduinoChiesaGET.ino" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\simob\.android\avd\Nexus_7_API_29.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@M2HDU18515001283]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />

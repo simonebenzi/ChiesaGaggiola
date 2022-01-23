@@ -13,7 +13,7 @@ public class Group {
 
     private static ArrayList<Light> scenario1 = new ArrayList<Light>(Arrays.asList(
             new Light("Illuminazione di servizio", "ch1", "192.168.20.221", "Cappelle", R.drawable.ic_bulb),
-            new Light("ch1.1", "ch1.1", "192.168.20.221", "Cappelle",R.drawable.ic_bulb),
+            new Light("ch1.1", "ch1_1", "192.168.20.221", "Cappelle",R.drawable.ic_bulb),
             new Light("Bussola ingresso", "ch2", "192.168.20.221", "Chiesa",R.drawable.ic_bulb),
             new Light("Faretti santi", "ch4", "192.168.20.221", "Navata",R.drawable.ic_bulb),
             new Light("LED navata", "ch5", "192.168.20.221", "Navata",R.drawable.ic_bulb),
@@ -25,7 +25,7 @@ public class Group {
 
     private static ArrayList<Light> scenario2 = new ArrayList<Light>(Arrays.asList(
             new Light("Illuminazione di servizio", "ch1", "192.168.20.221", "Cappelle", R.drawable.ic_bulb),
-            new Light("ch1.1", "ch1.1", "192.168.20.221", "Cappelle",R.drawable.ic_bulb),
+            new Light("ch1.1", "ch1_1", "192.168.20.221", "Cappelle",R.drawable.ic_bulb),
             new Light("Bussola ingresso", "ch2", "192.168.20.221", "Chiesa",R.drawable.ic_bulb),
             new Light("Faretti santi", "ch4", "192.168.20.221", "Navata",R.drawable.ic_bulb),
             new Light("LED navata", "ch5", "192.168.20.221", "Navata",R.drawable.ic_bulb),
@@ -41,7 +41,7 @@ public class Group {
 
     private static ArrayList<Light> scenario3 = new ArrayList<Light>(Arrays.asList(
             new Light("Illuminazione di servizio", "ch1", "192.168.20.221", "Cappelle", R.drawable.ic_bulb),
-            new Light("ch1.1", "ch1.1", "192.168.20.221", "Cappelle",R.drawable.ic_bulb),
+            new Light("ch1.1", "ch1_1", "192.168.20.221", "Cappelle",R.drawable.ic_bulb),
             new Light("Bussola ingresso", "ch2", "192.168.20.221", "Chiesa",R.drawable.ic_bulb),
             new Light("Faretti santi", "ch4", "192.168.20.221", "Navata",R.drawable.ic_bulb),
             new Light("LED navata", "ch5", "192.168.20.221", "Navata",R.drawable.ic_bulb),
@@ -59,7 +59,7 @@ public class Group {
 
     private static ArrayList<Light> scenario4 = new ArrayList<Light>(Arrays.asList(
             new Light("Illuminazione di servizio", "ch1", "192.168.20.221", "Cappelle", R.drawable.ic_bulb),
-            new Light("ch1.1", "ch1.1", "192.168.20.221", "Cappelle",R.drawable.ic_bulb),
+            new Light("ch1.1", "ch1_1", "192.168.20.221", "Cappelle",R.drawable.ic_bulb),
             new Light("Bussola ingresso", "ch2", "192.168.20.221", "Chiesa",R.drawable.ic_bulb),
             new Light("Faretti santi", "ch4", "192.168.20.221", "Navata",R.drawable.ic_bulb),
             new Light("LED navata", "ch5", "192.168.20.221", "Navata",R.drawable.ic_bulb),
