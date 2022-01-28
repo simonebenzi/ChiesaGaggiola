@@ -30,6 +30,7 @@ public class LightsFragment extends Fragment {
 
     private MainRecyclerAdapter mainRecyclerAdapter;
     private Switch aSwitch;
+    private DBHelper dbHelper;
 
     private ArrayList<Section> sectionList = new ArrayList<>();
 
@@ -41,6 +42,7 @@ public class LightsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Initialize sections with corresponding lights
+        this.dbHelper = new DBHelper(getContext());
         initSections();
 
         RecyclerView mainRecyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_lights,
@@ -53,46 +55,31 @@ public class LightsFragment extends Fragment {
         this.mainRecyclerAdapter.setClickListener(new MainRecyclerAdapter.ClickListener() {
             @Override
             public void onClickLight(int position, ImageView imageView, String sectionName) {
-                for(Section section: sectionList) {
-                    if(section.getName() == sectionName){
-                        Drawable drawable;
-                        boolean state = false;
-                        Light clickedLight = section.getItems().get(position);
-                        String opName = clickedLight.getOpName();
-                        String name = clickedLight.getName();
+                Drawable drawable;
+                Boolean state;
+                String opName, ipAddress, name;
 
-                        SQLiteOpenHelper databaseHelper = new DatabaseHelper(getContext());
-                        try {
-                            SQLiteDatabase db = databaseHelper.getReadableDatabase();
-                            Cursor cursor = db.query("LIGHTS", new String[]{"NAME", "OP_NAME", "IP_ADDRESS",
-                                            "SECTION", "STATE", "IMAGE_RESOURCE_ID"},
-                                    "OP_NAME = ? AND NAME = ?", new String[]{opName, name},
-                                    null, null, null);
-                            Log.e("COLUMNS", Integer.toString(cursor.getColumnCount()));
-                            if(cursor.moveToFirst()){
-                                state = (cursor.getInt(4) == 1);
-                                Log.e("STATE", Boolean.toString(state));
-                            }
-                            if(!state){
-                                drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb_on);
-                                imageView.setImageDrawable(drawable);
-                                aSwitch.switchLightOn(clickedLight.getIpAddress(), clickedLight.getOpName());
-                            }else {
-                                drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb);
-                                imageView.setImageDrawable(drawable);
-                                aSwitch.switchLightOff(clickedLight.getIpAddress(), clickedLight.getOpName());
-                            }
-                            new UpdateStateTask().execute(opName, state);
-                            cursor.close();
-                            db.close();
-                        }
-                        catch(SQLException e) {
-                            Toast toast = Toast.makeText(getContext(),
-                                    "Database unavailable",
-                                    Toast.LENGTH_SHORT);
-                            toast.show();
-                        }
-                    }
+                SQLiteOpenHelper databaseHelper = new DatabaseHelper(getContext());
+                ArrayList<Boolean> lightsState = dbHelper.getAllLightsState(sectionName);
+                ArrayList<String> lightsOpName = dbHelper.getAllLightsOpName(sectionName);
+                ArrayList<String> lightsIpAddress = dbHelper.getAllLightsIpAddress(sectionName);
+                ArrayList<String> lightsName = dbHelper.getAllLightsName(sectionName);
+
+                state = lightsState.get(position);
+                opName = lightsOpName.get(position);
+                ipAddress = lightsIpAddress.get(position);
+                name = lightsName.get(position);
+
+                if(!state){
+                    drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb_on);
+                    imageView.setImageDrawable(drawable);
+                    aSwitch.switchLightOn(ipAddress, opName);
+                    dbHelper.updateLightState(state, name, opName);
+                } else{
+                    drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb);
+                    imageView.setImageDrawable(drawable);
+                    aSwitch.switchLightOff(ipAddress, opName);
+                    dbHelper.updateLightState(state, name, opName);
                 }
             }
 

@@ -2,6 +2,7 @@ package com.or.appchiesa;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -19,6 +20,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.ViewHolder> {
@@ -27,6 +36,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     private ChildRecyclerAdapter childRecyclerAdapter;
     private ClickListener clickListener;
     private Context context;
+    private DBHelper dbHelper;
 
     public ChildRecyclerAdapter getAdapter() {
         return this.childRecyclerAdapter;
@@ -35,6 +45,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     public MainRecyclerAdapter(ArrayList<Section> sectionList, Context context) {
         this.sectionList = sectionList;
         this.context = context;
+        this.dbHelper = new DBHelper(context);
     }
 
     public interface ClickListener {
@@ -59,41 +70,23 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         Section section = sectionList.get(position);
         String sectionName = section.getName();
 
-        SQLiteOpenHelper databaseHelper = new DatabaseHelper(context);
+        ArrayList<String> lightsName;
+        ArrayList<Boolean> lightsState;
 
-        int itemsSize = section.getItems().size();
-        ArrayList<Light> lights = section.getItems();
-        String lightOpName;
-        String lightName;
-        int[] lightResIds = new int[itemsSize];
-        ArrayList<String> lightNames = new ArrayList<>();
-        for(int i = 0; i < itemsSize; i++) {
-            try {
-                SQLiteDatabase db = databaseHelper.getReadableDatabase();
-                lightOpName = lights.get(i).getOpName();
-                lightName = lights.get(i).getName();
-                Cursor cursor = db.query("LIGHTS", new String[]{"NAME", "OP_NAME", "IP_ADDRESS",
-                                "SECTION", "STATE", "IMAGE_RESOURCE_ID"},
-                        "OP_NAME = ? AND NAME = ?", new String[]{lightOpName, lightName},
-                        null, null, null);
+        lightsName = dbHelper.getAllLightsName(sectionName);
+        lightsState = dbHelper.getAllLightsState(sectionName);
 
-                if(cursor.moveToFirst()){
-                    lightResIds[i] = cursor.getInt(5);
-                    lightNames.add(cursor.getString(0));
-                }
-                cursor.close();
-                db.close();
-            }
-            catch(SQLException e) {
-                Toast toast = Toast.makeText(context,
-                        "Database unavailable",
-                        Toast.LENGTH_SHORT);
-                toast.show();
-            }
+        int[] lightResIds = new int[lightsState.size()];
+
+        for(int i = 0; i < lightsState.size(); i++){
+            if(!(lightsState.get(i)))
+                lightResIds[i] = R.drawable.ic_bulb;
+            else
+                lightResIds[i] = R.drawable.ic_bulb_on;
         }
 
         holder.sectionNameTextView.setText(sectionName);
-        childRecyclerAdapter = new ChildRecyclerAdapter(lightNames, lightResIds);
+        childRecyclerAdapter = new ChildRecyclerAdapter(lightsName, lightResIds);
         holder.childRecyclerView.setAdapter(childRecyclerAdapter);
         GridLayoutManager layoutManager = new GridLayoutManager(holder.childRecyclerView.getContext(), 2);
         holder.childRecyclerView.setLayoutManager(layoutManager);

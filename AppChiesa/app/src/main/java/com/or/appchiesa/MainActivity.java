@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity
     private final FragmentManager fm = getSupportFragmentManager();
     private GroupsFragment groupsFragment;
     private LightsFragment lightsFragment;
+    private DBHelper dbHelper;
 
     private ViewPager2 viewPager;
     private TabLayout tabLayout;
@@ -51,6 +52,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Initialize DBHelper
+        this.dbHelper = new DBHelper(this);
 
         // Set the view pager
         viewPager = findViewById(R.id.view_pager);
@@ -65,11 +69,11 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         // Set GroupsFragment as default
-        /*this.lightsFragment = new LightsFragment();
+        this.lightsFragment = new LightsFragment();
         this.groupsFragment = new GroupsFragment();
-        FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.container, this.groupsFragment);
-        transaction.commit();*/
+//        FragmentTransaction transaction = fm.beginTransaction();
+//        transaction.replace(R.id.view_pager, this.groupsFragment);
+//        transaction.commit();
 
         // Hide mini-FAB (add light/group buttons)
         final FloatingActionButton addGroupFab = (FloatingActionButton) findViewById(R.id.add_group);
@@ -202,9 +206,16 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void modifyLightDetails(String groupName, String ipAddress, int position) {
-        Light.lights.get(position).setName(groupName);
-        Light.lights.get(position).setIpAddress(ipAddress);
+    public void modifyLightDetails(String newLightName, String ipAddress, int position) {
+        String name, opName;
+        ArrayList<String> lightsName = dbHelper.getAllLightsName();
+        ArrayList<String> lightsOpName = dbHelper.getAllLightsOpName();
+        name = lightsName.get(position);
+        opName = lightsOpName.get(position);
+
+        dbHelper.updateLightName(name, newLightName, opName);
+        dbHelper.updateLightIpAddress(name, ipAddress, opName);
+
         ChildRecyclerAdapter adapter = lightsFragment.getMainRecyclerAdapter().getAdapter();
         adapter.updateRecycle("light");
     }

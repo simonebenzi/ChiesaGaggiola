@@ -1,0 +1,115 @@
+ {
+		"lights":
+		{
+			"name": "Illuminazione di servizio",
+			"opName": "ch1",
+			"state": false,
+			"ipAddress": "192.168.1.27",
+			"section": "Cappelle"
+		},
+		{
+			"name": "ch1_1",
+			"op_name": "ch1_1",
+			"state": false,
+			"ipAddress": "192.168.1.27",
+			"section": "Cappelle"
+		},
+		{
+			"name": "Bussola ingresso",
+			"op_name": "ch2",
+			"state": false,
+			"ipAddress": "192.168.1.27",
+			"section": "Chiesa"
+		},
+		{
+			"name": "Faretti santi",
+			"op_name": "ch4",
+			"state": false,
+			"ipAddress": "192.168.1.27",
+			"section": "Navata"
+		},
+		{
+			"name": "Faretti cappelle",
+			"op_name": "ch10",
+			"state": false,
+			"ipAddress": "192.168.1.27",
+			"section": "Cappelle"
+		},
+		{
+			"name": "Faretti coro alti",
+			"op_name": "ch12a",
+			"state": false,
+			"ipAddress": "192.168.1.27",
+			"section": "Coro"
+		},
+		{
+			"name": "Faretti coro bassi",
+			"op_name": "ch12b",
+			"state": false,
+			"ipAddress": "192.168.1.27",
+			"section": "Coro"
+		},
+		{
+			"name": "Prese presbiterio",
+			"op_name": "ch21",
+			"state": false,
+			"ipAddress": "192.168.1.27",
+			"section": "Presbiterio"
+		},
+		{
+			"name": "Lampadari retro navata",
+			"op_name": "ch6a",
+			"state": false,
+			"ipAddress": "192.168.1.27",
+			"section": "Navata"
+		},
+		{
+			"name": "Striscia LED cappelle",
+			"op_name": "ch9",
+			"state": false,
+			"ipAddress": "192.168.1.27",
+			"section": "Cappelle"
+		},
+		{
+			"name": "Luci presbiterio",
+			"op_name": "ch11",
+			"state": false,
+			"ipAddress": "192.168.1.27",
+			"section": "Presbiterio"
+		},
+		{
+			"name": "Faro alto presbiterio",
+			"op_name": "ch15",
+			"state": false,
+			"ipAddress": "192.168.1.27",
+			"section": "Chiesa"
+		},
+		{
+			"name": "Lampadari fronte navata",
+			"op_name": "ch6b",
+			"state": false,
+			"ipAddress": "192.168.1.27",
+			"section": "Navata"
+		},
+		{
+			"name": "Cubotti fondo e navata",
+			"op_name": "ch3",
+			"state": false,
+			"ipAddress": "192.168.1.27",
+			"section": "Chiesa"
+		},
+		{
+			"name": "ch6c",
+			"op_name": "ch6c",
+			"state": false,
+			"ipAddress": "192.168.1.27",
+			"section": "Navata"
+		},
+		{
+			"name": "LED Via Crucis",
+			"op_name": "ch7",
+			"state": false,
+			"ipAddress": "192.168.1.27",
+			"section": "Navata"
+		}
+ }
