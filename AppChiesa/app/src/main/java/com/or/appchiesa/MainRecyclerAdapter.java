@@ -86,7 +86,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         }
 
         holder.sectionNameTextView.setText(sectionName);
-        childRecyclerAdapter = new ChildRecyclerAdapter(lightsName, lightResIds);
+        childRecyclerAdapter = new ChildRecyclerAdapter(context, lightsName, lightResIds);
         holder.childRecyclerView.setAdapter(childRecyclerAdapter);
         GridLayoutManager layoutManager = new GridLayoutManager(holder.childRecyclerView.getContext(), 2);
         holder.childRecyclerView.setLayoutManager(layoutManager);

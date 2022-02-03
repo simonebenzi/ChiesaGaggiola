@@ -14,6 +14,7 @@ public class ModifyGroupDialogFragment extends AppCompatDialogFragment {
 
     private ModifyGroupDialogInterface dialogInterface;
     private int position;
+    private DBHelper dbHelper;
 
 
     interface ModifyGroupDialogInterface {
@@ -32,8 +33,9 @@ public class ModifyGroupDialogFragment extends AppCompatDialogFragment {
         final View view = inflater.inflate(R.layout.fragment_group_dialog, null);
         final TextInputLayout textInputLayout =
                 (TextInputLayout) view.findViewById(R.id.group_name_edit_text);
+        dbHelper = new DBHelper(getContext());
 
-        final String groupName = Group.groups.get(this.position).getName();
+        final String groupName = dbHelper.getAllScenariosName().get(position);
         textInputLayout.getEditText().setText(groupName);
 
         builder.setView(view)

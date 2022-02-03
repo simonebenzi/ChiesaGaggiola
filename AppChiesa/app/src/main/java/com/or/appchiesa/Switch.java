@@ -76,13 +76,13 @@ public class Switch {
         queue.add(request);
     }
 
-    public void switchGroupOn(ArrayList<Light> lights) {
+    public void switchGroupOn(ArrayList<String> lights, ArrayList<String> ipAddress) {
         // List of requests
         ArrayList<StringRequest> requests = new ArrayList<StringRequest>();
 
         for(int i = 0; i < lights.size(); i++){
             // URL to make the GET request
-            String url = "http://" + lights.get(i).getIpAddress() + "/" + lights.get(i).getOpName() + "/on";
+            String url = "http://" + ipAddress.get(i) + "/" + lights.get(i) + "/on";
             Log.e("URL", url);
             // Set the single request
             StringRequest request = new StringRequest(Request.Method.GET, url,
@@ -108,13 +108,13 @@ public class Switch {
         queue.add(requests.get(i));
     }
 
-    public void switchGroupOff(ArrayList<Light> lights) {
+    public void switchGroupOff(ArrayList<String> lights, ArrayList<String> ipAddress) {
         // List of requests
         ArrayList<StringRequest> requests = new ArrayList<StringRequest>();
 
         for(int i = 0; i < lights.size(); i++){
             // URL to make the GET request
-            String url = "http://" + lights.get(i).getIpAddress() + "/" + lights.get(i).getOpName() + "/off";
+            String url = "http://" + ipAddress.get(i) + "/" + lights.get(i) + "/off";
             Log.e("URL", url);
             // Set the single request
             StringRequest request = new StringRequest(Request.Method.GET, url,

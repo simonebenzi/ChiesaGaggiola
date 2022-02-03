@@ -5,11 +5,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,6 +37,7 @@ public class MainActivity extends AppCompatActivity
     private final FragmentManager fm = getSupportFragmentManager();
     private GroupsFragment groupsFragment;
     private LightsFragment lightsFragment;
+    private Switch aSwitch;
     private DBHelper dbHelper;
 
     private ViewPager2 viewPager;
@@ -55,6 +51,9 @@ public class MainActivity extends AppCompatActivity
 
         // Initialize DBHelper
         this.dbHelper = new DBHelper(this);
+
+        // Initialize switch
+        aSwitch = new Switch(this);
 
         // Set the view pager
         viewPager = findViewById(R.id.view_pager);
@@ -199,8 +198,9 @@ public class MainActivity extends AppCompatActivity
 //    }
 
     @Override
-    public void modifyGroupName(String groupName, int position) {
-        Group.groups.get(position).setName(groupName);
+    public void modifyGroupName(String newName, int position) {
+        String oldName = dbHelper.getAllScenariosName().get(position);
+        dbHelper.updateScenarioName(oldName, newName);
         ChildRecyclerAdapter adapter = groupsFragment.getAdapter();
         adapter.updateRecycle("group");
     }
@@ -237,5 +237,47 @@ public class MainActivity extends AppCompatActivity
         titles.add(getResources().getString(R.string.scenari));
         titles.add(getResources().getString(R.string.luci));
         tab.setText(titles.get(position));
+    }
+
+    public void onClickOpenAll(View view) {
+        ArrayList<Boolean> lightsState = dbHelper.getAllLightsState();
+        ArrayList<String> lightsOpName = dbHelper.getAllLightsOpName();
+        ArrayList<String> lightsName = dbHelper.getAllLightsName();
+        ArrayList<String> lightsIpAddress = dbHelper.getAllLightsIpAddress();
+        int arraySize = lightsName.size();
+
+        for(int i = 0; i < arraySize; i++){
+            String ipAddress = lightsIpAddress.get(i);
+            String opName = lightsOpName.get(i);
+            String name = lightsName.get(i);
+            Boolean state = lightsState.get(i);
+
+            if(!state){
+                aSwitch.switchLightOn(ipAddress, opName);
+                dbHelper.updateLightState(state, name, opName);
+                lightsFragment.getMainRecyclerAdapter().getAdapter().updateRecycle("lights");
+            }
+        }
+    }
+
+    public void onClickCloseAll(View view) {
+        ArrayList<Boolean> lightsState = dbHelper.getAllLightsState();
+        ArrayList<String> lightsOpName = dbHelper.getAllLightsOpName();
+        ArrayList<String> lightsName = dbHelper.getAllLightsName();
+        ArrayList<String> lightsIpAddress = dbHelper.getAllLightsIpAddress();
+        int arraySize = lightsName.size();
+
+        for(int i = 0; i < arraySize; i++){
+            String ipAddress = lightsIpAddress.get(i);
+            String opName = lightsOpName.get(i);
+            String name = lightsName.get(i);
+            Boolean state = lightsState.get(i);
+
+            if(state){
+                aSwitch.switchLightOff(ipAddress, opName);
+                dbHelper.updateLightState(state, name, opName);
+                //lightsFragment.getMainRecyclerAdapter().getAdapter().updateRecycle("lights");
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.or.appchiesa;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ public class ChildRecyclerAdapter
     private ArrayList<String> captions; // Contains names of groups/lights
     private int[] imageIds; // Contains image's ids
     private Listener listener;
+    private DBHelper dbHelper;
 
     public interface Listener {
         void onClickCard(int position, ImageView imageView);
@@ -30,9 +32,10 @@ public class ChildRecyclerAdapter
         this.listener = listener;
     }
 
-    public ChildRecyclerAdapter(ArrayList<String> captions, int[] imageIds) {
+    public ChildRecyclerAdapter(Context context, ArrayList<String> captions, int[] imageIds) {
         this.captions = captions;
         this.imageIds = imageIds;
+        this.dbHelper = new DBHelper(context);
     }
 
     @Override
@@ -87,31 +90,37 @@ public class ChildRecyclerAdapter
 
     public void updateRecycle(String type) {
         if(type == "group") {
-            ArrayList<String> groupNames = new ArrayList<String>();
-            for (int i = 0; i < groupNames.size(); i++) {
-                groupNames.add(i, Group.groups.get(i).getName());
-            }
-            this.captions = groupNames;
-            int[] groupImages = new int[Group.groups.size()];
-            for (int i = 0; i < groupImages.length; i++) {
-                groupImages[i] = Group.groups.get(i).getImageResourceId();
+            ArrayList<String> scenariosName = dbHelper.getAllScenariosName();
+            this.captions = scenariosName;
+
+
+            int[] groupImages = new int[scenariosName.size()];
+            ArrayList<Boolean> scenariosState = dbHelper.getAllScenariosState();
+            for(int i = 0; i < scenariosState.size(); i++){
+                Boolean state = scenariosState.get(i);
+                if(!state)
+                    groupImages[i] = R.drawable.ic_bulb_group;
+                else
+                    groupImages[i] = R.drawable.ic_bulb_group_on;
             }
             this.imageIds = groupImages;
-            Log.e("NEW GROUP", groupNames.get(groupNames.size() - 1));
+
             notifyDataSetChanged();
         }
         else if(type == "light") {
-            ArrayList<String> lightNames = new ArrayList<String>();
-            for (int i = 0; i < lightNames.size(); i++) {
-                lightNames.add(i, Light.lights.get(i).getName());
-            }
+            ArrayList<String> lightNames = dbHelper.getAllLightsName();
             this.captions = lightNames;
-            int[] lightsImages = new int[Light.lights.size()];
+            ArrayList<Boolean> lightsState = dbHelper.getAllLightsState();
+            int[] lightsImages = new int[lightsState.size()];
             for (int i = 0; i < lightsImages.length; i++) {
-                lightsImages[i] = Light.lights.get(i).getImageResourceId();
+                Boolean state = lightsState.get(i);
+                if(!state)
+                    lightsImages[i] = R.drawable.ic_bulb;
+                else
+                    lightsImages[i] = R.drawable.ic_bulb_on;
             }
             this.imageIds = lightsImages;
-            Log.e("NEW LIGHT", lightNames.get(lightNames.size() - 1));
+
             notifyDataSetChanged();
         }
 

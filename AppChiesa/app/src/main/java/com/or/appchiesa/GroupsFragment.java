@@ -21,6 +21,7 @@ public class GroupsFragment extends Fragment {
     private SwitchFragment fragSwitch;
     private ChildRecyclerAdapter adapter;
     private Switch aSwitch;
+    private DBHelper dbHelper;
 
     interface SwitchFragment {
         void groupFragmentSwitch();
@@ -35,18 +36,26 @@ public class GroupsFragment extends Fragment {
                              Bundle savedInstanceState) {
         RecyclerView groupRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_groups,
                 container, false);
-        ArrayList<String> groupNames = new ArrayList<>();
-        for (int i = 0; i < Group.groups.size(); i++) {
-            groupNames.add(i, Group.groups.get(i).getName());
+
+        dbHelper = new DBHelper(getContext());
+
+        ArrayList<String> scenariosName = dbHelper.getAllScenariosName();
+
+        ArrayList<Boolean> groupsState = dbHelper.getAllScenariosState();
+        int stateSize = dbHelper.getAllScenariosState().size();
+        int[] scenariosImages = new int[stateSize];
+        for(int i = 0; i < stateSize; i++){
+            if(!(groupsState.get(i)))
+                scenariosImages[i] = R.drawable.ic_bulb_group;
+            else
+                scenariosImages[i] = R.drawable.ic_bulb_group_on;
+
         }
-        int[] groupImages = new int[Group.groups.size()];
-        for (int i = 0; i < groupImages.length; i++) {
-            groupImages[i] = Group.groups.get(i).getImageResourceId();
-        }
+
 
         aSwitch = new Switch(getContext());
 
-        this.adapter = new ChildRecyclerAdapter(groupNames, groupImages);
+        this.adapter = new ChildRecyclerAdapter(getContext(), scenariosName, scenariosImages);
         groupRecycler.setAdapter(this.adapter);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         groupRecycler.setLayoutManager(layoutManager);
@@ -70,7 +79,7 @@ public class GroupsFragment extends Fragment {
                                 //Toast.makeText(getContext(), "Rename group clicked", Toast.LENGTH_LONG).show();
                                 break;
                             case R.id.delete_item:
-                                Group.groups.remove(position);
+                                //Scenario.groups.remove(position);
                                 getAdapter().updateRecycle("group");
                                 //Toast.makeText(getContext(), "Delete group clicked", Toast.LENGTH_LONG).show();
                                 break;
@@ -98,21 +107,26 @@ public class GroupsFragment extends Fragment {
     }
 
     private void onClickGroup(int position, ImageView imageView) {
-        Group clickedGroup = Group.groups.get(position);
+        ArrayList<String> scenariosName = dbHelper.getAllScenariosName();
+        String scenario = scenariosName.get(position);
 
-        if(!(clickedGroup.getState())) {
+        ArrayList<Boolean> scenariosState = dbHelper.getAllScenariosState();
+        Boolean state = scenariosState.get(position);
+
+        ArrayList<String> scenarioLights = dbHelper.getLightsNameFromScenario(scenario);
+        ArrayList<String> scenarioIpAddress = dbHelper.getLightsNameFromScenario(scenario);
+
+        if(!state) {
             Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb_group_on);
             imageView.setImageDrawable(drawable);
-            ArrayList<Light> groupLights = clickedGroup.getGroupLights();
-            aSwitch.switchGroupOn(groupLights);
-            clickedGroup.setState(true);
+            aSwitch.switchGroupOn(scenarioLights, scenarioIpAddress);
+            dbHelper.updateScenarioState(state, scenario);
         }
         else {
-            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb_group);
+            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb_group_on);
             imageView.setImageDrawable(drawable);
-            ArrayList<Light> groupLights = clickedGroup.getGroupLights();
-            aSwitch.switchGroupOff(groupLights);
-            clickedGroup.setState(false);
+            aSwitch.switchGroupOff(scenarioLights, scenarioIpAddress);
+            dbHelper.updateScenarioState(state, scenario);
         }
     }
 }

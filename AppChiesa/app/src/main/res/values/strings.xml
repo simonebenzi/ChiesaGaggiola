@@ -3,8 +3,8 @@
     <string name="cancel">Annulla</string>
     <string name="create">Crea</string>
     <string name="modify">Modifica</string>
-    <string name="open_all">Attiva tutti gli scenari</string>
-    <string name="close_all">Disattiva tutti gli scenari</string>
+    <string name="open_all">Attiva tutte le luci</string>
+    <string name="close_all">Disattiva tutte le luci</string>
     <string name="add_group_floating_button">Bottone aggiungi gruppo</string>
     <string name="add_light_floating_button">Bottone aggiungi luce</string>
     <string name="add_floating_button">Floating button</string>

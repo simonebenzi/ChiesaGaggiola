@@ -9,10 +9,10 @@ IPAddress ip(192, 168, 1, 124);
 // Wifi network credentials
 // const char* ssid     = "FASTWEB-7N6SPT"; //OR+
 //const char* pass = "12RD23JE7I"; //OR+
-const char* ssid = "TIM-18143925"; // CAPIRE PERCHE NON VA!!
-const char* pass = "CN2ltmwLXDvmVfWtC1ogJU95";
-//const char* ssid = "Mi 10T"; // CELL
-//const char* pass = "cellrouter";
+//const char* ssid = "TIM-18143925"; // CASA
+//const char* pass = "CN2ltmwLXDvmVfWtC1ogJU95";
+const char* ssid = "Mi 10T"; // CELL
+const char* pass = "cellrouter";
 int status = WL_IDLE_STATUS;
 
 // Logic changed in logic-low
@@ -60,6 +60,8 @@ const int ch21 = 12;
 const int ch11 = 13;
 const int ch12a = 14;
 const int ch12b = 15;
+const int ch6c = 16; // Lampadari navata fronte-retro alti
+const int ch30 = 17; // Faretti LED quadri navata
 
 void setup() {
   Serial.begin(9600);
