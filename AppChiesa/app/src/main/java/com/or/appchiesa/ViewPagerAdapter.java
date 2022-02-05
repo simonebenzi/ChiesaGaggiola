@@ -1,4 +1,4 @@
- package com.or.appchiesa;
+package com.or.appchiesa;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -12,7 +12,6 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
 
     public ViewPagerAdapter(FragmentActivity fragmentActivity){
         super(fragmentActivity);
-
     }
 
     @NonNull
@@ -26,7 +25,11 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
         return fragments.size();
     }
 
-    public void setData(ArrayList<Fragment> fragments){
+    public void setFragments(ArrayList<Fragment> fragments){
         this.fragments = fragments;
+    }
+
+    public ArrayList<Fragment> getFragments(){
+        return fragments;
     }
 }

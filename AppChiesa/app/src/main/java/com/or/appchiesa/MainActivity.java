@@ -7,6 +7,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -29,13 +30,13 @@ import java.util.ArrayList;
 //        GroupsFragment.SwitchFragment, TabLayoutMediator.TabConfigurationStrategy {
 public class MainActivity extends AppCompatActivity
         implements TabLayoutMediator.TabConfigurationStrategy,
-        GroupsFragment.SwitchFragment,
+        ScenariosFragment.SwitchFragment,
         ModifyGroupDialogFragment.ModifyGroupDialogInterface,
         ModifyLightDialogFragment.ModifyLightDialogInterface {
 
     private boolean isRotate = false;
     private final FragmentManager fm = getSupportFragmentManager();
-    private GroupsFragment groupsFragment;
+    private ScenariosFragment scenariosFragment;
     private LightsFragment lightsFragment;
     private Switch aSwitch;
     private DBHelper dbHelper;
@@ -68,8 +69,8 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         // Set GroupsFragment as default
-        this.lightsFragment = new LightsFragment();
-        this.groupsFragment = new GroupsFragment();
+//        this.lightsFragment = new LightsFragment();
+//        this.groupsFragment = new GroupsFragment();
 //        FragmentTransaction transaction = fm.beginTransaction();
 //        transaction.replace(R.id.view_pager, this.groupsFragment);
 //        transaction.commit();
@@ -201,8 +202,9 @@ public class MainActivity extends AppCompatActivity
     public void modifyGroupName(String newName, int position) {
         String oldName = dbHelper.getAllScenariosName().get(position);
         dbHelper.updateScenarioName(oldName, newName);
-        ChildRecyclerAdapter adapter = groupsFragment.getAdapter();
-        adapter.updateRecycle("group");
+        ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
+        ScenariosFragment fragment = (ScenariosFragment) adapter.getFragments().get(0);
+        fragment.getAdapter().updateRecycle("group");
     }
 
     @Override
@@ -216,18 +218,21 @@ public class MainActivity extends AppCompatActivity
         dbHelper.updateLightName(name, newLightName, opName);
         dbHelper.updateLightIpAddress(name, ipAddress, opName);
 
-        ChildRecyclerAdapter adapter = lightsFragment.getMainRecyclerAdapter().getAdapter();
-        adapter.updateRecycle("light");
+        ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
+        LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
+        fragment.getMainRecyclerAdapter().notifyDataSetChanged();
     }
 
-    private void setViewPagerAdapter(){
+    private void setViewPagerAdapter() {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
+
         // Create an array of fragments
         ArrayList<Fragment> fragments = new ArrayList<>();
-        fragments.add(new GroupsFragment());
+        fragments.add(new ScenariosFragment());
         fragments.add(new LightsFragment());
+
         // Connect ViewPager to the ViewPagerAdapter
-        viewPagerAdapter.setData(fragments);
+        viewPagerAdapter.setFragments(fragments);
         viewPager.setAdapter(viewPagerAdapter);
     }
 
@@ -239,27 +244,6 @@ public class MainActivity extends AppCompatActivity
         tab.setText(titles.get(position));
     }
 
-    public void onClickOpenAll(View view) {
-        ArrayList<Boolean> lightsState = dbHelper.getAllLightsState();
-        ArrayList<String> lightsOpName = dbHelper.getAllLightsOpName();
-        ArrayList<String> lightsName = dbHelper.getAllLightsName();
-        ArrayList<String> lightsIpAddress = dbHelper.getAllLightsIpAddress();
-        int arraySize = lightsName.size();
-
-        for(int i = 0; i < arraySize; i++){
-            String ipAddress = lightsIpAddress.get(i);
-            String opName = lightsOpName.get(i);
-            String name = lightsName.get(i);
-            Boolean state = lightsState.get(i);
-
-            if(!state){
-                aSwitch.switchLightOn(ipAddress, opName);
-                dbHelper.updateLightState(state, name, opName);
-                lightsFragment.getMainRecyclerAdapter().getAdapter().updateRecycle("lights");
-            }
-        }
-    }
-
     public void onClickCloseAll(View view) {
         ArrayList<Boolean> lightsState = dbHelper.getAllLightsState();
         ArrayList<String> lightsOpName = dbHelper.getAllLightsOpName();
@@ -267,16 +251,41 @@ public class MainActivity extends AppCompatActivity
         ArrayList<String> lightsIpAddress = dbHelper.getAllLightsIpAddress();
         int arraySize = lightsName.size();
 
-        for(int i = 0; i < arraySize; i++){
+        for (int i = 0; i < arraySize; i++) {
             String ipAddress = lightsIpAddress.get(i);
             String opName = lightsOpName.get(i);
             String name = lightsName.get(i);
             Boolean state = lightsState.get(i);
+            ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
+            LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
 
-            if(state){
+            if (state) {
                 aSwitch.switchLightOff(ipAddress, opName);
                 dbHelper.updateLightState(state, name, opName);
-                //lightsFragment.getMainRecyclerAdapter().getAdapter().updateRecycle("lights");
+                fragment.getMainRecyclerAdapter().notifyDataSetChanged();
+            }
+        }
+    }
+
+    public void onClickOpenAll(View view) {
+        ArrayList<Boolean> lightsState = dbHelper.getAllLightsState();
+        ArrayList<String> lightsOpName = dbHelper.getAllLightsOpName();
+        ArrayList<String> lightsName = dbHelper.getAllLightsName();
+        ArrayList<String> lightsIpAddress = dbHelper.getAllLightsIpAddress();
+        int arraySize = lightsName.size();
+
+        for (int i = 0; i < arraySize; i++) {
+            String ipAddress = lightsIpAddress.get(i);
+            String opName = lightsOpName.get(i);
+            String name = lightsName.get(i);
+            Boolean state = lightsState.get(i);
+            ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
+            LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
+
+            if (!state) {
+                aSwitch.switchLightOn(ipAddress, opName);
+                dbHelper.updateLightState(state, name, opName);
+                fragment.getMainRecyclerAdapter().notifyDataSetChanged();
             }
         }
     }

@@ -74,23 +74,25 @@ public class Light {
         return section;
     }
 
+    private static String IP_ADDRESS = "192.168.1.124";
+
     public static List<Light> lights = new ArrayList<Light>(Arrays.asList(
-            new Light("Illuminazione di servizio", "ch1", "192.168.141.221", "Cappelle", "Chiesa aperta", R.drawable.ic_bulb),
-            new Light("ch1_1", "ch1_1", "192.168.141.221", "Cappelle", "Chiesa aperta", R.drawable.ic_bulb),
-            new Light("Bussola ingresso", "ch2", "192.168.141.221", "Chiesa", "Chiesa aperta", R.drawable.ic_bulb),
-            new Light("Faretti santi", "ch4", "192.168.141.221", "Navata", "Chiesa aperta", R.drawable.ic_bulb),
-            new Light("LED navata", "ch5", "192.168.141.221", "Navata", "Chiesa aperta", R.drawable.ic_bulb),
-            new Light("Faretti cappelle", "ch10", "192.168.141.221", "Cappelle", "Chiesa aperta", R.drawable.ic_bulb),
-            new Light("Faretti coro alti", "ch12a", "192.168.141.221", "Coro", "Chiesa aperta", R.drawable.ic_bulb),
-            new Light("Faretti coro bassi", "ch12b", "192.168.141.221", "Coro", "Chiesa aperta", R.drawable.ic_bulb),
-            new Light("Prese presbiterio", "ch21", "192.168.141.221", "Presbiterio", "Chiesa aperta", R.drawable.ic_bulb),
-            new Light("Lampadari retro navata", "ch6a", "192.168.141.221", "Navata", "Messa feriale", R.drawable.ic_bulb),
-            new Light("Striscia LED cappelle", "ch9", "192.168.141.221", "Cappelle", "Messa feriale", R.drawable.ic_bulb),
-            new Light("Luci presbiterio", "ch11", "192.168.141.221", "Presbiterio", "Messa feriale", R.drawable.ic_bulb),
-            new Light("Faro alto presbiterio", "ch15", "192.168.141.221", "Chiesa", "Messa feriale", R.drawable.ic_bulb),
-            new Light("Lampadari fronte navata", "ch6b", "192.168.141.221", "Navata", "Messa domenicale", R.drawable.ic_bulb),
-            new Light("Cubotti fondo e navata", "ch3", "192.168.141.221", "Chiesa", "Messa domenicale",  R.drawable.ic_bulb),
-            new Light("ch6c", "ch6c", "192.168.141.221", "Navata", "Messa solenne", R.drawable.ic_bulb),
-            new Light("LED Via Crucis", "ch7", "192.168.141.221", "Navata", "Messa solenne", R.drawable.ic_bulb)
+            new Light("Illuminazione di servizio", "ch1", IP_ADDRESS, "Cappelle", "Chiesa aperta", R.drawable.ic_bulb),
+            new Light("ch1_1", "ch1_1", IP_ADDRESS, "Cappelle", "Chiesa aperta", R.drawable.ic_bulb),
+            new Light("Bussola ingresso", "ch2", IP_ADDRESS, "Chiesa", "Chiesa aperta", R.drawable.ic_bulb),
+            new Light("Faretti santi", "ch4", IP_ADDRESS, "Navata", "Chiesa aperta", R.drawable.ic_bulb),
+            new Light("LED navata", "ch5", IP_ADDRESS, "Navata", "Chiesa aperta", R.drawable.ic_bulb),
+            new Light("Faretti cappelle", "ch10", IP_ADDRESS, "Cappelle", "Chiesa aperta", R.drawable.ic_bulb),
+            new Light("Faretti coro alti", "ch12a", IP_ADDRESS, "Coro", "Chiesa aperta", R.drawable.ic_bulb),
+            new Light("Faretti coro bassi", "ch12b", IP_ADDRESS, "Coro", "Chiesa aperta", R.drawable.ic_bulb),
+            new Light("Prese presbiterio", "ch21", IP_ADDRESS, "Presbiterio", "Chiesa aperta", R.drawable.ic_bulb),
+            new Light("Lampadari retro navata", "ch6a", IP_ADDRESS, "Navata", "Messa feriale", R.drawable.ic_bulb),
+            new Light("Striscia LED cappelle", "ch9", IP_ADDRESS, "Cappelle", "Messa feriale", R.drawable.ic_bulb),
+            new Light("Luci presbiterio", "ch11", IP_ADDRESS, "Presbiterio", "Messa feriale", R.drawable.ic_bulb),
+            new Light("Faro alto presbiterio", "ch15", IP_ADDRESS, "Chiesa", "Messa feriale", R.drawable.ic_bulb),
+            new Light("Lampadari fronte navata", "ch6b", IP_ADDRESS, "Navata", "Messa domenicale", R.drawable.ic_bulb),
+            new Light("Cubotti fondo e navata", "ch3", IP_ADDRESS, "Chiesa", "Messa domenicale",  R.drawable.ic_bulb),
+            new Light("ch6c", "ch6c", IP_ADDRESS, "Navata", "Messa solenne", R.drawable.ic_bulb),
+            new Light("LED Via Crucis", "ch7", IP_ADDRESS, "Navata", "Messa solenne", R.drawable.ic_bulb)
     ));
 }

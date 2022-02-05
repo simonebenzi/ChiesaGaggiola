@@ -362,19 +362,19 @@ public class DBHelper extends SQLiteOpenHelper {
         return scenariosState;
     }
 
-    public ArrayList<String> getLightsNameFromScenario(String scenario) {
+    public ArrayList<String> getLightsOpNameFromScenario(String scenario) {
         ArrayList<String> lightsName = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query("LIGHTS", new String[]{LIGHTS_COLUMN_NAME},
+        Cursor cursor = db.query("LIGHTS", new String[]{LIGHTS_COLUMN_OPNAME},
                 "SCENARIO = ?",
                 new String[]{scenario},
                 null, null, null);
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
-            lightsName.add(cursor.getString(cursor.getColumnIndex(LIGHTS_COLUMN_NAME)));
+            lightsName.add(cursor.getString(cursor.getColumnIndex(LIGHTS_COLUMN_OPNAME)));
             Log.e("PROVA", lightsName.get(0));
             cursor.moveToNext();
         }

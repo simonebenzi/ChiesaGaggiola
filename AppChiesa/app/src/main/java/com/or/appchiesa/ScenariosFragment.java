@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class GroupsFragment extends Fragment {
+public class ScenariosFragment extends Fragment {
     private SwitchFragment fragSwitch;
     private ChildRecyclerAdapter adapter;
     private Switch aSwitch;
@@ -113,8 +113,8 @@ public class GroupsFragment extends Fragment {
         ArrayList<Boolean> scenariosState = dbHelper.getAllScenariosState();
         Boolean state = scenariosState.get(position);
 
-        ArrayList<String> scenarioLights = dbHelper.getLightsNameFromScenario(scenario);
-        ArrayList<String> scenarioIpAddress = dbHelper.getLightsNameFromScenario(scenario);
+        ArrayList<String> scenarioLights = dbHelper.getLightsOpNameFromScenario(scenario);
+        ArrayList<String> scenarioIpAddress = dbHelper.getIpAddressFromScenario(scenario);
 
         if(!state) {
             Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb_group_on);

@@ -14,20 +14,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01169386-7320-49fb-9141-1a339e9bdf78" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Scenario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ChildRecyclerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ChildRecyclerAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/DBHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Group.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/GroupsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/GroupsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/GroupsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ScenariosFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Light.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Light.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/LightsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/LightsFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainRecyclerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainRecyclerAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ModifyGroupDialogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ModifyGroupDialogFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Switch.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Switch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ModifyLightDialogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ModifyLightDialogFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ViewPagerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ViewPagerAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ArduinoChiesaGET/ArduinoChiesaGET.ino" beforeDir="false" afterPath="$PROJECT_DIR$/../ArduinoChiesaGET/ArduinoChiesaGET.ino" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -161,14 +156,14 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="222" key="#com.intellij.ide.util.MemberChooser" timestamp="1643546899769">
+    <state x="765" y="222" key="#com.intellij.ide.util.MemberChooser" timestamp="1643985549278">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="765" y="222" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1032@0.0.1920.1032" timestamp="1643546899769" />
-    <state x="497" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1643399869596">
+    <state x="765" y="222" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1032@0.0.1920.1032" timestamp="1643985549278" />
+    <state x="497" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1644025100283">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="497" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1643399869596" />
+    <state x="497" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1644025100283" />
     <state x="690" y="263" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1639527386675">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
@@ -197,26 +192,26 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="740" y="271" key="FileChooserDialogImpl/0.0.1920.1032@0.0.1920.1032" timestamp="1639527286867" />
-    <state width="1877" height="277" key="GridCell.Tab.0.bottom" timestamp="1643849933109">
+    <state width="1877" height="278" key="GridCell.Tab.0.bottom" timestamp="1644025126908">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1493" height="186" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1643379708644" />
-    <state width="1877" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1643849933109" />
-    <state width="1877" height="277" key="GridCell.Tab.0.center" timestamp="1643849933109">
+    <state width="1493" height="206" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1643998764698" />
+    <state width="1877" height="278" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1644025126908" />
+    <state width="1877" height="278" key="GridCell.Tab.0.center" timestamp="1644025126908">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1493" height="186" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1643379708644" />
-    <state width="1877" height="277" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1643849933109" />
-    <state width="1877" height="277" key="GridCell.Tab.0.left" timestamp="1643849933109">
+    <state width="1493" height="206" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1643998764697" />
+    <state width="1877" height="278" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1644025126908" />
+    <state width="1877" height="278" key="GridCell.Tab.0.left" timestamp="1644025126907">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1493" height="186" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1643379708644" />
-    <state width="1877" height="277" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1643849933109" />
-    <state width="1877" height="277" key="GridCell.Tab.0.right" timestamp="1643849933109">
+    <state width="1493" height="206" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1643998764697" />
+    <state width="1877" height="278" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1644025126907" />
+    <state width="1877" height="278" key="GridCell.Tab.0.right" timestamp="1644025126908">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1493" height="186" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1643379708644" />
-    <state width="1877" height="277" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1643849933109" />
+    <state width="1493" height="206" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1643998764698" />
+    <state width="1877" height="278" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1644025126908" />
     <state x="776" y="294" key="chooseDestDirectoryDialog" timestamp="1643367670911">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
@@ -237,16 +232,5 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="623" y="223" width="672" height="678" key="search.everywhere.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1643326347589" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainActivity.java</url>
-          <line>257</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

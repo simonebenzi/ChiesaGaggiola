@@ -11,8 +11,10 @@ IPAddress ip(192, 168, 1, 124);
 //const char* pass = "12RD23JE7I"; //OR+
 //const char* ssid = "TIM-18143925"; // CASA
 //const char* pass = "CN2ltmwLXDvmVfWtC1ogJU95";
-const char* ssid = "Mi 10T"; // CELL
-const char* pass = "cellrouter";
+//const char* ssid = "Mi 10T"; // CELL
+//const char* pass = "cellrouter";
+const char* ssid = "GaggiolaC-LC"; // CHIESA
+const char* pass = "FraGiacomo1";
 int status = WL_IDLE_STATUS;
 
 // Logic changed in logic-low
@@ -65,9 +67,9 @@ const int ch30 = 17; // Faretti LED quadri navata
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
-  }
+//  while (!Serial) {
+//    ; // wait for serial port to connect. Needed for native USB port only
+//  }
   // Initialize the output variables as outputs
   pinMode(ch1, OUTPUT);
   pinMode(ch1_1, OUTPUT);

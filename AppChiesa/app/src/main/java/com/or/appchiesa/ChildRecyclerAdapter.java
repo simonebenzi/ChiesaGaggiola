@@ -25,6 +25,7 @@ public class ChildRecyclerAdapter
 
     public interface Listener {
         void onClickCard(int position, ImageView imageView);
+
         void onClickPopup(int position, View menuImage);
     }
 
@@ -58,7 +59,7 @@ public class ChildRecyclerAdapter
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(listener != null) {
+                if (listener != null) {
                     listener.onClickCard(position, imageViewCard);
                 }
             }
@@ -66,7 +67,7 @@ public class ChildRecyclerAdapter
         popup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(listener != null) {
+                if (listener != null) {
                     listener.onClickPopup(position, view);
                 }
             }
@@ -89,16 +90,16 @@ public class ChildRecyclerAdapter
     }
 
     public void updateRecycle(String type) {
-        if(type == "group") {
+        if (type == "group") {
             ArrayList<String> scenariosName = dbHelper.getAllScenariosName();
             this.captions = scenariosName;
 
 
             int[] groupImages = new int[scenariosName.size()];
             ArrayList<Boolean> scenariosState = dbHelper.getAllScenariosState();
-            for(int i = 0; i < scenariosState.size(); i++){
+            for (int i = 0; i < scenariosState.size(); i++) {
                 Boolean state = scenariosState.get(i);
-                if(!state)
+                if (!state)
                     groupImages[i] = R.drawable.ic_bulb_group;
                 else
                     groupImages[i] = R.drawable.ic_bulb_group_on;
@@ -106,15 +107,14 @@ public class ChildRecyclerAdapter
             this.imageIds = groupImages;
 
             notifyDataSetChanged();
-        }
-        else if(type == "light") {
+        } else if (type == "light") {
             ArrayList<String> lightNames = dbHelper.getAllLightsName();
             this.captions = lightNames;
             ArrayList<Boolean> lightsState = dbHelper.getAllLightsState();
             int[] lightsImages = new int[lightsState.size()];
             for (int i = 0; i < lightsImages.length; i++) {
                 Boolean state = lightsState.get(i);
-                if(!state)
+                if (!state)
                     lightsImages[i] = R.drawable.ic_bulb;
                 else
                     lightsImages[i] = R.drawable.ic_bulb_on;
@@ -123,6 +123,5 @@ public class ChildRecyclerAdapter
 
             notifyDataSetChanged();
         }
-
     }
 }

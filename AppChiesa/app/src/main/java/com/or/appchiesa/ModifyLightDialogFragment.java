@@ -15,7 +15,6 @@ public class ModifyLightDialogFragment extends AppCompatDialogFragment {
     private ModifyLightDialogInterface dialogInterface;
     private int position;
 
-
     interface ModifyLightDialogInterface {
         void modifyLightDetails(String lightName, String ipAddress, int position);
     }

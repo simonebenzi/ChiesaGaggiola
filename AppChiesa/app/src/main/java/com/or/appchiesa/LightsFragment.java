@@ -32,22 +32,6 @@ public class LightsFragment extends Fragment {
         return this.mainRecyclerAdapter;
     }
 
-    public LightsFragment(MainRecyclerAdapter mainRecyclerAdapter, Switch aSwitch, DBHelper dbHelper, ArrayList<Section> sectionList) {
-        this.mainRecyclerAdapter = mainRecyclerAdapter;
-        this.aSwitch = aSwitch;
-        this.dbHelper = dbHelper;
-        this.sectionList = sectionList;
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        this.mainRecyclerAdapter = new MainRecyclerAdapter(sectionList, getContext());
-        // Initialize sections with corresponding lights
-        this.dbHelper = new DBHelper(getContext());
-        initSections();
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,6 +42,10 @@ public class LightsFragment extends Fragment {
         // Initialize switch
         aSwitch = new Switch(getContext());
 
+        this.mainRecyclerAdapter = new MainRecyclerAdapter(sectionList, getContext());
+        // Initialize sections with corresponding lights
+        this.dbHelper = new DBHelper(getContext());
+        initSections();
         this.mainRecyclerAdapter.setClickListener(new MainRecyclerAdapter.ClickListener() {
             @Override
             public void onClickLight(int position, ImageView imageView, String sectionName) {
