@@ -208,10 +208,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void modifyLightDetails(String newLightName, String ipAddress, int position) {
+    public void modifyLightDetails(String newLightName, String ipAddress, int position, String section) {
         String name, opName;
-        ArrayList<String> lightsName = dbHelper.getAllLightsName();
-        ArrayList<String> lightsOpName = dbHelper.getAllLightsOpName();
+        ArrayList<String> lightsName = dbHelper.getAllLightsNameFromSection(section);
+        ArrayList<String> lightsOpName = dbHelper.getAllLightsOpNameFromSection(section);
         name = lightsName.get(position);
         opName = lightsOpName.get(position);
 
@@ -246,9 +246,9 @@ public class MainActivity extends AppCompatActivity
 
     public void onClickCloseAll(View view) {
         ArrayList<Boolean> lightsState = dbHelper.getAllLightsState();
-        ArrayList<String> lightsOpName = dbHelper.getAllLightsOpName();
-        ArrayList<String> lightsName = dbHelper.getAllLightsName();
-        ArrayList<String> lightsIpAddress = dbHelper.getAllLightsIpAddress();
+        ArrayList<String> lightsOpName = dbHelper.getAllLightsOpNameFromSection();
+        ArrayList<String> lightsName = dbHelper.getAllLightsNameFromSection();
+        ArrayList<String> lightsIpAddress = dbHelper.getAllLightsIpAddressFromSection();
         int arraySize = lightsName.size();
 
         for (int i = 0; i < arraySize; i++) {
@@ -269,9 +269,9 @@ public class MainActivity extends AppCompatActivity
 
     public void onClickOpenAll(View view) {
         ArrayList<Boolean> lightsState = dbHelper.getAllLightsState();
-        ArrayList<String> lightsOpName = dbHelper.getAllLightsOpName();
-        ArrayList<String> lightsName = dbHelper.getAllLightsName();
-        ArrayList<String> lightsIpAddress = dbHelper.getAllLightsIpAddress();
+        ArrayList<String> lightsOpName = dbHelper.getAllLightsOpNameFromSection();
+        ArrayList<String> lightsName = dbHelper.getAllLightsNameFromSection();
+        ArrayList<String> lightsIpAddress = dbHelper.getAllLightsIpAddressFromSection();
         int arraySize = lightsName.size();
 
         for (int i = 0; i < arraySize; i++) {

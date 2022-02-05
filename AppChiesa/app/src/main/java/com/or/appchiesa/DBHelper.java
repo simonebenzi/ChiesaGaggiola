@@ -127,7 +127,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 new String[]{name, opName});
     }
 
-    public ArrayList<String> getAllLightsName(String section) {
+    public ArrayList<String> getAllLightsNameFromSection(String section) {
         ArrayList<String> lightsName = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -169,7 +169,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return lightsName;
     }
 
-    public ArrayList<String> getAllLightsName() {
+    public ArrayList<String> getAllLightsNameFromSection() {
         ArrayList<String> lightsName = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -240,7 +240,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return lightsState;
     }
 
-    public ArrayList<String> getAllLightsOpName(String section) {
+    public ArrayList<String> getAllLightsOpNameFromSection(String section) {
         ArrayList<String> lightsOpName = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -259,7 +259,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return lightsOpName;
     }
 
-    public ArrayList<String> getAllLightsOpName() {
+    public ArrayList<String> getAllLightsOpNameFromSection() {
         ArrayList<String> lightsOpName = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -278,7 +278,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return lightsOpName;
     }
 
-    public ArrayList<String> getAllLightsIpAddress(String section) {
+    public ArrayList<String> getAllLightsIpAddressFromSection(String section) {
         ArrayList<String> lightsIpAddress = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -297,7 +297,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return lightsIpAddress;
     }
 
-    public ArrayList<String> getAllLightsIpAddress() {
+    public ArrayList<String> getAllLightsIpAddressFromSection() {
         ArrayList<String> lightsIpAddress = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();

@@ -1,9 +1,6 @@
 package com.or.appchiesa;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.util.JsonReader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,23 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.ViewHolder> {
@@ -50,7 +34,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
     public interface ClickListener {
         void onClickLight(int position, ImageView imageView, String sectionName);
-        void onItemClick(int position, View menuImage);
+        void onItemClick(int position, View menuImage, String section);
     }
 
     public void setClickListener(ClickListener clickListener) {
@@ -73,7 +57,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         ArrayList<String> lightsName;
         ArrayList<Boolean> lightsState;
 
-        lightsName = dbHelper.getAllLightsName(sectionName);
+        lightsName = dbHelper.getAllLightsNameFromSection(sectionName);
         lightsState = dbHelper.getAllLightsState(sectionName);
 
         int[] lightResIds = new int[lightsState.size()];
@@ -98,7 +82,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
             @Override
             public void onClickPopup(final int position, View menuImage) {
-                clickListener.onItemClick(position, menuImage);
+                clickListener.onItemClick(position, menuImage, sectionName);
             }
         });
 

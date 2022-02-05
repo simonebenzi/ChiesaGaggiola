@@ -2,7 +2,6 @@ package com.or.appchiesa;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,7 +107,7 @@ public class ChildRecyclerAdapter
 
             notifyDataSetChanged();
         } else if (type == "light") {
-            ArrayList<String> lightNames = dbHelper.getAllLightsName();
+            ArrayList<String> lightNames = dbHelper.getAllLightsNameFromSection();
             this.captions = lightNames;
             ArrayList<Boolean> lightsState = dbHelper.getAllLightsState();
             int[] lightsImages = new int[lightsState.size()];

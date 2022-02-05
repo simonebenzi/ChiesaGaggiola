@@ -14,18 +14,23 @@ public class ModifyLightDialogFragment extends AppCompatDialogFragment {
 
     private ModifyLightDialogInterface dialogInterface;
     private int position;
+    private String section;
+    private DBHelper dbHelper;
 
     interface ModifyLightDialogInterface {
-        void modifyLightDetails(String lightName, String ipAddress, int position);
+        void modifyLightDetails(String lightName, String ipAddress, int position, String section);
     }
 
-    public ModifyLightDialogFragment(int position) {
+    public ModifyLightDialogFragment(int position, String section) {
         this.position = position;
+        this.section = section;
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+        dbHelper = new DBHelper(getContext());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.fragment_light_dialog, null);
@@ -34,9 +39,11 @@ public class ModifyLightDialogFragment extends AppCompatDialogFragment {
         final TextInputLayout textInputLayoutIpAddress =
                 (TextInputLayout) view.findViewById(R.id.ip_address_edit_text);
 
-        final String lightName = Light.lights.get(this.position).getName();
+        final String lightName = dbHelper.getAllLightsNameFromSection(section).get(position);
+        //final String lightName = Light.lights.get(this.position).getName();
         textInputLayoutName.getEditText().setText(lightName);
-        final String lightIpAddress = Light.lights.get(this.position).getIpAddress();
+        final String lightIpAddress = dbHelper.getAllLightsIpAddressFromSection(section).get(position);
+        //final String lightIpAddress = Light.lights.get(this.position).getIpAddress();
         textInputLayoutIpAddress.getEditText().setText(lightIpAddress);
 
         builder.setView(view)
@@ -53,7 +60,7 @@ public class ModifyLightDialogFragment extends AppCompatDialogFragment {
                                 .getText().toString();
                         String newIpAddress = textInputLayoutIpAddress.getEditText()
                                 .getText().toString();
-                        dialogInterface.modifyLightDetails(newLightName, newIpAddress, position);
+                        dialogInterface.modifyLightDetails(newLightName, newIpAddress, position, section);
                     }
                 });
 

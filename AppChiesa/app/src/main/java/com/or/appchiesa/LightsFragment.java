@@ -1,6 +1,5 @@
 package com.or.appchiesa;
 
-import android.content.Context;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -8,7 +7,6 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 
-import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -55,9 +53,9 @@ public class LightsFragment extends Fragment {
 
                 SQLiteOpenHelper databaseHelper = new DatabaseHelper(getContext());
                 ArrayList<Boolean> lightsState = dbHelper.getAllLightsState(sectionName);
-                ArrayList<String> lightsOpName = dbHelper.getAllLightsOpName(sectionName);
-                ArrayList<String> lightsIpAddress = dbHelper.getAllLightsIpAddress(sectionName);
-                ArrayList<String> lightsName = dbHelper.getAllLightsName(sectionName);
+                ArrayList<String> lightsOpName = dbHelper.getAllLightsOpNameFromSection(sectionName);
+                ArrayList<String> lightsIpAddress = dbHelper.getAllLightsIpAddressFromSection(sectionName);
+                ArrayList<String> lightsName = dbHelper.getAllLightsNameFromSection(sectionName);
 
                 state = lightsState.get(position);
                 opName = lightsOpName.get(position);
@@ -77,7 +75,7 @@ public class LightsFragment extends Fragment {
                 }
             }
 
-            public void onItemClick(int position, View menuImage) {
+            public void onItemClick(int position, View menuImage, String section) {
                 PopupMenu popupMenu = new PopupMenu(getContext(), menuImage);
                 popupMenu.inflate(R.menu.group_popup_menu);
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
@@ -85,7 +83,7 @@ public class LightsFragment extends Fragment {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.modify_item:
-                                displayModifyLightDialog(position);
+                                displayModifyLightDialog(position, section);
                                 //Toast.makeText(getContext(), "Rename light clicked", Toast.LENGTH_LONG).show();
                                 break;
                             case R.id.delete_item:
@@ -106,9 +104,9 @@ public class LightsFragment extends Fragment {
         return mainRecyclerView;
     }
 
-    public void displayModifyLightDialog(int position) {
+    public void displayModifyLightDialog(int position, String section) {
         ModifyLightDialogFragment modifyLightDialogFragment =
-                new ModifyLightDialogFragment(position);
+                new ModifyLightDialogFragment(position, section);
         modifyLightDialogFragment.show(getFragmentManager(), "modify_light_dialog");
     }
 
