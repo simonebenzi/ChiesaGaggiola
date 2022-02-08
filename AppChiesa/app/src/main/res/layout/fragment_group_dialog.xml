@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
-        tools:context=".AddGroupDialogFragment">
+        tools:context=".AddScenarioDialogFragment">
 
     <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/group_name_edit_text"
@@ -18,6 +18,21 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/group_name"/>
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/select_lights_edit_text"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/select_lights"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/group_lights"
+            android:focusable="false"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/group_psw_ed"

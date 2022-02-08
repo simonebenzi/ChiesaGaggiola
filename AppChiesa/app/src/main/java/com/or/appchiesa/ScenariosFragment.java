@@ -129,5 +129,11 @@ public class ScenariosFragment extends Fragment {
             dbHelper.updateScenarioState(state, scenario);
         }
     }
+
+    private static String[] convertStringToArray(String str){
+        String strSeparator = "__,__";
+        String[] arr = str.split(strSeparator);
+        return arr;
+    }
 }
 

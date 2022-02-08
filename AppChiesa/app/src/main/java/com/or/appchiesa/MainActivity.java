@@ -1,6 +1,8 @@
 package com.or.appchiesa;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,7 +34,9 @@ public class MainActivity extends AppCompatActivity
         implements TabLayoutMediator.TabConfigurationStrategy,
         ScenariosFragment.SwitchFragment,
         ModifyGroupDialogFragment.ModifyGroupDialogInterface,
-        ModifyLightDialogFragment.ModifyLightDialogInterface {
+        ModifyLightDialogFragment.ModifyLightDialogInterface,
+        AddScenarioDialogFragment.AddScenarioDialogInterface,
+        AddLightDialogFragment.AddLightDialogInterface {
 
     private boolean isRotate = false;
     private final FragmentManager fm = getSupportFragmentManager();
@@ -162,9 +166,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void displayAddGroupDialog() {
-        AddGroupDialogFragment addGroupDialogFragment =
-                new AddGroupDialogFragment();
-        addGroupDialogFragment.show(getSupportFragmentManager(), "add_group_dialog");
+        AddScenarioDialogFragment addScenarioDialogFragment =
+                new AddScenarioDialogFragment();
+        addScenarioDialogFragment.show(getSupportFragmentManager(), "add_group_dialog");
     }
 
     public void displayLightDialog() {
@@ -173,14 +177,17 @@ public class MainActivity extends AppCompatActivity
         addLightDialogFragment.show(getSupportFragmentManager(), "add_light_dialog");
     }
 
-//    @Override
-//    public void getLightInfos(String lightName, String ipAddress) {
-//        Light.lights.add(new Light(lightName, ipAddress, R.drawable.ic_bulb));
-//        RecyclerAdapter adapter = lightsFragment.getAdapter();
-//        // If adapter never been initialized doesn't update
-//        if(adapter != null)
-//            adapter.updateRecycle("light");
-//    }
+    @Override
+    public void getLightInfos(String lightName, String ipAddress) {
+        // Insert new light in Database
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        //dbHelper.insertLight(db, lightName, false);
+        ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
+        LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
+        MainRecyclerAdapter mainRecyclerAdapter = fragment.getMainRecyclerAdapter();
+        if (mainRecyclerAdapter != null)
+            mainRecyclerAdapter.notifyDataSetChanged();
+    }
 
     // Switch from groups to lights fragment clicking group card
     @Override
@@ -191,12 +198,25 @@ public class MainActivity extends AppCompatActivity
         transaction.commit();
     }
 
-//    @Override
-//    public void getGroupName(String group) {
-//        Group.groups.add(new Group(group, R.drawable.ic_bulb_group));
-//        RecyclerAdapter adapter = groupsFragment.getAdapter();
-//        adapter.updateRecycle("group");
-//    }
+    @Override
+    public void getGroupDetails(String scenarioName, boolean[] selectedLights) {
+        // Get selected lights
+        ArrayList<String> lightsOpName = dbHelper.getAllLightsOpNameFromSection();
+        ArrayList<String> selectedLightsOpNameList = new ArrayList<>();
+        for (int i = 0; i < selectedLights.length; i++) {
+            if (selectedLights[i])
+                selectedLightsOpNameList.add(lightsOpName.get(i));
+        }
+        String[] selectedLightsOpNameArray = (String[]) selectedLightsOpNameList
+                .toArray(new String[selectedLightsOpNameList.size()]);
+        // Insert new scenario in Database
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        dbHelper.insertScenario(db, scenarioName, false, selectedLightsOpNameArray);
+        // Update recycler view
+        ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
+        ScenariosFragment fragment = (ScenariosFragment) adapter.getFragments().get(0);
+        fragment.getAdapter().updateRecycle("group");
+    }
 
     @Override
     public void modifyGroupName(String newName, int position) {
