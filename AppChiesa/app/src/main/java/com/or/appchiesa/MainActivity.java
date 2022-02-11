@@ -2,7 +2,6 @@ package com.or.appchiesa;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,7 +32,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity
         implements TabLayoutMediator.TabConfigurationStrategy,
         ScenariosFragment.SwitchFragment,
-        ModifyGroupDialogFragment.ModifyGroupDialogInterface,
+        ModifyScenarioDialogFragment.ModifyGroupDialogInterface,
         ModifyLightDialogFragment.ModifyLightDialogInterface,
         AddScenarioDialogFragment.AddScenarioDialogInterface,
         AddLightDialogFragment.AddLightDialogInterface {
@@ -48,6 +47,8 @@ public class MainActivity extends AppCompatActivity
     private ViewPager2 viewPager;
     private TabLayout tabLayout;
     private ArrayList<String> titles;
+
+    public static final String PASSWORD = "ChiesaGaggiola";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,10 +179,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void getLightInfos(String lightName, String ipAddress) {
+    public void getLightInfos(String lightName, String opName, String section) {
         // Insert new light in Database
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        //dbHelper.insertLight(db, lightName, false);
+        dbHelper.insertLight(db, lightName, opName, Light.IP_ADDRESS, section, false);
         ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
         LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
         MainRecyclerAdapter mainRecyclerAdapter = fragment.getMainRecyclerAdapter();
@@ -228,7 +229,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void modifyLightDetails(String newLightName, String ipAddress, int position, String section) {
+    public void modifyLightDetails(String newLightName, int position, String section) {
         String name, opName;
         ArrayList<String> lightsName = dbHelper.getAllLightsNameFromSection(section);
         ArrayList<String> lightsOpName = dbHelper.getAllLightsOpNameFromSection(section);
@@ -236,7 +237,6 @@ public class MainActivity extends AppCompatActivity
         opName = lightsOpName.get(position);
 
         dbHelper.updateLightName(name, newLightName, opName);
-        dbHelper.updateLightIpAddress(name, ipAddress, opName);
 
         ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
         LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);

@@ -76,7 +76,7 @@ public class Switch {
         queue.add(request);
     }
 
-    public void switchGroupOn(ArrayList<String> lights, ArrayList<String> ipAddress) {
+    public void switchScenarioOn(ArrayList<String> lights, ArrayList<String> ipAddress) {
         // List of requests
         ArrayList<StringRequest> requests = new ArrayList<StringRequest>();
 
@@ -108,7 +108,7 @@ public class Switch {
         queue.add(requests.get(i));
     }
 
-    public void switchGroupOff(ArrayList<String> lights, ArrayList<String> ipAddress) {
+    public void switchScenarioOff(ArrayList<String> lights, ArrayList<String> ipAddress) {
         // List of requests
         ArrayList<StringRequest> requests = new ArrayList<StringRequest>();
 

@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
@@ -21,6 +23,9 @@ public class AddScenarioDialogFragment extends AppCompatDialogFragment {
     private AddScenarioDialogInterface dialogInterface;
     private DBHelper dbHelper;
     private boolean[] selectedLights;
+    private TextInputLayout textInputLayoutName;
+    private TextInputLayout textInputLayoutPsw;
+    private TextInputEditText selectLights;
 
 
     interface AddScenarioDialogInterface {
@@ -33,8 +38,9 @@ public class AddScenarioDialogFragment extends AppCompatDialogFragment {
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.fragment_group_dialog, null);
-        final TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.group_name_edit_text);
-        TextInputEditText selectLights = view.findViewById(R.id.select_lights);
+        textInputLayoutName = (TextInputLayout) view.findViewById(R.id.group_name_edit_text);
+        textInputLayoutPsw = (TextInputLayout) view.findViewById(R.id.group_psw_ed);
+        selectLights = view.findViewById(R.id.select_lights);
         dbHelper = new DBHelper(getContext());
 
         selectLights.setOnClickListener(new View.OnClickListener() {
@@ -42,7 +48,7 @@ public class AddScenarioDialogFragment extends AppCompatDialogFragment {
             public void onClick(View v) {
                 // Initialize alert dialog
                 AlertDialog.Builder selectBuilder = new AlertDialog.Builder(getActivity());
-                setSelectBuilder(selectBuilder, selectLights);
+                setSelectLightsBuilder(selectBuilder, selectLights);
             }
         });
 
@@ -56,15 +62,47 @@ public class AddScenarioDialogFragment extends AppCompatDialogFragment {
                 .setPositiveButton(R.string.create, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialogInterface.getGroupDetails(textInputLayout
-                                .getEditText().getText().toString(), selectedLights);
+                        //Do nothing here because we override this button later to change the close behaviour.
+                        //However, we still need this because on older versions of Android unless we
+                        //pass a handler the button doesn't get instantiated
                     }
                 });
 
         return builder.create();
     }
 
-    private void setSelectBuilder(AlertDialog.Builder selectBuilder, TextInputEditText selectLightsTextInput) {
+    // To maintain AddScenarioDialogFragment open when inserted wrong password
+    @Override
+    public void onStart() {
+        super.onStart();
+        AlertDialog dialog = (AlertDialog) getDialog();
+        if (dialog != null) {
+            Button positiveButton = (Button) dialog.getButton(Dialog.BUTTON_POSITIVE);
+            positiveButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Boolean wantToCloseDialog = false;
+
+                    String psw = textInputLayoutPsw.getEditText().getText().toString();
+                    if(psw.equals(MainActivity.PASSWORD)){
+                        dialogInterface.getGroupDetails(textInputLayoutName
+                                .getEditText().getText().toString(), selectedLights);
+                        wantToCloseDialog = true;
+                    }
+                    else{
+                        String message = "Password errata! Riprovare!";
+                        Toast toast = Toast.makeText(getContext(), message, Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+
+                    if (wantToCloseDialog)
+                        dismiss();
+                }
+            });
+        }
+    }
+
+    private void setSelectLightsBuilder(AlertDialog.Builder selectBuilder, TextInputEditText selectLightsTextInput) {
         // Set title and dialog non cancelable
         selectBuilder.setTitle(R.string.group_lights);
         selectBuilder.setCancelable(false);

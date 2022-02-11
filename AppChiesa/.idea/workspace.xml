@@ -15,12 +15,18 @@
   <component name="ChangeListManager">
     <list default="true" id="01169386-7320-49fb-9141-1a339e9bdf78" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/AddGroupDialogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/AddScenarioDialogFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/AddLightDialogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/AddLightDialogFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/AddScenarioDialogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/AddScenarioDialogFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/DBHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Light.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Light.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/LightsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/LightsFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Scenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Scenario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainRecyclerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainRecyclerAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ModifyGroupDialogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ModifyScenarioDialogFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ModifyLightDialogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ModifyLightDialogFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ScenariosFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ScenariosFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_dialog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_dialog.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Section.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Switch.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Switch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_light_dialog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_light_dialog.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
@@ -53,8 +59,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="SerialNumber@M2HDU18515001283" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2022-01-17T09:27:03.821525900Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="VirtualDevicePath@C:\Users\simob\.android\avd\Nexus_7_API_29.avd" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2022-02-09T00:04:27.793849500Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android-custom-viewC:/Users/simob/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
@@ -66,14 +72,14 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\simob\Desktop\AppChiesa\app\src\main\res\menu" />
-      <recent name="C:\Users\simob\Desktop\AppChiesa\app\src\main\res\layout" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\simob\Desktop\OR+\ProgettoChiesa\AppChiesa\app\src\main\res\drawable" />
       <recent name="C:\Users\simob\Desktop\AppChiesa\app\src\main\res\layout" />
       <recent name="C:\Users\simob\Desktop\AppChiesa\app\src\main\java\com\or\appchiesa" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\simob\Desktop\AppChiesa\app\src\main\res\menu" />
+      <recent name="C:\Users\simob\Desktop\AppChiesa\app\src\main\res\layout" />
     </key>
   </component>
   <component name="RunManager">
@@ -160,14 +166,18 @@
     </state>
     <state x="612" y="176" key="#com.intellij.ide.util.MemberChooser/0.0.1536.816@0.0.1536.816" timestamp="1644331411026" />
     <state x="765" y="222" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1032@0.0.1920.1032" timestamp="1643985549278" />
-    <state x="497" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1644277673629">
+    <state x="743" y="385" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1644364823664">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="497" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1644277673629" />
-    <state x="690" y="263" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1639527386675">
+    <state x="743" y="385" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1032@0.0.1920.1032" timestamp="1644364823664" />
+    <state x="497" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1644537078454">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="690" y="263" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1639527386675" />
+    <state x="497" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1644537078454" />
+    <state x="690" y="263" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1644505083083">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="690" y="263" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1644505083083" />
     <state x="92" y="92" width="1736" height="848" key="AVDManager" timestamp="1642355046683">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
@@ -180,10 +190,10 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="60" y="274" key="AndroidCreateResourceFileDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1639699540307" />
-    <state x="798" y="321" key="AndroidCreateXmlResourceDialog" timestamp="1644277997223">
+    <state x="798" y="321" key="AndroidCreateXmlResourceDialog" timestamp="1644502746816">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="798" y="321" key="AndroidCreateXmlResourceDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1644277997223" />
+    <state x="798" y="321" key="AndroidCreateXmlResourceDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1644502746816" />
     <state x="540" y="221" key="AndroidThemeDialog" timestamp="1639613858287">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
@@ -192,26 +202,26 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="740" y="271" key="FileChooserDialogImpl/0.0.1920.1032@0.0.1920.1032" timestamp="1639527286867" />
-    <state width="1877" height="278" key="GridCell.Tab.0.bottom" timestamp="1644349938246">
+    <state width="1877" height="278" key="GridCell.Tab.0.bottom" timestamp="1644538554270">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state width="1493" height="206" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1643998764698" />
-    <state width="1877" height="278" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1644349938246" />
-    <state width="1877" height="278" key="GridCell.Tab.0.center" timestamp="1644349938246">
+    <state width="1877" height="278" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1644538554270" />
+    <state width="1877" height="278" key="GridCell.Tab.0.center" timestamp="1644538554270">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state width="1493" height="206" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1643998764697" />
-    <state width="1877" height="278" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1644349938246" />
-    <state width="1877" height="278" key="GridCell.Tab.0.left" timestamp="1644349938246">
+    <state width="1877" height="278" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1644538554270" />
+    <state width="1877" height="278" key="GridCell.Tab.0.left" timestamp="1644538554269">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state width="1493" height="206" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1643998764697" />
-    <state width="1877" height="278" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1644349938246" />
-    <state width="1877" height="278" key="GridCell.Tab.0.right" timestamp="1644349938246">
+    <state width="1877" height="278" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1644538554269" />
+    <state width="1877" height="278" key="GridCell.Tab.0.right" timestamp="1644538554270">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state width="1493" height="206" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1643998764698" />
-    <state width="1877" height="278" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1644349938246" />
+    <state width="1877" height="278" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1644538554270" />
     <state x="776" y="294" key="chooseDestDirectoryDialog" timestamp="1643367670911">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
@@ -229,10 +239,10 @@
     </state>
     <state x="109" y="191" key="run.anything.popup/0.0.1536.816@0.0.1536.816" timestamp="1644331340558" />
     <state x="136" y="242" key="run.anything.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1639756159102" />
-    <state x="498" y="176" width="672" height="537" key="search.everywhere.popup" timestamp="1644330973365">
-      <screen x="0" y="0" width="1536" height="816" />
+    <state x="623" y="223" width="672" height="678" key="search.everywhere.popup" timestamp="1644516338641">
+      <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="498" y="176" width="672" height="537" key="search.everywhere.popup/0.0.1536.816@0.0.1536.816" timestamp="1644330973365" />
-    <state x="623" y="223" width="672" height="678" key="search.everywhere.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1643326347589" />
+    <state x="623" y="223" width="672" height="678" key="search.everywhere.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1644516338641" />
   </component>
 </project>

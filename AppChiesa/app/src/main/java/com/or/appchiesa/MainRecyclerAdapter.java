@@ -1,6 +1,7 @@
 package com.or.appchiesa;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 
 public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.ViewHolder> {
 
-    private ArrayList<Section> sectionList;
+    private ArrayList<String> sectionList;
     private ChildRecyclerAdapter childRecyclerAdapter;
     private ClickListener clickListener;
     private Context context;
@@ -26,7 +27,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         return this.childRecyclerAdapter;
     }
 
-    public MainRecyclerAdapter(ArrayList<Section> sectionList, Context context) {
+    public MainRecyclerAdapter(ArrayList<String> sectionList, Context context) {
         this.sectionList = sectionList;
         this.context = context;
         this.dbHelper = new DBHelper(context);
@@ -51,14 +52,14 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MainRecyclerAdapter.ViewHolder holder, int position) {
-        Section section = sectionList.get(position);
-        String sectionName = section.getName();
+        String sectionName = sectionList.get(position);
 
         ArrayList<String> lightsName;
         ArrayList<Boolean> lightsState;
 
         lightsName = dbHelper.getAllLightsNameFromSection(sectionName);
         lightsState = dbHelper.getAllLightsState(sectionName);
+        Log.e("LIGHTS SECTION: ", lightsName.toString());
 
         int[] lightResIds = new int[lightsState.size()];
 

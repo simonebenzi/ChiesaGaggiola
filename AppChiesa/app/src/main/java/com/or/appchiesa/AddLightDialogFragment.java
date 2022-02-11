@@ -6,15 +6,27 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.*;
+import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatDialogFragment;
+
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.ArrayList;
 
 public class AddLightDialogFragment extends AppCompatDialogFragment {
 
     private AddLightDialogInterface dialogInterface;
+    private DBHelper dbHelper;
+    private String selectedSection;
+    private TextInputLayout textInputLayoutName;
+    private TextInputLayout textInputLayoutOpName;
+    private TextInputLayout textInputLayoutPsw;
 
     interface AddLightDialogInterface {
-        void getLightInfos(String lightName, String ipAddress);
+        void getLightInfos(String lightName, String opName, String section);
     }
 
     @Override
@@ -23,8 +35,21 @@ public class AddLightDialogFragment extends AppCompatDialogFragment {
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.fragment_light_dialog, null);
-        final TextInputLayout textInputLayoutName = (TextInputLayout) view.findViewById(R.id.light_name_edit_text);
-        final TextInputLayout textInputLayoutIpAddress = (TextInputLayout) view.findViewById(R.id.ip_address_edit_text);
+        textInputLayoutName = view.findViewById(R.id.light_name_edit_text);
+        textInputLayoutOpName = view.findViewById(R.id.op_name_edit_text);
+        textInputLayoutPsw = view.findViewById(R.id.light_psw_ed);
+        TextInputEditText selectSection = view.findViewById(R.id.select_section);
+        dbHelper = new DBHelper(getContext());
+        selectedSection = "";
+
+        selectSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Initialize alert dialog
+                AlertDialog.Builder selectBuilder = new AlertDialog.Builder(getActivity());
+                setSelectSectionBuilder(selectBuilder, selectSection);
+            }
+        });
 
         builder.setView(view)
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -36,13 +61,46 @@ public class AddLightDialogFragment extends AppCompatDialogFragment {
                 .setPositiveButton(R.string.create, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialogInterface.getLightInfos(
-                                textInputLayoutName.getEditText().getText().toString(),
-                                textInputLayoutIpAddress.getEditText().getText().toString());
+                        //Do nothing here because we override this button later to change the close behaviour.
+                        //However, we still need this because on older versions of Android unless we
+                        //pass a handler the button doesn't get instantiated
                     }
                 });
 
         return builder.create();
+    }
+
+    // To maintain AddLightDialogFragment open when inserted wrong password
+    @Override
+    public void onStart() {
+        super.onStart();
+        AlertDialog dialog = (AlertDialog) getDialog();
+        if (dialog != null) {
+            Button positiveButton = (Button) dialog.getButton(Dialog.BUTTON_POSITIVE);
+            positiveButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Boolean wantToCloseDialog = false;
+
+                    String psw = textInputLayoutPsw.getEditText().getText().toString();
+                    if(psw.equals(MainActivity.PASSWORD)){
+                        dialogInterface.getLightInfos(
+                                textInputLayoutName.getEditText().getText().toString(),
+                                textInputLayoutOpName.getEditText().getText().toString(),
+                                selectedSection);
+                        wantToCloseDialog = true;
+                    }
+                    else{
+                        String message = "Password errata! Riprovare!";
+                        Toast toast = Toast.makeText(getContext(), message, Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+
+                    if (wantToCloseDialog)
+                        dismiss();
+                }
+            });
+        }
     }
 
     @Override
@@ -51,5 +109,50 @@ public class AddLightDialogFragment extends AppCompatDialogFragment {
 
         dialogInterface = (AddLightDialogInterface) context;
 
+    }
+
+    private void setSelectSectionBuilder(AlertDialog.Builder selectBuilder, TextInputEditText selectLightsTextInput) {
+        selectBuilder.setTitle(R.string.select_section);
+        selectBuilder.setCancelable(false);
+        ArrayList<String> sectionsName = dbHelper.getAllSectionsName();
+        String[] sectionsArray = new String[sectionsName.size()];
+
+        for (int i = 0; i < sectionsName.size(); i++) {
+            sectionsArray[i] = sectionsName.get(i);
+        }
+
+        selectBuilder.setSingleChoiceItems(sectionsArray, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                selectedSection = sectionsArray[which];
+            }
+        });
+
+        selectBuilder.setPositiveButton("Aggiungi", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        selectBuilder.setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Dismiss dialog
+                dialogInterface.dismiss();
+            }
+        });
+
+        selectBuilder.setNeutralButton("Clear All", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Remove selection
+                selectedSection = "";
+                // Clear text view value
+                selectLightsTextInput.setText(R.string.group_lights);
+
+            }
+        });
+        selectBuilder.show();
     }
 }

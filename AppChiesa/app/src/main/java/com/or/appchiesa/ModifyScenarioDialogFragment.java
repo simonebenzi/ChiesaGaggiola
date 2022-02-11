@@ -13,40 +13,35 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
-public class ModifyLightDialogFragment extends AppCompatDialogFragment {
+public class ModifyScenarioDialogFragment extends AppCompatDialogFragment {
 
-    private ModifyLightDialogInterface dialogInterface;
+    private ModifyGroupDialogInterface dialogInterface;
     private int position;
-    private String section;
     private DBHelper dbHelper;
     private TextInputLayout textInputLayoutName;
     private TextInputLayout textInputLayoutPsw;
 
-    interface ModifyLightDialogInterface {
-        void modifyLightDetails(String lightName, int position, String section);
+
+    interface ModifyGroupDialogInterface {
+        void modifyGroupName(String groupName, int position);
     }
 
-    public ModifyLightDialogFragment(int position, String section) {
+    public ModifyScenarioDialogFragment(int position) {
         this.position = position;
-        this.section = section;
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        final View view = inflater.inflate(R.layout.fragment_group_dialog, null);
+        textInputLayoutName = (TextInputLayout) view.findViewById(R.id.group_name_edit_text);
+        textInputLayoutPsw = (TextInputLayout) view.findViewById(R.id.group_psw_ed);
         dbHelper = new DBHelper(getContext());
 
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View view = inflater.inflate(R.layout.fragment_light_dialog, null);
-        textInputLayoutName = (TextInputLayout) view.findViewById(R.id.light_name_edit_text);
-        textInputLayoutPsw = (TextInputLayout) view.findViewById(R.id.light_psw_ed);
-
-        final String lightName = dbHelper.getAllLightsNameFromSection(section).get(position);
-        //final String lightName = Light.lights.get(this.position).getName();
-        textInputLayoutName.getEditText().setText(lightName);
-        final String lightIpAddress = dbHelper.getAllLightsIpAddressFromSection(section).get(position);
-        //final String lightIpAddress = Light.lights.get(this.position).getIpAddress();
+        final String groupName = dbHelper.getAllScenariosName().get(position);
+        textInputLayoutName.getEditText().setText(groupName);
 
         builder.setView(view)
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -58,16 +53,14 @@ public class ModifyLightDialogFragment extends AppCompatDialogFragment {
                 .setPositiveButton(R.string.modify, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String newLightName = textInputLayoutName.getEditText()
-                                .getText().toString();
-                        dialogInterface.modifyLightDetails(newLightName, position, section);
+
                     }
                 });
 
         return builder.create();
     }
 
-    // To maintain AddLightDialogFragment open when inserted wrong password
+    // To maintain AddScenarioDialogFragment open when inserted wrong password
     @Override
     public void onStart() {
         super.onStart();
@@ -81,9 +74,9 @@ public class ModifyLightDialogFragment extends AppCompatDialogFragment {
 
                     String psw = textInputLayoutPsw.getEditText().getText().toString();
                     if(psw.equals(MainActivity.PASSWORD)){
-                        String newLightName = textInputLayoutName.getEditText()
-                                .getText().toString();
-                        dialogInterface.modifyLightDetails(newLightName, position, section);
+                        String newGroupName = textInputLayoutName.getEditText()
+                                .getText().toString();;
+                        dialogInterface.modifyGroupName(newGroupName, position);
                         wantToCloseDialog = true;
                     }
                     else{
@@ -103,7 +96,7 @@ public class ModifyLightDialogFragment extends AppCompatDialogFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        dialogInterface = (ModifyLightDialogInterface) context;
+        dialogInterface = (ModifyGroupDialogInterface) context;
 
     }
 }

@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -15,6 +16,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "Church.db";
     public static final String LIGHTS_TABLE_NAME = "LIGHTS";
     public static final String SCENARIOS_TABLE_NAME = "SCENARIOS";
+    public static final String SECTIONS_TABLE_NAME = "SECTIONS";
+    public static final String UTILS_TABLE_NAME = "UTILS";
     public static final String LIGHTS_COLUMN_ID = "_id";
     public static final String LIGHTS_COLUMN_NAME = "NAME";
     public static final String LIGHTS_COLUMN_OPNAME = "OPNAME";
@@ -25,6 +28,14 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String SCENARIOS_COLUMN_STATE = "STATE";
     public static final String SCENARIOS_COLUMN_NAME = "NAME";
     public static final String SCENARIOS_COLUMN_LIGHTS = "LIGHTS";
+    public static final String SECTIONS_COLUMN_NAME = "NAME";
+    public static final String UTILS_COLUMN_PASSWORD = "PASSWORD";
+    public static ArrayList<String> sectionsArray = new ArrayList<>(Arrays.asList(
+            "Cappelle",
+            "Navata",
+            "Chiesa",
+            "Presbiterio"
+    ));
 
     private HashMap hashMap;
 
@@ -40,7 +51,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 "OPNAME TEXT, " +
                 "IP_ADDRESS TEXT, " +
                 "SECTION TEXT," +
-                "SCENARIO TEXT, " +
                 "STATE INTEGER);");
 
         db.execSQL("CREATE TABLE SCENARIOS (" +
@@ -49,19 +59,26 @@ public class DBHelper extends SQLiteOpenHelper {
                 "LIGHTS TEXT, " +
                 "STATE INTEGER);");
 
+        db.execSQL("CREATE TABLE SECTIONS (" +
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "NAME TEXT);");
+
+        db.execSQL("CREATE TABLE UTILS (" +
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "PASSWORD TEXT);");
+
         for (int i = 0; i < Light.lights.size(); i++) {
             insertLight(db,
                     Light.lights.get(i).getName(),
                     Light.lights.get(i).getOpName(),
                     Light.lights.get(i).getIpAddress(),
                     Light.lights.get(i).getSection(),
-                    Light.lights.get(i).getScenario(),
                     Light.lights.get(i).getState());
         }
 
         for (int i = 0; i < Scenario.scenariosArray.size(); i++) {
             String[] lights = new String[Scenario.scenariosArray.get(i).getLightsOpName().size()];
-            for(int j = 0; j < Scenario.scenariosArray.get(i).getLightsOpName().size(); j++){
+            for (int j = 0; j < Scenario.scenariosArray.get(i).getLightsOpName().size(); j++) {
                 lights[j] = Scenario.scenariosArray.get(i).getLightsOpName().get(j);
             }
             insertScenario(db,
@@ -70,21 +87,28 @@ public class DBHelper extends SQLiteOpenHelper {
                     lights);
         }
 
+        for (int i = 0; i < sectionsArray.size(); i++) {
+            insertSection(db, sectionsArray.get(i));
+        }
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    public void insertLight(SQLiteDatabase db, String name, String opName, String ipAddress, String section, String scenario, boolean state) {
+    public void insertLight(SQLiteDatabase db, String name, String opName, String ipAddress, String section, boolean state) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(LIGHTS_COLUMN_NAME, name);
         contentValues.put(LIGHTS_COLUMN_OPNAME, opName);
         contentValues.put(LIGHTS_COLUMN_IP_ADDRESS, ipAddress);
         contentValues.put(LIGHTS_COLUMN_STATE, state);
         contentValues.put(LIGHTS_COLUMN_SECTION, section);
-        contentValues.put(LIGHTS_COLUMN_SCENARIO, scenario);
         db.insert(LIGHTS_TABLE_NAME, null, contentValues);
+    }
+
+    public void deleteLight(SQLiteDatabase db, String name) {
+        db.delete(LIGHTS_TABLE_NAME, LIGHTS_COLUMN_NAME + " = ?", new String[]{name});
     }
 
     public void insertScenario(SQLiteDatabase db, String name, boolean state, String[] lights) {
@@ -96,6 +120,16 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert(SCENARIOS_TABLE_NAME, null, contentValues);
     }
 
+    public void deleteScenario(SQLiteDatabase db, String name) {
+        db.delete(SCENARIOS_TABLE_NAME, SCENARIOS_COLUMN_NAME + " = ?", new String[]{name});
+    }
+
+    public void insertSection(SQLiteDatabase db, String name) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SECTIONS_COLUMN_NAME, name);
+        db.insert(SECTIONS_TABLE_NAME, null, contentValues);
+    }
+
     public void updateLightState(boolean state, String name, String opName) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -104,6 +138,52 @@ public class DBHelper extends SQLiteOpenHelper {
                 contentValues,
                 "NAME = ? AND OPNAME = ?",
                 new String[]{name, opName});
+    }
+
+    public void updateLightState(boolean state, String opName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(LIGHTS_COLUMN_STATE, !state);
+        db.update(LIGHTS_TABLE_NAME,
+                contentValues,
+                "OPNAME = ?",
+                new String[]{opName});
+    }
+
+    public void insertPassword(SQLiteDatabase db, String password) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(UTILS_COLUMN_PASSWORD, password);
+        db.insert(UTILS_TABLE_NAME, null, contentValues);
+    }
+
+    public void updatePassword(String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(UTILS_COLUMN_PASSWORD, password);
+        db.update(UTILS_TABLE_NAME,
+                contentValues,
+                "PASSWORD = ?",
+                new String[]{password});
+    }
+
+    public String getPassword() {
+        String password = null;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(UTILS_TABLE_NAME, new String[]{UTILS_COLUMN_PASSWORD},
+                null,
+                null,
+                null, null, null);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            password = cursor.getString(cursor.getColumnIndex(UTILS_COLUMN_PASSWORD));
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return password;
     }
 
     public void updateLightName(String oldName, String newName, String opName) {
@@ -137,6 +217,27 @@ public class DBHelper extends SQLiteOpenHelper {
                 new String[]{name, opName});
     }
 
+    public ArrayList<String> getAllSectionsName() {
+        ArrayList<String> sectionsName = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(SECTIONS_TABLE_NAME, new String[]{SECTIONS_COLUMN_NAME},
+                null,
+                null,
+                null, null, null);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            sectionsName.add(cursor.getString(cursor.getColumnIndex(SECTIONS_COLUMN_NAME)));
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return sectionsName;
+    }
+
+
     public ArrayList<String> getAllLightsNameFromSection(String section) {
         ArrayList<String> lightsName = new ArrayList<>();
 
@@ -145,27 +246,6 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query("LIGHTS", new String[]{LIGHTS_COLUMN_NAME},
                 "SECTION = ?",
                 new String[]{section},
-                null, null, null);
-        cursor.moveToFirst();
-
-        while (!cursor.isAfterLast()) {
-            lightsName.add(cursor.getString(cursor.getColumnIndex(LIGHTS_COLUMN_NAME)));
-            Log.e("PROVA", lightsName.get(0));
-            cursor.moveToNext();
-        }
-        cursor.close();
-
-        return lightsName;
-    }
-
-    public ArrayList<String> getScenarioName(String name) {
-        ArrayList<String> lightsName = new ArrayList<>();
-
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(SCENARIOS_TABLE_NAME, new String[]{SCENARIOS_COLUMN_NAME},
-                "SECTION = ?",
-                new String[]{name},
                 null, null, null);
         cursor.moveToFirst();
 
@@ -250,6 +330,31 @@ public class DBHelper extends SQLiteOpenHelper {
         return lightsState;
     }
 
+    public Boolean getLightState(String opName) {
+        Boolean lightState = null;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query("LIGHTS", new String[]{LIGHTS_COLUMN_STATE},
+                "OPNAME = ?",
+                new String[]{opName},
+                null, null, null);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            Boolean state;
+            if (cursor.getInt(cursor.getColumnIndex(LIGHTS_COLUMN_STATE)) == 0) {
+                state = false;
+            } else {
+                state = true;
+            }
+            lightState = state;
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return lightState;
+    }
+
     public ArrayList<String> getAllLightsOpNameFromSection(String section) {
         ArrayList<String> lightsOpName = new ArrayList<>();
 
@@ -307,6 +412,45 @@ public class DBHelper extends SQLiteOpenHelper {
         return lightsIpAddress;
     }
 
+    public String getLightIpAddressFromOpName(String opName) {
+        String ipAddress = null;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query("LIGHTS", new String[]{LIGHTS_COLUMN_IP_ADDRESS},
+                "OPNAME = ?",
+                new String[]{opName},
+                null, null, null);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            ipAddress = cursor.getString(cursor.getColumnIndex(LIGHTS_COLUMN_IP_ADDRESS));
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return ipAddress;
+    }
+
+    public String getLightOpNameFromName(String name) {
+        String opName = null;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query("LIGHTS", new String[]{LIGHTS_COLUMN_NAME},
+                "NAME = ?",
+                new String[]{name},
+                null, null, null);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            opName = cursor.getString(cursor.getColumnIndex(LIGHTS_COLUMN_NAME));
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return opName;
+    }
+
+
     public ArrayList<String> getAllLightsIpAddressFromSection() {
         ArrayList<String> lightsIpAddress = new ArrayList<>();
 
@@ -326,6 +470,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return lightsIpAddress;
     }
 
+    // SCENARIOS TABLE
     public ArrayList<String> getAllScenariosName() {
         ArrayList<String> scenariosName = new ArrayList<>();
 
@@ -344,6 +489,26 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
 
         return scenariosName;
+    }
+
+    public ArrayList<String> getAllScenariosLights() {
+        ArrayList<String> scenariosLights = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(SCENARIOS_TABLE_NAME, new String[]{SCENARIOS_COLUMN_LIGHTS},
+                null,
+                null,
+                null, null, null);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            scenariosLights.add(cursor.getString(cursor.getColumnIndex(SCENARIOS_COLUMN_LIGHTS)));
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return scenariosLights;
     }
 
     public ArrayList<Boolean> getAllScenariosState() {
@@ -377,15 +542,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query("LIGHTS", new String[]{LIGHTS_COLUMN_OPNAME},
-                "SCENARIO = ?",
+        Cursor cursor = db.query(SCENARIOS_TABLE_NAME, new String[]{SCENARIOS_COLUMN_LIGHTS},
+                "NAME = ?",
                 new String[]{scenario},
                 null, null, null);
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
-            lightsName.add(cursor.getString(cursor.getColumnIndex(LIGHTS_COLUMN_OPNAME)));
-            Log.e("PROVA", lightsName.get(0));
+            lightsName.add(cursor.getString(cursor.getColumnIndex(SCENARIOS_COLUMN_LIGHTS)));
             cursor.moveToNext();
         }
         cursor.close();
