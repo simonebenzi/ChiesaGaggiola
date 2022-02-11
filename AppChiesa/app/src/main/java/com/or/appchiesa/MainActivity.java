@@ -71,13 +71,6 @@ public class MainActivity extends AppCompatActivity
         MaterialToolbar toolbar = (MaterialToolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Set GroupsFragment as default
-//        this.lightsFragment = new LightsFragment();
-//        this.groupsFragment = new GroupsFragment();
-//        FragmentTransaction transaction = fm.beginTransaction();
-//        transaction.replace(R.id.view_pager, this.groupsFragment);
-//        transaction.commit();
-
         // Hide mini-FAB (add light/group buttons)
         final FloatingActionButton addGroupFab = (FloatingActionButton) findViewById(R.id.add_group);
         final FloatingActionButton addLightFab = (FloatingActionButton) findViewById(R.id.add_light);
@@ -135,29 +128,6 @@ public class MainActivity extends AppCompatActivity
                 isRotate = ViewAnimation.rotateFloatingButton(mainFab, !isRotate);
             }
         });
-
-        // Set buttons to switch on/off all lights
-        /*Chip allOnChip = (Chip)findViewById(R.id.all_on_chip);
-        Chip allOffChip = (Chip)findViewById(R.id.all_off_chip);
-
-        allOnChip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(Light light:Light.lights){
-
-                }
-            }
-        });
-
-        allOffChip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(Light light:Light.lights){
-
-                }
-            }
-        });*/
-
     }
 
     @Override
