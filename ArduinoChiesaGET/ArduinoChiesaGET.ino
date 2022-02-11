@@ -2,6 +2,7 @@
 
 // Load Wi-Fi library
 #include <WiFiNINA.h>
+#include <utility/wifi_drv.h>
 
 // the IP address for the shield:
 IPAddress ip(192, 168, 1, 124);
@@ -11,10 +12,10 @@ IPAddress ip(192, 168, 1, 124);
 //const char* pass = "12RD23JE7I"; //OR+
 //const char* ssid = "TIM-18143925"; // CASA
 //const char* pass = "CN2ltmwLXDvmVfWtC1ogJU95";
-//const char* ssid = "Mi 10T"; // CELL
-//const char* pass = "cellrouter";
-const char* ssid = "GaggiolaC-LC"; // CHIESA
-const char* pass = "FraGiacomo1";
+const char* ssid = "Mi 10T"; // CELL
+const char* pass = "cellrouter";
+//const char* ssid = "GaggiolaC-LC"; // CHIESA
+//const char* pass = "FraGiacomo1";
 int status = WL_IDLE_STATUS;
 
 // Logic changed in logic-low
@@ -65,6 +66,10 @@ const int ch12b = 15;
 const int ch6c = 16; // Lampadari navata fronte-retro alti
 const int ch30 = 17; // Faretti LED quadri navata
 
+const int greenPin = 25;
+const int redPin = 26;
+const int bluePin = 27;
+
 void setup() {
   Serial.begin(9600);
 //  while (!Serial) {
@@ -88,6 +93,10 @@ void setup() {
   pinMode(ch12a, OUTPUT);
   pinMode(ch12b, OUTPUT);
 
+  // Initialize RGB pin as output
+  WiFiDrv::pinMode(greenPin, OUTPUT);
+  WiFiDrv::pinMode(redPin, OUTPUT);
+  WiFiDrv::pinMode(bluePin, OUTPUT);
   
   // Set outputs to LOW
   digitalWrite(ch1, low);
@@ -136,6 +145,10 @@ void setup() {
   // you're connected now, so print out the status:
   printWifiStatus();
 
+  // Switch on the LED as red when board is connected
+  WiFiDrv::analogWrite(25, 0);
+  WiFiDrv::analogWrite(26, 10);
+  WiFiDrv::analogWrite(27, 0);
 }
 
 void loop() {
