@@ -62,7 +62,7 @@ public class ScenariosFragment extends Fragment {
 
         aSwitch = new Switch(getContext());
 
-        this.adapter = new ChildRecyclerAdapter(getContext(), scenariosName, scenariosImages);
+        this.adapter = new ChildRecyclerAdapter(getContext(), scenariosName, scenariosImages, "scenario");
         groupRecycler.setAdapter(this.adapter);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         groupRecycler.setLayoutManager(layoutManager);
@@ -125,11 +125,7 @@ public class ScenariosFragment extends Fragment {
         String aScenarioLights = scenariosLights.get(position);
         String[] scenarioLightsArray = convertStringToArray(aScenarioLights);
         ArrayList<String> scenarioLightsList = new ArrayList<>(Arrays.asList(scenarioLightsArray));
-        ArrayList<String> scenarioIpAddress = new ArrayList<>();
-        for(int i = 0; i < scenarioLightsList.size(); i++) {
-            scenarioIpAddress.add(i, dbHelper
-                    .getLightIpAddressFromOpName(scenarioLightsList.get(i)));
-        }
+        String ipAddress = dbHelper.getIpAddress();
 
         if(!state) {
             Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb_group_on);
@@ -139,7 +135,7 @@ public class ScenariosFragment extends Fragment {
                 if(!lightState)
                     dbHelper.updateLightState(lightState, scenarioLightsList.get(i));
             }
-            aSwitch.switchScenarioOn(scenarioLightsList, scenarioIpAddress);
+            aSwitch.switchScenarioOn(scenarioLightsList, ipAddress);
             dbHelper.updateScenarioState(state, scenario);
         }
         else {
@@ -150,7 +146,7 @@ public class ScenariosFragment extends Fragment {
                 if(lightState)
                     dbHelper.updateLightState(lightState, scenarioLightsList.get(i));
             }
-            aSwitch.switchScenarioOff(scenarioLightsList, scenarioIpAddress);
+            aSwitch.switchScenarioOff(scenarioLightsList, ipAddress);
             dbHelper.updateScenarioState(state, scenario);
         }
     }

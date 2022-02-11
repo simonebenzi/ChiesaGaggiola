@@ -21,4 +21,5 @@
     <string name="op_name">Nome circuito</string>
     <string name="group_lights">Seleziona luci gruppo</string>
     <string name="select_section">"Seleziona locazione "</string>
+    <string name="update_ip_floating_button">Bottone aggiorna IP</string>
 </resources>

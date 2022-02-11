@@ -13,35 +13,29 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
-public class ModifyScenarioDialogFragment extends AppCompatDialogFragment {
+public class UpdateIpAddressDialogFragment extends AppCompatDialogFragment {
 
-    private ModifyGroupDialogInterface dialogInterface;
-    private int position;
     private DBHelper dbHelper;
-    private TextInputLayout textInputLayoutName;
+    private TextInputLayout textInputLayoutIpAddress;
     private TextInputLayout textInputLayoutPsw;
+    private String oldIpAddress;
 
-
-    interface ModifyGroupDialogInterface {
-        void modifyGroupName(String groupName, int position);
-    }
-
-    public ModifyScenarioDialogFragment(int position) {
-        this.position = position;
+    public UpdateIpAddressDialogFragment() {
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View view = inflater.inflate(R.layout.fragment_group_dialog, null);
-        textInputLayoutName = (TextInputLayout) view.findViewById(R.id.group_name_edit_text);
-        textInputLayoutPsw = (TextInputLayout) view.findViewById(R.id.group_psw_ed);
         dbHelper = new DBHelper(getContext());
 
-        final String groupName = dbHelper.getAllScenariosName().get(position);
-        textInputLayoutName.getEditText().setText(groupName);
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        final View view = inflater.inflate(R.layout.fragment_ip_dialog, null);
+        textInputLayoutIpAddress = (TextInputLayout) view.findViewById(R.id.ip_address_edit_text);
+        textInputLayoutPsw = (TextInputLayout) view.findViewById(R.id.light_psw_ed);
+
+        oldIpAddress = dbHelper.getIpAddress();
+        textInputLayoutIpAddress.getEditText().setText(oldIpAddress);
 
         builder.setView(view)
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -60,7 +54,7 @@ public class ModifyScenarioDialogFragment extends AppCompatDialogFragment {
         return builder.create();
     }
 
-    // To maintain AddScenarioDialogFragment open when inserted wrong password
+    // To maintain AddLightDialogFragment open when inserted wrong password
     @Override
     public void onStart() {
         super.onStart();
@@ -74,11 +68,10 @@ public class ModifyScenarioDialogFragment extends AppCompatDialogFragment {
 
                     String insertedPsw = textInputLayoutPsw.getEditText().getText().toString();
                     String storedPsw = dbHelper.getPassword();
-
                     if(insertedPsw.equals(storedPsw)){
-                        String newGroupName = textInputLayoutName.getEditText()
-                                .getText().toString();;
-                        dialogInterface.modifyGroupName(newGroupName, position);
+                        String newIpAddress = textInputLayoutIpAddress.getEditText()
+                                .getText().toString();
+                        dbHelper.updateIpAddress(newIpAddress, oldIpAddress);
                         wantToCloseDialog = true;
                     }
                     else{
@@ -97,8 +90,5 @@ public class ModifyScenarioDialogFragment extends AppCompatDialogFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
-        dialogInterface = (ModifyGroupDialogInterface) context;
-
     }
 }

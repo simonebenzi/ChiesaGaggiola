@@ -45,7 +45,7 @@ public class ModifyLightDialogFragment extends AppCompatDialogFragment {
         final String lightName = dbHelper.getAllLightsNameFromSection(section).get(position);
         //final String lightName = Light.lights.get(this.position).getName();
         textInputLayoutName.getEditText().setText(lightName);
-        final String lightIpAddress = dbHelper.getAllLightsIpAddressFromSection(section).get(position);
+        final String lightIpAddress = dbHelper.getIpAddress();
         //final String lightIpAddress = Light.lights.get(this.position).getIpAddress();
 
         builder.setView(view)
@@ -58,9 +58,7 @@ public class ModifyLightDialogFragment extends AppCompatDialogFragment {
                 .setPositiveButton(R.string.modify, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String newLightName = textInputLayoutName.getEditText()
-                                .getText().toString();
-                        dialogInterface.modifyLightDetails(newLightName, position, section);
+
                     }
                 });
 
@@ -79,8 +77,9 @@ public class ModifyLightDialogFragment extends AppCompatDialogFragment {
                 public void onClick(View v) {
                     Boolean wantToCloseDialog = false;
 
-                    String psw = textInputLayoutPsw.getEditText().getText().toString();
-                    if(psw.equals(MainActivity.PASSWORD)){
+                    String insertedPsw = textInputLayoutPsw.getEditText().getText().toString();
+                    String storedPsw = textInputLayoutPsw.getEditText().getText().toString();
+                    if(insertedPsw.equals(storedPsw)){
                         String newLightName = textInputLayoutName.getEditText()
                                 .getText().toString();
                         dialogInterface.modifyLightDetails(newLightName, position, section);

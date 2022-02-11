@@ -12,6 +12,8 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
+
 import java.util.ArrayList;
 
 public class ChildRecyclerAdapter
@@ -21,6 +23,7 @@ public class ChildRecyclerAdapter
     private int[] imageIds; // Contains image's ids
     private Listener listener;
     private DBHelper dbHelper;
+    private String type;
 
     public interface Listener {
         void onClickCard(int position, ImageView imageView);
@@ -32,16 +35,19 @@ public class ChildRecyclerAdapter
         this.listener = listener;
     }
 
-    public ChildRecyclerAdapter(Context context, ArrayList<String> captions, int[] imageIds) {
+    public ChildRecyclerAdapter(Context context, ArrayList<String> captions, int[] imageIds, String type) {
         this.captions = captions;
         this.imageIds = imageIds;
         this.dbHelper = new DBHelper(context);
+        this.type = type;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) { // visualizzazione di una nuova card
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CardView cv = (CardView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_groups, parent, false);
+        if(type.equals("scenario"))
+            cv.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
         return new ViewHolder(cv);
     }
 

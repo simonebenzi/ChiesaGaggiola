@@ -82,8 +82,10 @@ public class AddLightDialogFragment extends AppCompatDialogFragment {
                 public void onClick(View v) {
                     Boolean wantToCloseDialog = false;
 
-                    String psw = textInputLayoutPsw.getEditText().getText().toString();
-                    if(psw.equals(MainActivity.PASSWORD)){
+                    String insertedPsw = textInputLayoutPsw.getEditText().getText().toString();
+                    String storedPsw = dbHelper.getPassword();
+
+                    if(insertedPsw.equals(storedPsw)){
                         dialogInterface.getLightInfos(
                                 textInputLayoutName.getEditText().getText().toString(),
                                 textInputLayoutOpName.getEditText().getText().toString(),

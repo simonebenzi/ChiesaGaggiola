@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity
     private TabLayout tabLayout;
     private ArrayList<String> titles;
 
-    public static final String PASSWORD = "ChiesaGaggiola";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,8 +81,10 @@ public class MainActivity extends AppCompatActivity
         // Hide mini-FAB (add light/group buttons)
         final FloatingActionButton addGroupFab = (FloatingActionButton) findViewById(R.id.add_group);
         final FloatingActionButton addLightFab = (FloatingActionButton) findViewById(R.id.add_light);
+        final FloatingActionButton updateIpAddressFab = (FloatingActionButton) findViewById(R.id.update_ip);
         ViewAnimation.init(addGroupFab);
         ViewAnimation.init(addLightFab);
+        ViewAnimation.init(updateIpAddressFab);
 
         // Add animation to FABs
         final FloatingActionButton mainFab = (FloatingActionButton) findViewById(R.id.add_floating_action_button);
@@ -95,9 +95,11 @@ public class MainActivity extends AppCompatActivity
                 if (isRotate) {
                     ViewAnimation.showIn(addGroupFab);
                     ViewAnimation.showIn(addLightFab);
+                    ViewAnimation.showIn(updateIpAddressFab);
                 } else {
                     ViewAnimation.showOut(addGroupFab);
                     ViewAnimation.showOut(addLightFab);
+                    ViewAnimation.showOut(updateIpAddressFab);
                 }
             }
         });
@@ -120,6 +122,16 @@ public class MainActivity extends AppCompatActivity
                 displayAddGroupDialog();
                 ViewAnimation.showOut(v);
                 ViewAnimation.showOut(addLightFab);
+                isRotate = ViewAnimation.rotateFloatingButton(mainFab, !isRotate);
+            }
+        });
+
+        updateIpAddressFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayUpdateIpAddressDialog();
+                ViewAnimation.showOut(v);
+                ViewAnimation.showOut(updateIpAddressFab);
                 isRotate = ViewAnimation.rotateFloatingButton(mainFab, !isRotate);
             }
         });
@@ -178,11 +190,17 @@ public class MainActivity extends AppCompatActivity
         addLightDialogFragment.show(getSupportFragmentManager(), "add_light_dialog");
     }
 
+    public void displayUpdateIpAddressDialog() {
+        UpdateIpAddressDialogFragment updateIpAddressDialogFragment =
+                new UpdateIpAddressDialogFragment();
+        updateIpAddressDialogFragment.show(getSupportFragmentManager(), "add_light_dialog");
+    }
+
     @Override
     public void getLightInfos(String lightName, String opName, String section) {
         // Insert new light in Database
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        dbHelper.insertLight(db, lightName, opName, Light.IP_ADDRESS, section, false);
+        dbHelper.insertLight(db, lightName, opName, section, false);
         ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
         LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
         MainRecyclerAdapter mainRecyclerAdapter = fragment.getMainRecyclerAdapter();
@@ -268,11 +286,10 @@ public class MainActivity extends AppCompatActivity
         ArrayList<Boolean> lightsState = dbHelper.getAllLightsState();
         ArrayList<String> lightsOpName = dbHelper.getAllLightsOpNameFromSection();
         ArrayList<String> lightsName = dbHelper.getAllLightsNameFromSection();
-        ArrayList<String> lightsIpAddress = dbHelper.getAllLightsIpAddressFromSection();
+        String ipAddress = dbHelper.getIpAddress();
         int arraySize = lightsName.size();
 
         for (int i = 0; i < arraySize; i++) {
-            String ipAddress = lightsIpAddress.get(i);
             String opName = lightsOpName.get(i);
             String name = lightsName.get(i);
             Boolean state = lightsState.get(i);
@@ -291,11 +308,10 @@ public class MainActivity extends AppCompatActivity
         ArrayList<Boolean> lightsState = dbHelper.getAllLightsState();
         ArrayList<String> lightsOpName = dbHelper.getAllLightsOpNameFromSection();
         ArrayList<String> lightsName = dbHelper.getAllLightsNameFromSection();
-        ArrayList<String> lightsIpAddress = dbHelper.getAllLightsIpAddressFromSection();
+        String ipAddress = dbHelper.getIpAddress();
         int arraySize = lightsName.size();
 
         for (int i = 0; i < arraySize; i++) {
-            String ipAddress = lightsIpAddress.get(i);
             String opName = lightsOpName.get(i);
             String name = lightsName.get(i);
             Boolean state = lightsState.get(i);

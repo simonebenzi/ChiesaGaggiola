@@ -83,8 +83,10 @@ public class AddScenarioDialogFragment extends AppCompatDialogFragment {
                 public void onClick(View v) {
                     Boolean wantToCloseDialog = false;
 
-                    String psw = textInputLayoutPsw.getEditText().getText().toString();
-                    if(psw.equals(MainActivity.PASSWORD)){
+                    String insertedPsw = textInputLayoutPsw.getEditText().getText().toString();
+                    String storedPsw = dbHelper.getPassword();
+
+                    if(insertedPsw.equals(storedPsw)){
                         dialogInterface.getGroupDetails(textInputLayoutName
                                 .getEditText().getText().toString(), selectedLights);
                         wantToCloseDialog = true;

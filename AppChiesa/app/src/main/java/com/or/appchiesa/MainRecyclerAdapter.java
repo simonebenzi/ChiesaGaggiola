@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -71,9 +72,12 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         }
 
         holder.sectionNameTextView.setText(sectionName);
-        childRecyclerAdapter = new ChildRecyclerAdapter(context, lightsName, lightResIds);
+        childRecyclerAdapter = new ChildRecyclerAdapter(context, lightsName, lightResIds, "light");
         holder.childRecyclerView.setAdapter(childRecyclerAdapter);
-        GridLayoutManager layoutManager = new GridLayoutManager(holder.childRecyclerView.getContext(), 2);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(
+                holder.childRecyclerView.getContext(),
+                LinearLayoutManager.HORIZONTAL,
+                false);
         holder.childRecyclerView.setLayoutManager(layoutManager);
         this.childRecyclerAdapter.setListener(new ChildRecyclerAdapter.Listener() {
             @Override

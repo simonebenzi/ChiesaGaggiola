@@ -62,12 +62,11 @@ public class LightsFragment extends Fragment {
 
                 ArrayList<Boolean> lightsState = dbHelper.getAllLightsState(sectionName);
                 ArrayList<String> lightsOpName = dbHelper.getAllLightsOpNameFromSection(sectionName);
-                ArrayList<String> lightsIpAddress = dbHelper.getAllLightsIpAddressFromSection(sectionName);
+                ipAddress = dbHelper.getIpAddress();
                 ArrayList<String> lightsName = dbHelper.getAllLightsNameFromSection(sectionName);
 
                 state = lightsState.get(position);
                 opName = lightsOpName.get(position);
-                ipAddress = lightsIpAddress.get(position);
                 name = lightsName.get(position);
 
                 if(!state){
