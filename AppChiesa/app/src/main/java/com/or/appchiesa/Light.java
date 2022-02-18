@@ -59,14 +59,14 @@ public class Light {
             new Light("Faretti cappelle", "ch10", "Cappelle"),
             new Light("Faretti coro alti", "ch12a", "Coro"),
             new Light("Faretti coro bassi", "ch12b", "Coro"),
-            new Light("Prese presbiterio", "ch21", "Presbiterio"),
             new Light("Lampadari retro navata", "ch6a", "Navata"),
             new Light("Striscia LED cappelle", "ch9", "Cappelle"),
             new Light("Luci presbiterio", "ch11", "Presbiterio"),
-            new Light("Faro alto presbiterio", "ch15", "Chiesa"),
+            new Light("Faro alto presbiterio", "ch15", "Presbiterio"),
             new Light("Lampadari fronte navata", "ch6b", "Navata"),
             new Light("Cubotti fondo e navata", "ch3", "Chiesa"),
-            new Light("ch6c", "ch6c", "Navata"),
-            new Light("LED Via Crucis", "ch7", "Navata")
+            new Light("Lampadari navata fronte/retro alti", "ch6c", "Navata"),
+            new Light("LED Via Crucis", "ch7", "Navata"),
+            new Light("Faretti LED quadri navata", "ch30", "Navata")
     ));
 }

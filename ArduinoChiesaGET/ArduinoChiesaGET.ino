@@ -31,40 +31,40 @@ String header;
 // Auxiliar variables to store the current output state
 bool ch1State = false;
 bool ch1_1State = false;
-bool ch10State = false;
-bool ch9State = false;
+bool ch2State = false;
+bool ch3State = false;
 bool ch4State = false;
 bool ch5State = false;
 bool ch6aState = false;
 bool ch6bState = false;
+bool ch6cState = false;
 bool ch7State = false;
-bool ch2State = false;
-bool ch15State = false;
-bool ch3State = false;
-bool ch21State = false;
+bool ch9State = false;
+bool ch10State = false;
 bool ch11State = false;
 bool ch12aState = false;
 bool ch12bState = false;
+bool ch15State = false;
+bool ch30State = false;
 
 // Assign output variables to IO pins
-const int ch1 = 0;
-const int ch1_1 = 1;
-const int ch10 = 2;
-const int ch9 = 3;
-const int ch4 = 4;
-const int ch5 = 5;
-const int ch6a = 6;
-const int ch6b = 7;
-const int ch7 = 8;
-const int ch2 = 9;
-const int ch15 = 10;
-const int ch3 = 11;
-const int ch21 = 12;
-const int ch11 = 13;
-const int ch12a = 14;
-const int ch12b = 15;
-const int ch6c = 16; // Lampadari navata fronte-retro alti
-const int ch30 = 17; // Faretti LED quadri navata
+const int ch1 = 5;
+const int ch1_1 = 4;
+const int ch2 = 3;
+const int ch3 = 2;
+const int ch4 = 1;
+const int ch5 = 0;
+const int ch6a = 21;
+const int ch6b = 20;
+const int ch6c = 6; // Lampadari navata fronte-retro alti
+const int ch7 = 7;
+const int ch9 = 8;
+const int ch10 = 9;
+const int ch11 = 10;
+const int ch12a = 11;
+const int ch12b = 12;
+const int ch15 = 13;
+const int ch30 = 19; // Faretti LED quadri navata
 
 const int greenPin = 25;
 const int redPin = 26;
@@ -78,20 +78,22 @@ void setup() {
   // Initialize the output variables as outputs
   pinMode(ch1, OUTPUT);
   pinMode(ch1_1, OUTPUT);
-  pinMode(ch10, OUTPUT);
-  pinMode(ch9, OUTPUT);
+  pinMode(ch2, OUTPUT);
+  pinMode(ch3, OUTPUT);
   pinMode(ch4, OUTPUT);
   pinMode(ch5, OUTPUT);
   pinMode(ch6a, OUTPUT);
   pinMode(ch6b, OUTPUT);
+  pinMode(ch6c, OUTPUT);
   pinMode(ch7, OUTPUT);
-  pinMode(ch2, OUTPUT);
-  pinMode(ch15, OUTPUT);
-  pinMode(ch3, OUTPUT);
-  pinMode(ch21, OUTPUT);
+  pinMode(ch9, OUTPUT);
+  pinMode(ch10, OUTPUT);
   pinMode(ch11, OUTPUT);
   pinMode(ch12a, OUTPUT);
   pinMode(ch12b, OUTPUT);
+  pinMode(ch15, OUTPUT);
+  pinMode(ch30, OUTPUT);
+
 
   // Initialize RGB pin as output
   WiFiDrv::pinMode(greenPin, OUTPUT);
@@ -101,21 +103,22 @@ void setup() {
   // Set outputs to LOW
   digitalWrite(ch1, low);
   digitalWrite(ch1_1, low);
-  digitalWrite(ch10, low);
-  digitalWrite(ch9, low);
+  digitalWrite(ch2, low);
+  digitalWrite(ch3, low);
   digitalWrite(ch4, low);
   digitalWrite(ch5, low);
   digitalWrite(ch6a, low);
   digitalWrite(ch6b, low);
+  digitalWrite(ch6c, low);
   digitalWrite(ch7, low);
-  digitalWrite(ch2, low);
-  digitalWrite(ch15, low);
-  digitalWrite(ch3, low);
-  digitalWrite(ch21, low);
+  digitalWrite(ch9, low);
+  digitalWrite(ch10, low);
   digitalWrite(ch11, low);
   digitalWrite(ch12a, low);
   digitalWrite(ch12b, low);
-
+  digitalWrite(ch15, low);
+  digitalWrite(ch30, low);
+  
   // check for the WiFi module:
   if (WiFi.status() == WL_NO_MODULE) {
     Serial.println("Communication with WiFi module failed!");
@@ -127,9 +130,9 @@ void setup() {
   if (fv < "1.0.0") {
     Serial.println("Please upgrade the firmware");
   }
-
-  // Set the Arduino's static IP address
-  WiFi.config(ip);
+//
+//  // Set the Arduino's static IP address
+//  WiFi.config(ip);
 
   // attempt to connect to Wifi network:
   while (status != WL_CONNECTED) {
@@ -146,9 +149,9 @@ void setup() {
   printWifiStatus();
 
   // Switch on the LED as red when board is connected
-  WiFiDrv::analogWrite(25, 0);
-  WiFiDrv::analogWrite(26, 10);
-  WiFiDrv::analogWrite(27, 0);
+  WiFiDrv::analogWrite(greenPin, 127);
+  WiFiDrv::analogWrite(redPin, 0);
+  WiFiDrv::analogWrite(bluePin, 255);
 }
 
 void loop() {
@@ -278,14 +281,6 @@ void loop() {
               Serial.println("CH.15 is off");
               ch15State = false;
               digitalWrite(ch15, low);
-            } else if (header.indexOf("GET /ch21/on") >= 0) {
-              Serial.println("CH.21 is on");
-              ch21State = true;
-              digitalWrite(ch21, high);
-            } else if (header.indexOf("GET /ch21/off") >= 0) {
-              Serial.println("CH.21 is off");
-              ch21State = false;
-              digitalWrite(ch21, low);
             } else if (header.indexOf("GET /ch12a/on") >= 0) {
               Serial.println("CH.12a is on");
               ch12aState = true;
@@ -302,6 +297,22 @@ void loop() {
               Serial.println("CH.1.1 is off");
               ch1_1State = false;
               digitalWrite(ch1_1, low);
+            } else if (header.indexOf("GET /ch30/on") >= 0) {
+              Serial.println("CH.30 is on");
+              ch30State = true;
+              digitalWrite(ch30, high);
+            } else if (header.indexOf("GET /ch30/off") >= 0) {
+              Serial.println("CH.30 is off");
+              ch30State = false;
+              digitalWrite(ch30, low);
+            } else if (header.indexOf("GET /ch6c/on") >= 0) {
+              Serial.println("CH.6c is on");
+              ch6cState = true;
+              digitalWrite(ch6c, high);
+            } else if (header.indexOf("GET /ch6c/off") >= 0) {
+              Serial.println("CH.6c is off");
+              ch6cState = false;
+              digitalWrite(ch6c, low);
             }
             
 

@@ -454,19 +454,39 @@ public class DBHelper extends SQLiteOpenHelper {
         return scenariosName;
     }
 
-    public ArrayList<String> getAllScenariosLights() {
-        ArrayList<String> scenariosLights = new ArrayList<>();
+    public ArrayList<String> getScenariosExceptOne(String exception) {
+        ArrayList<String> scenariosName = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(SCENARIOS_TABLE_NAME, new String[]{SCENARIOS_COLUMN_LIGHTS},
-                null,
-                null,
+        Cursor cursor = db.query(SCENARIOS_TABLE_NAME, new String[]{SCENARIOS_COLUMN_NAME},
+                "NAME != ?",
+                new String[]{exception},
                 null, null, null);
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
-            scenariosLights.add(cursor.getString(cursor.getColumnIndex(SCENARIOS_COLUMN_LIGHTS)));
+            scenariosName.add(cursor.getString(cursor.getColumnIndex(SCENARIOS_COLUMN_NAME)));
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return scenariosName;
+    }
+
+    public String getAllScenarioLights(String scenario) {
+        String scenariosLights = null;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(SCENARIOS_TABLE_NAME, new String[]{SCENARIOS_COLUMN_LIGHTS},
+                "NAME = ?",
+                new String[]{scenario},
+                null, null, null);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            scenariosLights = cursor.getString(cursor.getColumnIndex(SCENARIOS_COLUMN_LIGHTS));
             cursor.moveToNext();
         }
         cursor.close();
@@ -498,6 +518,30 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
 
         return scenariosState;
+    }
+
+    public Boolean getScenarioState(String scenario) {
+        Boolean scenarioState = null;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(SCENARIOS_TABLE_NAME, new String[]{SCENARIOS_COLUMN_STATE},
+                "NAME = ?",
+                new String[]{scenario},
+                null, null, null);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            if (cursor.getInt(cursor.getColumnIndex(SCENARIOS_COLUMN_STATE)) == 0) {
+                scenarioState = false;
+            } else {
+                scenarioState = true;
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return scenarioState;
     }
 
     public ArrayList<String> getLightsOpNameFromScenario(String scenario) {

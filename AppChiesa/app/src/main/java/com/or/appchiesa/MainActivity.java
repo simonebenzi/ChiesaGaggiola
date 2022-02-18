@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity
         ModifyScenarioDialogFragment.ModifyGroupDialogInterface,
         ModifyLightDialogFragment.ModifyLightDialogInterface,
         AddScenarioDialogFragment.AddScenarioDialogInterface,
-        AddLightDialogFragment.AddLightDialogInterface {
+        AddLightDialogFragment.AddLightDialogInterface,
+        ScenariosFragment.UpdateLightsRecycle {
 
     private boolean isRotate = false;
     private final FragmentManager fm = getSupportFragmentManager();
@@ -269,7 +270,11 @@ public class MainActivity extends AppCompatActivity
             if (state) {
                 aSwitch.switchLightOff(ipAddress, opName);
                 dbHelper.updateLightState(state, name, opName);
-                fragment.getMainRecyclerAdapter().notifyDataSetChanged();
+                try {
+                    fragment.getMainRecyclerAdapter().notifyDataSetChanged();
+                } catch (NullPointerException exception) {
+
+                }
             }
         }
     }
@@ -291,8 +296,23 @@ public class MainActivity extends AppCompatActivity
             if (!state) {
                 aSwitch.switchLightOn(ipAddress, opName);
                 dbHelper.updateLightState(state, name, opName);
-                fragment.getMainRecyclerAdapter().notifyDataSetChanged();
+                try {
+                    fragment.getMainRecyclerAdapter().notifyDataSetChanged();
+                } catch (NullPointerException exception) {
+
+                }
             }
+        }
+    }
+
+    @Override
+    public void updateLightsRecycle() {
+        ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
+        LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
+        try {
+            fragment.getMainRecyclerAdapter().notifyDataSetChanged();
+        } catch (NullPointerException exception) {
+
         }
     }
 }

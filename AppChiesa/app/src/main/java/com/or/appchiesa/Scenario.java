@@ -34,23 +34,24 @@ public class Scenario {
         return lightsOpName;
     }
 
+    // Tolto in tutti gli scenari CH.21
     private static ArrayList<String> chiesaAperta = new ArrayList<>(Arrays.asList(
-            "ch1", "ch1_1", "ch2", "ch4", "ch5", "ch10", "ch12a", "ch12b", "ch21"
+            "ch1", "ch1_1", "ch2", "ch4", "ch5", "ch10", "ch12a", "ch12b"
     ));
 
     private static ArrayList<String> messaFeriale = new ArrayList<>(Arrays.asList(
-            "ch1", "ch1_1", "ch2", "ch4", "ch5", "ch10", "ch12a", "ch12b", "ch21",
+            "ch1", "ch1_1", "ch2", "ch4", "ch5", "ch10", "ch12a", "ch12b",
             "ch6a", "ch9", "ch11", "ch15"
     ));
 
     private static ArrayList<String> messaDomenicale = new ArrayList<>(Arrays.asList(
-            "ch1", "ch1_1", "ch2", "ch4", "ch5", "ch10", "ch12a", "ch12b", "ch21",
+            "ch1", "ch1_1", "ch2", "ch4", "ch5", "ch10", "ch12a", "ch12b",
             "ch6a", "ch9", "ch11", "ch15",
             "ch6b", "ch3"
     ));
 
     private static ArrayList<String> messaSolenne = new ArrayList<>(Arrays.asList(
-            "ch1", "ch1_1", "ch2", "ch4", "ch5", "ch10", "ch12a", "ch12b", "ch21",
+            "ch1", "ch1_1", "ch2", "ch4", "ch5", "ch10", "ch12a", "ch12b",
             "ch6a", "ch9", "ch11", "ch15",
             "ch6b", "ch3",
             "ch6c", "ch7"
