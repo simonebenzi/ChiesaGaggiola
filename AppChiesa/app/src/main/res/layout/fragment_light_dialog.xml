@@ -35,13 +35,13 @@
         android:id="@+id/select_section_edit_text"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:hint="@string/select_section">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/select_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/select_section"
             android:focusable="false"/>
     </com.google.android.material.textfield.TextInputLayout>
 

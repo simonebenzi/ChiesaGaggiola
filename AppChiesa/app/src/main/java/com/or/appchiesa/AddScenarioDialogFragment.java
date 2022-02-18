@@ -153,7 +153,7 @@ public class AddScenarioDialogFragment extends AppCompatDialogFragment {
 
                 }
                 // set text on textView
-                selectLightsTextInput.setHint(stringBuilder.toString());
+                selectLightsTextInput.setText(stringBuilder.toString());
             }
         });
 
