@@ -72,9 +72,9 @@ const int bluePin = 27;
 
 void setup() {
   Serial.begin(9600);
-//  while (!Serial) {
-//    ; // wait for serial port to connect. Needed for native USB port only
-//  }
+  //  while (!Serial) {
+  //    ; // wait for serial port to connect. Needed for native USB port only
+  //  }
   // Initialize the output variables as outputs
   pinMode(ch1, OUTPUT);
   pinMode(ch1_1, OUTPUT);
@@ -99,7 +99,7 @@ void setup() {
   WiFiDrv::pinMode(greenPin, OUTPUT);
   WiFiDrv::pinMode(redPin, OUTPUT);
   WiFiDrv::pinMode(bluePin, OUTPUT);
-  
+
   // Set outputs to LOW
   digitalWrite(ch1, low);
   digitalWrite(ch1_1, low);
@@ -118,7 +118,7 @@ void setup() {
   digitalWrite(ch12b, low);
   digitalWrite(ch15, low);
   digitalWrite(ch30, low);
-  
+
   // check for the WiFi module:
   if (WiFi.status() == WL_NO_MODULE) {
     Serial.println("Communication with WiFi module failed!");
@@ -130,32 +130,38 @@ void setup() {
   if (fv < "1.0.0") {
     Serial.println("Please upgrade the firmware");
   }
-//
-//  // Set the Arduino's static IP address
-//  WiFi.config(ip);
+  //
+  //  // Set the Arduino's static IP address
+  //  WiFi.config(ip);
 
   // attempt to connect to Wifi network:
-  while (status != WL_CONNECTED) {
-    Serial.print("Attempting to connect to SSID: ");
-    Serial.println(ssid);
-    // Connect to WPA/WPA2 network. Change this line if using open or WEP network:
-    status = WiFi.begin(ssid, pass);
-
-    // wait 10 seconds for connection:
-    delay(10000);
-  }
+  attemptToConnect();
   server.begin();
   // you're connected now, so print out the status:
   printWifiStatus();
-
-  // Switch on the LED as red when board is connected
-  WiFiDrv::analogWrite(greenPin, 127);
-  WiFiDrv::analogWrite(redPin, 0);
-  WiFiDrv::analogWrite(bluePin, 255);
 }
 
 void loop() {
-  WiFiClient client = server.available();   // Listen for incoming clients
+  WiFiClient client;
+
+  // Switch on the LED as red when board is connected
+  if (WiFi.status() == WL_CONNECTED) {
+    WiFiDrv::analogWrite(greenPin, 127);
+    WiFiDrv::analogWrite(redPin, 0);
+    WiFiDrv::analogWrite(bluePin, 255);
+    client = server.available();   // Listen for incoming clients
+  }
+  else {
+    WiFiDrv::analogWrite(greenPin, 0);
+    WiFiDrv::analogWrite(redPin, 10);
+    WiFiDrv::analogWrite(bluePin, 0);
+
+    // try to re-connect to Wifi network:
+    attemptToConnect();
+    server.begin();
+    // you're connected now, so print out the status:
+    printWifiStatus();
+  }
 
   if (client) {                             // If a new client connects,
     Serial.println("New Client.");          // print a message out in the serial port
@@ -314,7 +320,7 @@ void loop() {
               ch6cState = false;
               digitalWrite(ch6c, low);
             }
-            
+
 
             // Display the HTML web page
             client.println("<!DOCTYPE html><html>");
@@ -339,7 +345,7 @@ void loop() {
               client.println("<p><a href=\"/26/off\"><button class=\"button button2\">OFF</button></a></p>");
             }
 
-            // Display current state, and ON/OFF buttons for GPIO 27 
+            // Display current state, and ON/OFF buttons for GPIO 27
             client.println("<p>GPIO 27 - State " + String(ch12bState) + "</p>");
             // If the output27State is off, it displays the ON button
             if (ch12bState == false) {
@@ -385,4 +391,19 @@ void printWifiStatus() {
   Serial.print("signal strength (RSSI):");
   Serial.print(rssi);
   Serial.println(" dBm");
+}
+
+// attempt to connect to Wifi network:
+void attemptToConnect() {
+
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print("Attempting to connect to SSID: ");
+    Serial.println(ssid);
+    // Connect to WPA/WPA2 network. Change this line if using open or WEP network:
+    status = WiFi.begin(ssid, pass);
+
+    // wait 10 seconds for connection:
+    delay(10000);
+  }
+
 }

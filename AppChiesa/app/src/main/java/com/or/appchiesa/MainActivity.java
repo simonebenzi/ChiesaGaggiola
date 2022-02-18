@@ -23,12 +23,6 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 
-//public class MainActivity extends AppCompatActivity
-//        implements AddLightDialogFragment.AddLightDialogInterface,
-//        AddGroupDialogFragment.AddGroupDialogInterface,
-//        ModifyGroupDialogFragment.ModifyGroupDialogInterface,
-//        ModifyLightDialogFragment.ModifyLightDialogInterface,
-//        GroupsFragment.SwitchFragment, TabLayoutMediator.TabConfigurationStrategy {
 public class MainActivity extends AppCompatActivity
         implements TabLayoutMediator.TabConfigurationStrategy,
         ScenariosFragment.SwitchFragment,
