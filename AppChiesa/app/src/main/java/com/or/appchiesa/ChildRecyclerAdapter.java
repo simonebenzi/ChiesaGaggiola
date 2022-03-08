@@ -12,8 +12,6 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.card.MaterialCardView;
-
 import java.util.ArrayList;
 
 public class ChildRecyclerAdapter
@@ -44,10 +42,18 @@ public class ChildRecyclerAdapter
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        CardView cv = (CardView) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_groups, parent, false);
-        if(type.equals("scenario"))
+        CardView cv = null;
+
+        if(type.equals("light")){
+            cv = (CardView) LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.card_lights, parent, false);
+        }
+        if(type.equals("scenario")){
+            cv = (CardView) LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.card_scenarios, parent, false);
             cv.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
+        }
+
         return new ViewHolder(cv);
     }
 

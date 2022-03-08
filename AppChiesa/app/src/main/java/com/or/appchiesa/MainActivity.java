@@ -30,7 +30,8 @@ public class MainActivity extends AppCompatActivity
         ModifyLightDialogFragment.ModifyLightDialogInterface,
         AddScenarioDialogFragment.AddScenarioDialogInterface,
         AddLightDialogFragment.AddLightDialogInterface,
-        ScenariosFragment.UpdateLightsRecycle {
+        ScenariosFragment.UpdateLightsRecycle,
+        PasswordDialogFragment.PasswordDialogInterface {
 
     private boolean isRotate = false;
     private final FragmentManager fm = getSupportFragmentManager();
@@ -99,6 +100,7 @@ public class MainActivity extends AppCompatActivity
                 displayLightDialog();
                 ViewAnimation.showOut(v);
                 ViewAnimation.showOut(addGroupFab);
+                ViewAnimation.showOut(updateIpAddressFab);
                 isRotate = ViewAnimation.rotateFloatingButton(mainFab, !isRotate);
 
             }
@@ -110,6 +112,7 @@ public class MainActivity extends AppCompatActivity
                 displayAddGroupDialog();
                 ViewAnimation.showOut(v);
                 ViewAnimation.showOut(addLightFab);
+                ViewAnimation.showOut(updateIpAddressFab);
                 isRotate = ViewAnimation.rotateFloatingButton(mainFab, !isRotate);
             }
         });
@@ -119,7 +122,8 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 displayUpdateIpAddressDialog();
                 ViewAnimation.showOut(v);
-                ViewAnimation.showOut(updateIpAddressFab);
+                ViewAnimation.showOut(addLightFab);
+                ViewAnimation.showOut(addGroupFab);
                 isRotate = ViewAnimation.rotateFloatingButton(mainFab, !isRotate);
             }
         });
@@ -203,8 +207,19 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void modifyGroupName(String newName, int position) {
+    public void modifyGroupName(String newName, int position, boolean[] selectedLights) {
         String oldName = dbHelper.getAllScenariosName().get(position);
+        // Get selected lights
+        ArrayList<String> lightsOpName = dbHelper.getAllLightsOpNameFromSection();
+        ArrayList<String> selectedLightsOpNameList = new ArrayList<>();
+        for (int i = 0; i < selectedLights.length; i++) {
+            if (selectedLights[i])
+                selectedLightsOpNameList.add(lightsOpName.get(i));
+        }
+        String[] selectedLightsOpNameArray = (String[]) selectedLightsOpNameList
+                .toArray(new String[selectedLightsOpNameList.size()]);
+
+        dbHelper.updateScenarioLights(oldName, selectedLightsOpNameArray);
         dbHelper.updateScenarioName(oldName, newName);
         ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
         ScenariosFragment fragment = (ScenariosFragment) adapter.getFragments().get(0);
@@ -212,15 +227,24 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void modifyLightDetails(String newLightName, int position, String section) {
+    public void modifyLightDetails(String newLightName, int position, String oldSection, String newSection, String newLightOpName) {
         String name, opName;
-        ArrayList<String> lightsName = dbHelper.getAllLightsNameFromSection(section);
-        ArrayList<String> lightsOpName = dbHelper.getAllLightsOpNameFromSection(section);
+        ArrayList<String> lightsName = dbHelper.getAllLightsNameFromSection(oldSection);
+        ArrayList<String> lightsOpName = dbHelper.getAllLightsOpNameFromSection(oldSection);
         name = lightsName.get(position);
         opName = lightsOpName.get(position);
 
+        dbHelper.updateLightSection(name, newSection);
         dbHelper.updateLightName(name, newLightName, opName);
+        dbHelper.updateLightOpName(name, newLightOpName);
 
+        ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
+        LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
+        fragment.getMainRecyclerAdapter().notifyDataSetChanged();
+    }
+
+    @Override
+    public void updateLightRecycler() {
         ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
         LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
         fragment.getMainRecyclerAdapter().notifyDataSetChanged();

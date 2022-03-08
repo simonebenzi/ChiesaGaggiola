@@ -47,21 +47,24 @@
                 android:id="@+id/all_on_chip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/open_all"
-                app:chipIcon="@drawable/ic_lightbulb_multiple"
                 android:layout_marginRight="30dp"
-                android:onClick="onClickOpenAll" />
+                android:onClick="onClickOpenAll"
+                android:text="@string/open_all"
+                android:textSize="24sp"
+                app:chipIcon="@drawable/ic_lightbulb_multiple" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/all_off_chip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="onClickCloseAll"
                 android:text="@string/close_all"
-                app:chipIcon="@drawable/ic_lightbulb_multiple_off"
-                android:onClick="onClickCloseAll"/>
+                android:textSize="24sp"
+                app:chipIcon="@drawable/ic_lightbulb_multiple_off" />
         </LinearLayout>
 
         <com.google.android.material.tabs.TabLayout
+            style="@style/MyTabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tab_layout"/>

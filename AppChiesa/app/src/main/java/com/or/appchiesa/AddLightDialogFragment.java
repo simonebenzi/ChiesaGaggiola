@@ -21,9 +21,9 @@ public class AddLightDialogFragment extends AppCompatDialogFragment {
     private AddLightDialogInterface dialogInterface;
     private DBHelper dbHelper;
     private String selectedSection;
-    private TextInputLayout textInputLayoutName;
-    private TextInputLayout textInputLayoutOpName;
-    private TextInputLayout textInputLayoutPsw;
+    private TextInputLayout textInputLayoutName, textInputLayoutOpName, textInputLayoutPsw;
+    private TextInputEditText selectSection;
+    private int clickedItem;
 
     interface AddLightDialogInterface {
         void getLightInfos(String lightName, String opName, String section);
@@ -38,7 +38,7 @@ public class AddLightDialogFragment extends AppCompatDialogFragment {
         textInputLayoutName = view.findViewById(R.id.light_name_edit_text);
         textInputLayoutOpName = view.findViewById(R.id.op_name_edit_text);
         textInputLayoutPsw = view.findViewById(R.id.light_psw_ed);
-        TextInputEditText selectSection = view.findViewById(R.id.select_section);
+        selectSection = view.findViewById(R.id.select_section);
         dbHelper = new DBHelper(getContext());
         selectedSection = "";
 
@@ -119,11 +119,16 @@ public class AddLightDialogFragment extends AppCompatDialogFragment {
         ArrayList<String> sectionsName = dbHelper.getAllSectionsName();
         String[] sectionsArray = new String[sectionsName.size()];
 
+        if (selectedSection.equals(""))
+            clickedItem = -1;
+
         for (int i = 0; i < sectionsName.size(); i++) {
             sectionsArray[i] = sectionsName.get(i);
+            if (sectionsName.get(i).equals(selectedSection))
+                clickedItem = i;
         }
 
-        selectBuilder.setSingleChoiceItems(sectionsArray, -1, new DialogInterface.OnClickListener() {
+        selectBuilder.setSingleChoiceItems(sectionsArray, clickedItem, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 selectedSection = sectionsArray[which];
@@ -133,7 +138,7 @@ public class AddLightDialogFragment extends AppCompatDialogFragment {
         selectBuilder.setPositiveButton("Aggiungi", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                selectLightsTextInput.setText(selectedSection);
             }
         });
 

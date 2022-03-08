@@ -14,12 +14,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01169386-7320-49fb-9141-1a339e9bdf78" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/card_lights.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/AddLightDialogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/AddLightDialogFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/AddScenarioDialogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/AddScenarioDialogFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_light_dialog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_light_dialog.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ChildRecyclerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ChildRecyclerAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/DBHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Light.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Light.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/LightsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/LightsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ModifyLightDialogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ModifyLightDialogFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ModifyScenarioDialogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ModifyScenarioDialogFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/card_groups.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/section_row.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/section_row.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/group_popup_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/group_popup_menu.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArduinoChiesaGET/ArduinoChiesaGET.ino" beforeDir="false" afterPath="$PROJECT_DIR$/../ArduinoChiesaGET/ArduinoChiesaGET.ino" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +47,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="resourceFile" />
         <option value="layoutResourceFile" />
         <option value="Class" />
       </list>
@@ -51,7 +64,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="VirtualDevicePath@C:\Users\simob\.android\avd\Nexus_7_API_29.avd" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2022-02-09T00:04:27.793849500Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2022-03-07T23:53:45.136563300Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android-custom-viewC:/Users/simob/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
@@ -170,18 +183,19 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="690" y="263" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1644505083083" />
-    <state x="92" y="92" width="1736" height="848" key="AVDManager" timestamp="1642355046683">
+    <state x="92" y="92" width="1736" height="848" key="AVDManager" timestamp="1646697294270">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="92" y="92" width="1736" height="848" key="AVDManager/0.0.1920.1032@0.0.1920.1032" timestamp="1642355046683" />
+    <state x="92" y="92" width="1736" height="848" key="AVDManager/0.0.1920.1032@0.0.1920.1032" timestamp="1646697294270" />
     <state x="540" y="271" key="AndroidCreateResourceDirectoryDialog" timestamp="1639358842533">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="540" y="271" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1639358842533" />
-    <state x="60" y="274" key="AndroidCreateResourceFileDialog" timestamp="1644541771794">
+    <state x="575" y="247" key="AndroidCreateResourceFileDialog" timestamp="1646702946497">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="60" y="274" key="AndroidCreateResourceFileDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1644541771794" />
+    <state x="48" y="217" key="AndroidCreateResourceFileDialog/0.0.1536.816@0.0.1536.816" timestamp="1645204605026" />
+    <state x="575" y="247" key="AndroidCreateResourceFileDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1646702946497" />
     <state x="954" y="317" key="AndroidCreateXmlResourceDialog" timestamp="1644541634110">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
@@ -194,26 +208,26 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="740" y="271" key="FileChooserDialogImpl/0.0.1920.1032@0.0.1920.1032" timestamp="1645149567117" />
-    <state width="1877" height="327" key="GridCell.Tab.0.bottom" timestamp="1645150584364">
+    <state width="1877" height="327" key="GridCell.Tab.0.bottom" timestamp="1646704984644">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state width="1493" height="197" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1644591316705" />
-    <state width="1877" height="327" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1645150584364" />
-    <state width="1877" height="327" key="GridCell.Tab.0.center" timestamp="1645150584363">
+    <state width="1877" height="327" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1646704984644" />
+    <state width="1877" height="327" key="GridCell.Tab.0.center" timestamp="1646704984644">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state width="1493" height="197" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1644591316704" />
-    <state width="1877" height="327" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1645150584363" />
-    <state width="1877" height="327" key="GridCell.Tab.0.left" timestamp="1645150584363">
+    <state width="1877" height="327" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1646704984644" />
+    <state width="1877" height="327" key="GridCell.Tab.0.left" timestamp="1646704984644">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state width="1493" height="197" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1644591316703" />
-    <state width="1877" height="327" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1645150584363" />
-    <state width="1877" height="327" key="GridCell.Tab.0.right" timestamp="1645150584363">
+    <state width="1877" height="327" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1646704984644" />
+    <state width="1877" height="327" key="GridCell.Tab.0.right" timestamp="1646704984644">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state width="1493" height="197" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1644591316705" />
-    <state width="1877" height="327" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1645150584363" />
+    <state width="1877" height="327" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1646704984644" />
     <state x="776" y="294" key="chooseDestDirectoryDialog" timestamp="1643367670911">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>

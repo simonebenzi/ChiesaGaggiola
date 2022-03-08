@@ -23,6 +23,7 @@ public class AddScenarioDialogFragment extends AppCompatDialogFragment {
     private AddScenarioDialogInterface dialogInterface;
     private DBHelper dbHelper;
     private boolean[] selectedLights;
+    private boolean resetSelection;
     private TextInputLayout textInputLayoutName;
     private TextInputLayout textInputLayoutPsw;
     private TextInputEditText selectLights;
@@ -42,6 +43,8 @@ public class AddScenarioDialogFragment extends AppCompatDialogFragment {
         textInputLayoutPsw = (TextInputLayout) view.findViewById(R.id.group_psw_ed);
         selectLights = view.findViewById(R.id.select_lights);
         dbHelper = new DBHelper(getContext());
+
+        resetSelection = true;
 
         selectLights.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +93,7 @@ public class AddScenarioDialogFragment extends AppCompatDialogFragment {
                         dialogInterface.getGroupDetails(textInputLayoutName
                                 .getEditText().getText().toString(), selectedLights);
                         wantToCloseDialog = true;
+                        resetSelection = true;
                     }
                     else{
                         String message = "Password errata! Riprovare!";
@@ -111,9 +115,12 @@ public class AddScenarioDialogFragment extends AppCompatDialogFragment {
         ArrayList<Integer> lightsList = new ArrayList<>();
         ArrayList<String> lightsName = dbHelper.getAllLightsNameFromSection();
         String[] lightsArray = new String[lightsName.size()];
-        selectedLights = new boolean[lightsName.size()];
-        for(int i = 0; i < selectedLights.length; i++){
-            selectedLights[i] = false;
+        if(resetSelection) {
+            selectedLights = new boolean[lightsName.size()];
+            for(int i = 0; i < selectedLights.length; i++){
+                selectedLights[i] = false;
+            }
+            resetSelection = false;
         }
         for (int i = 0; i < lightsName.size(); i++) {
             lightsArray[i] = lightsName.get(i);

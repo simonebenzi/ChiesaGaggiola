@@ -5,9 +5,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -84,21 +86,18 @@ public class LightsFragment extends Fragment {
 
             public void onItemClick(int position, View menuImage, String section) {
                 PopupMenu popupMenu = new PopupMenu(getContext(), menuImage);
-                popupMenu.inflate(R.menu.group_popup_menu);
+                popupMenu.inflate(R.menu.light_popup_menu);
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.modify_item:
                                 displayModifyLightDialog(position, section);
-                                //Toast.makeText(getContext(), "Rename light clicked", Toast.LENGTH_LONG).show();
                                 break;
                             case R.id.delete_item:
                                 ArrayList<String> lightsName = dbHelper.getAllLightsNameFromSection();
                                 String lightName = lightsName.get(position);
-                                dbHelper.deleteLight(db, lightName);
-                                mainRecyclerAdapter.notifyDataSetChanged();
-                                //Toast.makeText(getContext(), "Delete light clicked", Toast.LENGTH_LONG).show();
+                                displayPasswordDialog(lightName, db);
                                 break;
                         }
                         return false;
@@ -107,15 +106,49 @@ public class LightsFragment extends Fragment {
                 popupMenu.show();
             }
         });
+
+//        mainRecyclerView.setNestedScrollingEnabled(false);
+
+        RecyclerView.OnItemTouchListener scrollTouchListener = new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                int action = e.getAction();
+                switch (action){
+                    case MotionEvent.ACTION_MOVE:
+                        rv.getParent().requestDisallowInterceptTouchEvent(true);
+                        break;
+                }
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        };
+
+        mainRecyclerView.addOnItemTouchListener(scrollTouchListener);
+
         mainRecyclerView.setAdapter(mainRecyclerAdapter);
         mainRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
         return mainRecyclerView;
     }
 
-    public void displayModifyLightDialog(int position, String section) {
+    private void displayModifyLightDialog(int position, String section) {
         ModifyLightDialogFragment modifyLightDialogFragment =
                 new ModifyLightDialogFragment(position, section);
         modifyLightDialogFragment.show(getFragmentManager(), "modify_light_dialog");
+    }
+
+    private void displayPasswordDialog(String light, SQLiteDatabase db) {
+        PasswordDialogFragment passwordDialogFragment =
+                new PasswordDialogFragment(light, db);
+        passwordDialogFragment.show(getFragmentManager(), "modify_light_dialog");
     }
 }

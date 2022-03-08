@@ -35,7 +35,8 @@ public class DBHelper extends SQLiteOpenHelper {
             "Cappelle",
             "Navata",
             "Chiesa",
-            "Presbiterio"
+            "Presbiterio",
+            "Coro"
     ));
 
     private HashMap hashMap;
@@ -228,6 +229,27 @@ public class DBHelper extends SQLiteOpenHelper {
                 new String[]{oldName, opName});
     }
 
+    public void updateLightOpName(String name, String opName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(LIGHTS_COLUMN_OPNAME, opName);
+        db.update(LIGHTS_TABLE_NAME,
+                contentValues,
+                "NAME = ?",
+                new String[]{name});
+    }
+
+
+    public void updateLightSection(String lightName, String section) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(LIGHTS_COLUMN_SECTION, section);
+        db.update(LIGHTS_TABLE_NAME,
+                contentValues,
+                "NAME = ?",
+                new String[]{lightName});
+    }
+
     public void updateScenarioName(String oldName, String newName) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -236,6 +258,17 @@ public class DBHelper extends SQLiteOpenHelper {
                 contentValues,
                 "NAME = ?",
                 new String[]{oldName});
+    }
+
+    public void updateScenarioLights(String name, String[] lights) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        String lightsStr = convertArrayToString(lights);
+        contentValues.put(SCENARIOS_COLUMN_LIGHTS, lightsStr);
+        db.update(SCENARIOS_TABLE_NAME,
+                contentValues,
+                "NAME = ?",
+                new String[]{name});
     }
 
     public ArrayList<String> getAllSectionsName() {

@@ -12,10 +12,10 @@ IPAddress ip(192, 168, 1, 124);
 //const char* pass = "12RD23JE7I"; //OR+
 //const char* ssid = "TIM-18143925"; // CASA
 //const char* pass = "CN2ltmwLXDvmVfWtC1ogJU95";
-const char* ssid = "Mi 10T"; // CELL
-const char* pass = "cellrouter";
-//const char* ssid = "GaggiolaC-LC"; // CHIESA
-//const char* pass = "FraGiacomo1";
+//const char* ssid = "Mi 10T"; // CELL
+//const char* pass = "cellrouter";
+const char* ssid = "GaggiolaC-LC"; // CHIESA
+const char* pass = "FraGiacomo1";
 int status = WL_IDLE_STATUS;
 
 // Logic changed in logic-low
@@ -131,14 +131,17 @@ void setup() {
     Serial.println("Please upgrade the firmware");
   }
   //
-  //  // Set the Arduino's static IP address
-  //  WiFi.config(ip);
+  // Set the Arduino's static IP address
+  WiFi.config(ip);
 
   // attempt to connect to Wifi network:
   attemptToConnect();
   server.begin();
   // you're connected now, so print out the status:
   printWifiStatus();
+  WiFiDrv::analogWrite(greenPin, 127);
+  WiFiDrv::analogWrite(redPin, 0);
+  WiFiDrv::analogWrite(bluePin, 255);
 }
 
 void loop() {
@@ -158,9 +161,10 @@ void loop() {
 
     // try to re-connect to Wifi network:
     attemptToConnect();
-    server.begin();
+    //server.begin();
     // you're connected now, so print out the status:
     printWifiStatus();
+    //client = server.available();
   }
 
   if (client) {                             // If a new client connects,
