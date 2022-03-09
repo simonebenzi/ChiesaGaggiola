@@ -12,6 +12,7 @@ import android.widget.PopupMenu;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,12 +72,12 @@ public class LightsFragment extends Fragment {
                 opName = lightsOpName.get(position);
                 name = lightsName.get(position);
 
-                if(!state){
+                if (!state) {
                     drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb_on);
                     imageView.setImageDrawable(drawable);
                     aSwitch.switchLightOn(ipAddress, opName);
                     dbHelper.updateLightState(state, name, opName);
-                } else{
+                } else {
                     drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb);
                     imageView.setImageDrawable(drawable);
                     aSwitch.switchLightOff(ipAddress, opName);
@@ -87,7 +88,7 @@ public class LightsFragment extends Fragment {
             public void onItemClick(int position, View menuImage, String section) {
                 PopupMenu popupMenu = new PopupMenu(getContext(), menuImage);
                 popupMenu.inflate(R.menu.light_popup_menu);
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
@@ -95,7 +96,8 @@ public class LightsFragment extends Fragment {
                                 displayModifyLightDialog(position, section);
                                 break;
                             case R.id.delete_item:
-                                ArrayList<String> lightsName = dbHelper.getAllLightsNameFromSection();
+                                ArrayList<String> lightsName = dbHelper
+                                        .getAllLightsNameFromSection(section);
                                 String lightName = lightsName.get(position);
                                 displayPasswordDialog(lightName, db);
                                 break;
@@ -113,7 +115,7 @@ public class LightsFragment extends Fragment {
             @Override
             public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
                 int action = e.getAction();
-                switch (action){
+                switch (action) {
                     case MotionEvent.ACTION_MOVE:
                         rv.getParent().requestDisallowInterceptTouchEvent(true);
                         break;
@@ -148,7 +150,7 @@ public class LightsFragment extends Fragment {
 
     private void displayPasswordDialog(String light, SQLiteDatabase db) {
         PasswordDialogFragment passwordDialogFragment =
-                new PasswordDialogFragment(light, db);
-        passwordDialogFragment.show(getFragmentManager(), "modify_light_dialog");
+                new PasswordDialogFragment(light, "light", db);
+        passwordDialogFragment.show(getFragmentManager(), "password_dialog");
     }
 }

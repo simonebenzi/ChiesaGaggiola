@@ -96,8 +96,7 @@ public class ScenariosFragment extends Fragment {
                             case R.id.delete_item:
                                 ArrayList<String> scenariosName = dbHelper.getAllScenariosName();
                                 String scenarioName = scenariosName.get(position);
-                                dbHelper.deleteScenario(db, scenarioName);
-                                getAdapter().updateRecycle("group");
+                                displayPasswordDialog(scenarioName, db);
                                 break;
                         }
                         return false;
@@ -121,6 +120,12 @@ public class ScenariosFragment extends Fragment {
         ModifyScenarioDialogFragment modifyScenarioDialogFragment =
                 new ModifyScenarioDialogFragment(position);
         modifyScenarioDialogFragment.show(getFragmentManager(), "modify_group_dialog");
+    }
+
+    private void displayPasswordDialog(String scenario, SQLiteDatabase db) {
+        PasswordDialogFragment passwordDialogFragment =
+                new PasswordDialogFragment(scenario, "scenario", db);
+        passwordDialogFragment.show(getFragmentManager(), "password_dialog");
     }
 
     private void onClickScenario(int position, ImageView imageView) {

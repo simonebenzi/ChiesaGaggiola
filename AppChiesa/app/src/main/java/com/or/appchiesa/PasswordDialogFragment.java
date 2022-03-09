@@ -9,16 +9,12 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-
-import java.util.ArrayList;
 
 public class PasswordDialogFragment extends AppCompatDialogFragment {
 
@@ -26,16 +22,19 @@ public class PasswordDialogFragment extends AppCompatDialogFragment {
     private DBHelper dbHelper;
     private TextInputLayout textInputLayoutPsw;
 
-    private String light;
+    private String type;
+    private String item;
     private SQLiteDatabase db;
 
     interface PasswordDialogInterface {
         void updateLightRecycler();
+        void updateScenarioRecycler();
     }
 
-    public PasswordDialogFragment(String light, SQLiteDatabase db) {
-        this.light = light;
+    public PasswordDialogFragment(String item, String type, SQLiteDatabase db) {
+        this.item = item;
         this.db = db;
+        this.type = type;
     }
 
     @Override
@@ -80,8 +79,14 @@ public class PasswordDialogFragment extends AppCompatDialogFragment {
                     String insertedPsw = textInputLayoutPsw.getEditText().getText().toString();
                     String storedPsw = dbHelper.getPassword();
                     if (insertedPsw.equals(storedPsw)) {
-                        dbHelper.deleteLight(db, light);
-                        dialogInterface.updateLightRecycler();
+                        if (type.equals("light")){
+                            dbHelper.deleteLight(db, item);
+                            dialogInterface.updateLightRecycler();
+                        }
+                        else if(type.equals("scenario")){
+                            dbHelper.deleteScenario(db, item);
+                            dialogInterface.updateScenarioRecycler();
+                        }
                         wantToCloseDialog = true;
                     } else {
                         String message = "Password errata! Riprovare!";

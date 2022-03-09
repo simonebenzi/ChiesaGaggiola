@@ -302,8 +302,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_bulb_group_on" />
-                            <entry key="sourceFile" value="C:\Users\simob\Desktop\Casa Mambo\icone\bulb_group_on.svg" />
+                            <entry key="outputName" value="ic_bulb" />
+                            <entry key="sourceFile" value="C:\Users\simob\Desktop\bulb.svg" />
                           </map>
                         </option>
                       </PersistentState>

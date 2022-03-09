@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity
 
         // Insert overflow menu un the toolbar
         MaterialToolbar toolbar = (MaterialToolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         // Hide mini-FAB (add light/group buttons)
         final FloatingActionButton addGroupFab = (FloatingActionButton) findViewById(R.id.add_group);
@@ -329,6 +328,17 @@ public class MainActivity extends AppCompatActivity
         LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
         try {
             fragment.getMainRecyclerAdapter().notifyDataSetChanged();
+        } catch (NullPointerException exception) {
+
+        }
+    }
+
+    @Override
+    public void updateScenarioRecycler() {
+        ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
+        ScenariosFragment fragment = (ScenariosFragment) adapter.getFragments().get(0);
+        try {
+            fragment.getAdapter().updateRecycle("group");
         } catch (NullPointerException exception) {
 
         }
