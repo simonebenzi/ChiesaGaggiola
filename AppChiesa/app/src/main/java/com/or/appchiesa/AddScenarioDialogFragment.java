@@ -148,17 +148,26 @@ public class AddScenarioDialogFragment extends AppCompatDialogFragment {
                 StringBuilder stringBuilder = new StringBuilder();
 
                 for (int j = 0; j < lightsList.size(); j++) {
-                    // Concat array value
-                    stringBuilder.append(lightsArray[lightsList.get(j)]);
                     // Set true in selected lights
                     selectedLights[lightsList.get(j)] = true;
+                }
+                ArrayList<String> lightsMemory = new ArrayList<>();
+                // Concat array value
+                for (int i = 0; i < selectedLights.length; i++) {
+                    if (selectedLights[i]) {
+                        lightsMemory.add(lightsArray[i]);
+                    }
+                }
+
+                for (int i = 0; i < lightsMemory.size(); i++) {
+                    stringBuilder.append(lightsMemory.get(i));
                     // Check condition
-                    if (j != lightsList.size() - 1) {
+                    if (i != lightsMemory.size() - 1) {
                         // When j value not equal to lights list size - 1 add comma
                         stringBuilder.append(", ");
                     }
-
                 }
+
                 // set text on textView
                 selectLightsTextInput.setText(stringBuilder.toString());
             }

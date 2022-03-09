@@ -14,13 +14,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01169386-7320-49fb-9141-1a339e9bdf78" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/LightsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/LightsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/PasswordDialogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/PasswordDialogFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ScenariosFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ScenariosFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_bulb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_bulb.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/AddScenarioDialogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/AddScenarioDialogFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
