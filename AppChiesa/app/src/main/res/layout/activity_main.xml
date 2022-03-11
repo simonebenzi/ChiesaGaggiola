@@ -99,7 +99,7 @@
         app:layout_constraintBottom_toTopOf="@+id/update_ip"
         app:layout_constraintEnd_toEndOf="@+id/update_ip"
         app:layout_constraintStart_toStartOf="@+id/update_ip"
-        app:srcCompat="@drawable/ic_bulb" />
+        app:srcCompat="@drawable/ic_light_icon" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/update_ip"

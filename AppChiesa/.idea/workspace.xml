@@ -15,7 +15,6 @@
   <component name="ChangeListManager">
     <list default="true" id="01169386-7320-49fb-9141-1a339e9bdf78" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/section_row.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/section_row.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
