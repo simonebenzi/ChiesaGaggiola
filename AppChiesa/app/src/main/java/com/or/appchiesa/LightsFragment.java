@@ -59,7 +59,6 @@ public class LightsFragment extends Fragment {
         this.mainRecyclerAdapter.setClickListener(new MainRecyclerAdapter.ClickListener() {
             @Override
             public void onClickLight(int position, ImageView imageView, String sectionName) {
-                Drawable drawable;
                 Boolean state;
                 String opName, ipAddress, name;
 
@@ -73,15 +72,9 @@ public class LightsFragment extends Fragment {
                 name = lightsName.get(position);
 
                 if (!state) {
-                    drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb_on);
-                    imageView.setImageDrawable(drawable);
-                    aSwitch.switchLightOn(ipAddress, opName);
-                    dbHelper.updateLightState(state, name, opName);
+                    aSwitch.switchLightOn(ipAddress, name, opName, imageView);
                 } else {
-                    drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb);
-                    imageView.setImageDrawable(drawable);
-                    aSwitch.switchLightOff(ipAddress, opName);
-                    dbHelper.updateLightState(state, name, opName);
+                    aSwitch.switchLightOff(ipAddress, name, opName, imageView);
                 }
             }
 

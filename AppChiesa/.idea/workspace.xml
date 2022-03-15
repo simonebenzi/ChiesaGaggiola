@@ -15,13 +15,17 @@
   <component name="ChangeListManager">
     <list default="true" id="01169386-7320-49fb-9141-1a339e9bdf78" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/LightsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/LightsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ScenariosFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/ScenariosFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Switch.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Switch.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\simob\.android\avd\Nexus_7_API_29.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@HA1BXTAA]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -72,15 +76,15 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\simob\Desktop\OR+\ProgettoChiesa\AppChiesa\app\src\main\res\drawable" />
-      <recent name="C:\Users\simob\Desktop\AppChiesa\app\src\main\res\layout" />
-      <recent name="C:\Users\simob\Desktop\AppChiesa\app\src\main\java\com\or\appchiesa" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\simob\Desktop\OR+\ProgettoChiesa\AppChiesa\app\src\main\res\drawable" />
       <recent name="C:\Users\simob\Desktop\AppChiesa\app\src\main\res\menu" />
       <recent name="C:\Users\simob\Desktop\AppChiesa\app\src\main\res\layout" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\simob\Desktop\OR+\ProgettoChiesa\AppChiesa\app\src\main\res\drawable" />
+      <recent name="C:\Users\simob\Desktop\AppChiesa\app\src\main\res\layout" />
+      <recent name="C:\Users\simob\Desktop\AppChiesa\app\src\main\java\com\or\appchiesa" />
     </key>
   </component>
   <component name="RunManager">
@@ -204,26 +208,26 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="740" y="271" key="FileChooserDialogImpl/0.0.1920.1032@0.0.1920.1032" timestamp="1646869859524" />
-    <state width="1877" height="327" key="GridCell.Tab.0.bottom" timestamp="1646704984644">
+    <state width="1877" height="277" key="GridCell.Tab.0.bottom" timestamp="1647377275993">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state width="1493" height="197" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1644591316705" />
-    <state width="1877" height="327" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1646704984644" />
-    <state width="1877" height="327" key="GridCell.Tab.0.center" timestamp="1646704984644">
+    <state width="1877" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1647377275993" />
+    <state width="1877" height="277" key="GridCell.Tab.0.center" timestamp="1647377275992">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state width="1493" height="197" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1644591316704" />
-    <state width="1877" height="327" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1646704984644" />
-    <state width="1877" height="327" key="GridCell.Tab.0.left" timestamp="1646704984644">
+    <state width="1877" height="277" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1647377275992" />
+    <state width="1877" height="277" key="GridCell.Tab.0.left" timestamp="1647377275992">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state width="1493" height="197" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1644591316703" />
-    <state width="1877" height="327" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1646704984644" />
-    <state width="1877" height="327" key="GridCell.Tab.0.right" timestamp="1646704984644">
+    <state width="1877" height="277" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1647377275992" />
+    <state width="1877" height="277" key="GridCell.Tab.0.right" timestamp="1647377275992">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state width="1493" height="197" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1644591316705" />
-    <state width="1877" height="327" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1646704984644" />
+    <state width="1877" height="277" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1647377275992" />
     <state x="776" y="294" key="chooseDestDirectoryDialog" timestamp="1643367670911">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>

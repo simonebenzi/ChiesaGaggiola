@@ -142,58 +142,19 @@ public class ScenariosFragment extends Fragment {
         String ipAddress = dbHelper.getIpAddress();
 
         if (!state) {
-            for (int i = 0; i < scenarioLightsList.size(); i++) {
-                Boolean lightState = dbHelper.getLightState(scenarioLightsList.get(i));
-                if (!lightState)
-                    dbHelper.updateLightState(lightState, scenarioLightsList.get(i));
-            }
-            aSwitch.switchScenarioOn(scenarioLightsList, ipAddress);
+            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb_group_on);
+            imageView.setImageDrawable(drawable);
             dbHelper.updateScenarioState(state, scenario);
-            deactivateOtherScenarios(scenario, ipAddress);
-        } else {
-            for (int i = 0; i < scenarioLightsList.size(); i++) {
-                Boolean lightState = dbHelper.getLightState(scenarioLightsList.get(i));
-                if (lightState)
-                    dbHelper.updateLightState(lightState, scenarioLightsList.get(i));
-            }
-            aSwitch.switchScenarioOff(scenarioLightsList, ipAddress);
-            dbHelper.updateScenarioState(state, scenario);
+            aSwitch.switchScenarioOn(scenario, scenarioLightsList, ipAddress, imageView);
             getAdapter().updateRecycle("group");
+        } else {
+            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb_group);
+            imageView.setImageDrawable(drawable);
+            dbHelper.updateScenarioState(state, scenario);
+            aSwitch.switchScenarioOff(scenario, scenarioLightsList, ipAddress, imageView);
         }
 
         updateLightsRecycleInter.updateLightsRecycle();
-    }
-
-    private void deactivateOtherScenarios(String scenario, String ipAddress) {
-
-        // Get all clicked scenario lights
-        String[] clickedScenarioLightsArray = convertStringToArray(dbHelper.
-                getAllScenarioLights(scenario));
-        ArrayList<String> clickedScenarioLights = new ArrayList<>(Arrays.
-                asList(clickedScenarioLightsArray));
-
-        // Get all scenarios
-        ArrayList<String> scenariosList = dbHelper.getScenariosExceptOne(scenario);
-        ArrayList<String> toSwitchOffLights = new ArrayList<>();
-
-        // Update only scenarios that are not in common
-        for (int i = 0; i < scenariosList.size(); i++) {
-            String scenarioName = scenariosList.get(i);
-            dbHelper.updateScenarioState(true, scenarioName);
-            String[] scenarioLightsArray = convertStringToArray(dbHelper.
-                    getAllScenarioLights(scenarioName));
-            ArrayList<String> scenarioLights = new ArrayList<>(Arrays.asList(scenarioLightsArray));
-            for (int j = 0; j < scenarioLights.size(); j++) {
-                if(!(clickedScenarioLights.contains(scenarioLights.get(j)))) {
-                    toSwitchOffLights.add(scenarioLights.get(j));
-                    dbHelper.updateLightState(true, scenarioLights.get(j));
-                }
-            }
-        }
-
-        // Switch off lights and update RecycleView
-        aSwitch.switchScenarioOff(toSwitchOffLights, ipAddress);
-        getAdapter().updateRecycle("group");
     }
 
     private static String[] convertStringToArray(String str) {

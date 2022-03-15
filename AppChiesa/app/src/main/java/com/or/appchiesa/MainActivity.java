@@ -285,8 +285,8 @@ public class MainActivity extends AppCompatActivity
             LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
 
             if (state) {
-                aSwitch.switchLightOff(ipAddress, opName);
-                dbHelper.updateLightState(state, name, opName);
+//                aSwitch.switchLightOff(ipAddress, opName);
+//                dbHelper.updateLightState(state, name, opName);
                 try {
                     fragment.getMainRecyclerAdapter().notifyDataSetChanged();
                 } catch (NullPointerException exception) {
@@ -311,8 +311,8 @@ public class MainActivity extends AppCompatActivity
             LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
 
             if (!state) {
-                aSwitch.switchLightOn(ipAddress, opName);
-                dbHelper.updateLightState(state, name, opName);
+//                aSwitch.switchLightOn(ipAddress, opName);
+//                dbHelper.updateLightState(state, name, opName);
                 try {
                     fragment.getMainRecyclerAdapter().notifyDataSetChanged();
                 } catch (NullPointerException exception) {
