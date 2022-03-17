@@ -1,3 +1,5 @@
+#include <WiFiNINA.h>
+
 /* Controllo Relè App Chiesa Gaggiola (La Spezia) */
 
 // Load Wi-Fi library
@@ -8,19 +10,13 @@
 IPAddress ip(192, 168, 1, 124);
 
 // Wifi network credentials
-// const char* ssid     = "FASTWEB-7N6SPT"; //OR+
-//const char* pass = "12RD23JE7I"; //OR+
-const char* ssid = "TIM-18143925"; // CASA
-const char* pass = "CN2ltmwLXDvmVfWtC1ogJU95";
-//const char* ssid = "Mi 10T"; // CELL
-//const char* pass = "cellrouter";
-//const char* ssid = "GaggiolaC-LC"; // CHIESA
-//const char* pass = "FraGiacomo1";
+const char* ssid = "GaggiolaC-LC"; // CREDENZIALI CHIESA
+const char* pass = "FraGiacomo1";
 int status = WL_IDLE_STATUS;
 
 // Logic changed in logic-low
-const int low = HIGH;
-const int high = LOW;
+const int low = LOW;
+const int high = HIGH;
 
 // Set web server port number to 80
 WiFiServer server(80);
@@ -130,15 +126,18 @@ void setup() {
   if (fv < "1.0.0") {
     Serial.println("Please upgrade the firmware");
   }
-  //
-  // Set the Arduino's static IP address
-  WiFi.config(ip);
+
+  // Switch on the LED as red (unconnected)
+  WiFiDrv::analogWrite(greenPin, 0);
+  WiFiDrv::analogWrite(redPin, 10);
+  WiFiDrv::analogWrite(bluePin, 0);
 
   // attempt to connect to Wifi network:
   attemptToConnect();
   server.begin();
   // you're connected now, so print out the status:
   printWifiStatus();
+  // Switch on the LED as blue (connected)
   WiFiDrv::analogWrite(greenPin, 127);
   WiFiDrv::analogWrite(redPin, 0);
   WiFiDrv::analogWrite(bluePin, 255);
@@ -147,7 +146,7 @@ void setup() {
 void loop() {
   WiFiClient client;
 
-  // Switch on the LED as red when board is connected
+  // Switch on the LED as blue when board is connected and in red otherwise
   if (WiFi.status() == WL_CONNECTED) {
     WiFiDrv::analogWrite(greenPin, 127);
     WiFiDrv::analogWrite(redPin, 0);
@@ -323,6 +322,10 @@ void loop() {
               Serial.println("CH.6c is off");
               ch6cState = false;
               digitalWrite(ch6c, low);
+            } else if (header.indexOf("GET /status") >= 0) {
+              Serial.println("CONNECTED");
+              ch6cState = false;
+              digitalWrite(ch6c, low);
             }
 
 
@@ -404,6 +407,8 @@ void attemptToConnect() {
     Serial.print("Attempting to connect to SSID: ");
     Serial.println(ssid);
     // Connect to WPA/WPA2 network. Change this line if using open or WEP network:
+    // Set the Arduino's static IP address
+    WiFi.config(ip);
     status = WiFi.begin(ssid, pass);
 
     // wait 10 seconds for connection:

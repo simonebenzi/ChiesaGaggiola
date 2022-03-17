@@ -281,18 +281,18 @@ public class MainActivity extends AppCompatActivity
             String opName = lightsOpName.get(i);
             String name = lightsName.get(i);
             Boolean state = lightsState.get(i);
-            ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
-            LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
-
             if (state) {
-//                aSwitch.switchLightOff(ipAddress, opName);
-//                dbHelper.updateLightState(state, name, opName);
-                try {
-                    fragment.getMainRecyclerAdapter().notifyDataSetChanged();
-                } catch (NullPointerException exception) {
-
-                }
+                aSwitch.switchLightOff(ipAddress, name, opName);
+                dbHelper.updateLightState(state, name, opName);
             }
+        }
+        // Try to notifyDataSetChanged in Lights Fragment main adapter
+        ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
+        LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
+        try {
+            fragment.getMainRecyclerAdapter().notifyDataSetChanged();
+        } catch (NullPointerException exception) {
+
         }
     }
 
@@ -307,18 +307,18 @@ public class MainActivity extends AppCompatActivity
             String opName = lightsOpName.get(i);
             String name = lightsName.get(i);
             Boolean state = lightsState.get(i);
-            ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
-            LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
-
             if (!state) {
-//                aSwitch.switchLightOn(ipAddress, opName);
-//                dbHelper.updateLightState(state, name, opName);
-                try {
-                    fragment.getMainRecyclerAdapter().notifyDataSetChanged();
-                } catch (NullPointerException exception) {
-
-                }
+                aSwitch.switchLightOn(ipAddress, name, opName);
+                dbHelper.updateLightState(state, name, opName);
             }
+        }
+        // Try to notifyDataSetChanged in Lights Fragment main adapter
+        ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
+        LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
+        try {
+            fragment.getMainRecyclerAdapter().notifyDataSetChanged();
+        } catch (NullPointerException exception) {
+
         }
     }
 

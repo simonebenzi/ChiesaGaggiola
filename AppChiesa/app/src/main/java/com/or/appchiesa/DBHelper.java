@@ -553,6 +553,32 @@ public class DBHelper extends SQLiteOpenHelper {
         return scenariosState;
     }
 
+    public ArrayList<Boolean> getAllScenariosStateExceptOne(String exception) {
+        ArrayList<Boolean> scenariosState = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(SCENARIOS_TABLE_NAME, new String[]{SCENARIOS_COLUMN_STATE},
+                "NAME != ?",
+                new String[]{exception},
+                null, null, null);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            Boolean state;
+            if (cursor.getInt(cursor.getColumnIndex(SCENARIOS_COLUMN_STATE)) == 0) {
+                state = false;
+            } else {
+                state = true;
+            }
+            scenariosState.add(state);
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return scenariosState;
+    }
+
     public Boolean getScenarioState(String scenario) {
         Boolean scenarioState = null;
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -142,15 +143,8 @@ public class ScenariosFragment extends Fragment {
         String ipAddress = dbHelper.getIpAddress();
 
         if (!state) {
-            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb_group_on);
-            imageView.setImageDrawable(drawable);
-            dbHelper.updateScenarioState(state, scenario);
-            aSwitch.switchScenarioOn(scenario, scenarioLightsList, ipAddress, imageView);
-            getAdapter().updateRecycle("group");
+            aSwitch.switchScenarioOn(scenario, scenarioLightsList, ipAddress, imageView, getAdapter());
         } else {
-            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_bulb_group);
-            imageView.setImageDrawable(drawable);
-            dbHelper.updateScenarioState(state, scenario);
             aSwitch.switchScenarioOff(scenario, scenarioLightsList, ipAddress, imageView);
         }
 
