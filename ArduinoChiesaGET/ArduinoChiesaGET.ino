@@ -10,13 +10,13 @@
 IPAddress ip(192, 168, 1, 124);
 
 // Wifi network credentials
-const char* ssid = "GaggiolaC-LC"; // CREDENZIALI CHIESA
+const char* ssid = "GaggiolaC-LC";
 const char* pass = "FraGiacomo1";
 int status = WL_IDLE_STATUS;
 
 // Logic changed in logic-low
-const int low = LOW;
-const int high = HIGH;
+const int low = HIGH;
+const int high = LOW;
 
 // Set web server port number to 80
 WiFiServer server(80);

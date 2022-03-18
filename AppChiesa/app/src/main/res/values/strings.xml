@@ -25,4 +25,5 @@
     <string name="update_ip_floating_button">Bottone aggiorna IP</string>
     <string name="modify_scenario">Modifica scenario</string>
     <string name="modify_light">Modifica luce</string>
+    <string name="connection_error">Sistema non disponibile, riprovare tra pochi secondi!</string>
 </resources>

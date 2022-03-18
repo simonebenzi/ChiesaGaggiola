@@ -59,7 +59,7 @@ public class Switch {
             public void onErrorResponse(VolleyError error) {
                 // Log the request was denied
                 Log.e("ERROR RESPONSE", "Request not working");
-                String message = "Sistema non disponibile!";
+                String message = context.getString(R.string.connection_error);
                 Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
                 toast.show();
             }
@@ -86,7 +86,7 @@ public class Switch {
             public void onErrorResponse(VolleyError error) {
                 // Log the request was denied
                 Log.e("ERROR RESPONSE", "Request not working");
-                String message = "Sistema non disponibile!";
+                String message = context.getString(R.string.connection_error);
                 Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
                 toast.show();
             }
@@ -115,7 +115,7 @@ public class Switch {
             public void onErrorResponse(VolleyError error) {
                 // Log the request was denied
                 Log.e("ERROR RESPONSE", "Request not working");
-                String message = "Sistema non disponibile!";
+                String message = context.getString(R.string.connection_error);
                 Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
                 toast.show();
             }
@@ -142,7 +142,7 @@ public class Switch {
             public void onErrorResponse(VolleyError error) {
                 // Log the request was denied
                 Log.e("ERROR RESPONSE", "Request not working");
-                String message = "Sistema non disponibile!";
+                String message = context.getString(R.string.connection_error);
                 Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
                 toast.show();
             }
@@ -154,39 +154,14 @@ public class Switch {
     public void switchScenarioOn(String scenario, ArrayList<String> lights, String ipAddress, ImageView imageView, ChildRecyclerAdapter adapter) {
 
         // Check Arduino connection
-        ArrayList<StringRequest> checkRequests = new ArrayList<StringRequest>();
-
-        // ON request
-        // URL to make the GET request
-        String url = "http://" + ipAddress + "/ch1/on";
-        Log.e("URL", url);
-
-        StringRequest onRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Log the request was accepted
-                        Log.i("RESPONSE", "200 OK - CONNECTION OK");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // Log the request was denied
-                Log.e("ERROR RESPONSE", "Request not working");
-                String message = "Sistema non disponibile, riprovare tra pochi secondi!";
-                Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-
-        checkRequests.add(onRequest);
+//        ArrayList<StringRequest> checkRequests = new ArrayList<StringRequest>();
 
         // OFF request
         // URL to make the GET request
-        url = "http://" + ipAddress + "/ch1/off";
+        String url = "http://" + ipAddress + "/status";
         Log.e("URL", url);
 
-        StringRequest offRequest = new StringRequest(Request.Method.GET, url,
+        StringRequest statusRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -202,8 +177,7 @@ public class Switch {
 
                         // Get all other scenarios
                         ArrayList<String> scenariosList = dbHelper.getScenariosExceptOne(scenario);
-                        // Get all other scenarios state
-                        ArrayList<Boolean> scenariosState = dbHelper.getAllScenariosStateExceptOne(scenario);
+
                         ArrayList<String> toSwitchOffLights = new ArrayList<>();
                         // Update only lights that are not in common
                         for (int i = 0; i < scenariosList.size(); i++) {
@@ -237,55 +211,31 @@ public class Switch {
             public void onErrorResponse(VolleyError error) {
                 // Log the request was denied
                 Log.e("ERROR RESPONSE", "Not connected!");
-                String message = "Sistema non disponibile, riprovare tra pochi secondi!";
+                String message = context.getString(R.string.connection_error);
                 Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
-        checkRequests.add(offRequest);
+//        checkRequests.add(offRequest);
+        queue.add(statusRequest);
 
-        for (int i = 0; i < checkRequests.size(); i++)
-            // Add the request to the RequestQueue
-            queue.add(checkRequests.get(i));
+//        for (int i = 0; i < checkRequests.size(); i++)
+//            // Add the request to the RequestQueue
+//            queue.add(checkRequests.get(i));
 
     }
 
     public void switchScenarioOff(String scenario, ArrayList<String> lights, String ipAddress, ImageView imageView) {
 
         // Check Arduino connection
-        ArrayList<StringRequest> checkRequests = new ArrayList<StringRequest>();
+//        ArrayList<StringRequest> checkRequests = new ArrayList<StringRequest>();
 
-        // ON request
+        // Check STATUS request
         // URL to make the GET request
-        String url = "http://" + ipAddress + "/ch1/on";
+        String url = "http://" + ipAddress + "/status";
         Log.e("URL", url);
 
-        StringRequest onRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Log the request was accepted
-                        Log.i("RESPONSE", "200 OK - CONNECTION OK");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // Log the request was denied
-                Log.e("ERROR RESPONSE", "Request not working");
-                String message = "Sistema non disponibile, riprovare tra pochi secondi!";
-                Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-
-        checkRequests.add(onRequest);
-
-        // OFF request
-        // URL to make the GET request
-        url = "http://" + ipAddress + "/ch1/off";
-        Log.e("URL", url);
-
-        StringRequest offRequest = new StringRequest(Request.Method.GET, url,
+        StringRequest statusRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -308,16 +258,114 @@ public class Switch {
             public void onErrorResponse(VolleyError error) {
                 // Log the request was denied
                 Log.e("ERROR RESPONSE", "Not connected!");
-                String message = "Sistema non disponibile, riprovare tra pochi secondi!";
+                String message = context.getString(R.string.connection_error);
                 Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
-        checkRequests.add(offRequest);
-        for (int i = 0; i < checkRequests.size(); i++)
-            // Add the request to the RequestQueue
-            queue.add(checkRequests.get(i));
+//        checkRequests.add(statusRequest);
+        queue.add(statusRequest);
+//        for (int i = 0; i < checkRequests.size(); i++)
+//            // Add the request to the RequestQueue
+//            queue.add(checkRequests.get(i));
     }
+
+    public void switchAllLightsOff(String ipAddress, ArrayList<String> lightsName,
+                                   ArrayList<String> lightsOpName, ArrayList<Boolean> lightsState,
+                                   ViewPagerAdapter adapter) {
+        // Check STATUS request
+        // URL to make the GET request
+        String url = "http://" + ipAddress + "/status";
+        Log.e("URL", url);
+
+        StringRequest statusRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Log the request was accepted
+                        Log.i("RESPONSE", "200 OK - CONNECTION OK");
+
+                        int arraySize = lightsName.size();
+
+                        for (int i = 0; i < arraySize; i++) {
+                            String opName = lightsOpName.get(i);
+                            String name = lightsName.get(i);
+                            Boolean state = lightsState.get(i);
+                            if (state) {
+                                switchLightOff(ipAddress, name, opName);
+                                dbHelper.updateLightState(state, name, opName);
+                            }
+                        }
+                        // Try to notifyDataSetChanged in Lights Fragment main adapter
+                        LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
+                        try {
+                            fragment.getMainRecyclerAdapter().notifyDataSetChanged();
+                        } catch (NullPointerException exception) {
+
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Log the request was denied
+                Log.e("ERROR RESPONSE", "Not connected!");
+                String message = context.getString(R.string.connection_error);
+                Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+
+        queue.add(statusRequest);
+    }
+
+    public void switchAllLightsOn(String ipAddress, ArrayList<String> lightsName,
+                                   ArrayList<String> lightsOpName, ArrayList<Boolean> lightsState,
+                                   ViewPagerAdapter adapter) {
+        // Check STATUS request
+        // URL to make the GET request
+        String url = "http://" + ipAddress + "/status";
+        Log.e("URL", url);
+
+        StringRequest statusRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Log the request was accepted
+                        Log.i("RESPONSE", "200 OK - CONNECTION OK");
+
+                        int arraySize = lightsName.size();
+
+                        for (int i = 0; i < arraySize; i++) {
+                            String opName = lightsOpName.get(i);
+                            String name = lightsName.get(i);
+                            Boolean state = lightsState.get(i);
+                            if (!state) {
+                                switchLightOn(ipAddress, name, opName);
+                                dbHelper.updateLightState(state, name, opName);
+                            }
+                        }
+                        // Try to notifyDataSetChanged in Lights Fragment main adapter
+                        LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
+                        try {
+                            fragment.getMainRecyclerAdapter().notifyDataSetChanged();
+                        } catch (NullPointerException exception) {
+
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Log the request was denied
+                Log.e("ERROR RESPONSE", "Not connected!");
+                String message = context.getString(R.string.connection_error);
+                Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+
+        queue.add(statusRequest);
+    }
+
 
     private static String[] convertStringToArray(String str) {
         String strSeparator = "__,__";
@@ -357,8 +405,7 @@ public class Switch {
                 });
                 requests.add(request);
             }
-        }
-        else if(aSwitch.equals("on")){
+        } else if (aSwitch.equals("on")) {
             for (int i = 0; i < lights.size(); i++) {
                 // URL to make the GET request
                 String url = "http://" + ipAddress + "/" + lights.get(i) + "/on";
