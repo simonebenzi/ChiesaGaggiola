@@ -274,20 +274,26 @@ public class MainActivity extends AppCompatActivity
         ArrayList<Boolean> lightsState = dbHelper.getAllLightsState();
         ArrayList<String> lightsOpName = dbHelper.getAllLightsOpNameFromSection();
         ArrayList<String> lightsName = dbHelper.getAllLightsNameFromSection();
+        ArrayList<String> scenariosName = dbHelper.getAllScenariosName();
+        ArrayList<Boolean> scenariosState = dbHelper.getAllScenariosState();
         String ipAddress = dbHelper.getIpAddress();
 
         ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
-        aSwitch.switchAllLightsOff(ipAddress, lightsName, lightsOpName, lightsState, adapter);
+        aSwitch.switchAllLightsOff(ipAddress, lightsName, lightsOpName, scenariosName, lightsState,
+                scenariosState, adapter);
     }
 
     public void onClickOpenAll(View view) {
         ArrayList<Boolean> lightsState = dbHelper.getAllLightsState();
         ArrayList<String> lightsOpName = dbHelper.getAllLightsOpNameFromSection();
         ArrayList<String> lightsName = dbHelper.getAllLightsNameFromSection();
+        ArrayList<String> scenariosName = dbHelper.getAllScenariosName();
+        ArrayList<Boolean> scenariosState = dbHelper.getAllScenariosState();
         String ipAddress = dbHelper.getIpAddress();
 
         ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
-        aSwitch.switchAllLightsOn(ipAddress, lightsName, lightsOpName, lightsState, adapter);
+        aSwitch.switchAllLightsOn(ipAddress, lightsName, lightsOpName, scenariosName, lightsState,
+                scenariosState, adapter);
     }
 
     @Override

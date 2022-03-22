@@ -28,7 +28,7 @@
 
         <TextView
             android:id="@+id/group_text"
-            android:layout_width="220dp"
+            android:layout_width="270dp"
             android:layout_height="48dp"
             android:layout_marginBottom="4dp"
             android:textAlignment="center"

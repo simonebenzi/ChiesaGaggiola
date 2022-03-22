@@ -12,6 +12,7 @@ IPAddress ip(192, 168, 1, 124);
 // Wifi network credentials
 const char* ssid = "GaggiolaC-LC";
 const char* pass = "FraGiacomo1";
+
 int status = WL_IDLE_STATUS;
 
 // Logic changed in logic-low
@@ -137,10 +138,6 @@ void setup() {
   server.begin();
   // you're connected now, so print out the status:
   printWifiStatus();
-  // Switch on the LED as blue (connected)
-  WiFiDrv::analogWrite(greenPin, 127);
-  WiFiDrv::analogWrite(redPin, 0);
-  WiFiDrv::analogWrite(bluePin, 255);
 }
 
 void loop() {
@@ -398,6 +395,10 @@ void printWifiStatus() {
   Serial.print("signal strength (RSSI):");
   Serial.print(rssi);
   Serial.println(" dBm");
+  // Switch on the LED as blue (connected)
+  WiFiDrv::analogWrite(greenPin, 127);
+  WiFiDrv::analogWrite(redPin, 0);
+  WiFiDrv::analogWrite(bluePin, 255);
 }
 
 // attempt to connect to Wifi network:

@@ -271,7 +271,8 @@ public class Switch {
     }
 
     public void switchAllLightsOff(String ipAddress, ArrayList<String> lightsName,
-                                   ArrayList<String> lightsOpName, ArrayList<Boolean> lightsState,
+                                   ArrayList<String> lightsOpName, ArrayList<String> scenariosName,
+                                   ArrayList<Boolean> lightsState, ArrayList<Boolean> scenariosState,
                                    ViewPagerAdapter adapter) {
         // Check STATUS request
         // URL to make the GET request
@@ -296,10 +297,31 @@ public class Switch {
                                 dbHelper.updateLightState(state, name, opName);
                             }
                         }
+
+                        // Deactivate all scenarios
+                        arraySize = scenariosName.size();
+
+                        for (int i = 0; i < arraySize; i++) {
+                            String scenarioName = scenariosName.get(i);
+                            Boolean state = scenariosState.get(i);
+
+                            if(state){
+                                dbHelper.updateScenarioState(true, scenarioName);
+                            }
+                        }
+
                         // Try to notifyDataSetChanged in Lights Fragment main adapter
-                        LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
+                        LightsFragment lightsFragment = (LightsFragment) adapter.getFragments().get(1);
                         try {
-                            fragment.getMainRecyclerAdapter().notifyDataSetChanged();
+                            lightsFragment.getMainRecyclerAdapter().notifyDataSetChanged();
+                        } catch (NullPointerException exception) {
+
+                        }
+
+                        // Try to notifyDataSetChanged in Scenarios Fragment adapter
+                        ScenariosFragment scenariosFragment = (ScenariosFragment) adapter.getFragments().get(0);
+                        try {
+                            scenariosFragment.getAdapter().updateRecycle("group");
                         } catch (NullPointerException exception) {
 
                         }
@@ -319,8 +341,9 @@ public class Switch {
     }
 
     public void switchAllLightsOn(String ipAddress, ArrayList<String> lightsName,
-                                   ArrayList<String> lightsOpName, ArrayList<Boolean> lightsState,
-                                   ViewPagerAdapter adapter) {
+                                  ArrayList<String> lightsOpName, ArrayList<String> scenariosName,
+                                  ArrayList<Boolean> lightsState, ArrayList<Boolean> scenariosState,
+                                  ViewPagerAdapter adapter) {
         // Check STATUS request
         // URL to make the GET request
         String url = "http://" + ipAddress + "/status";
@@ -333,6 +356,7 @@ public class Switch {
                         // Log the request was accepted
                         Log.i("RESPONSE", "200 OK - CONNECTION OK");
 
+                        // Update lights state
                         int arraySize = lightsName.size();
 
                         for (int i = 0; i < arraySize; i++) {
@@ -344,10 +368,32 @@ public class Switch {
                                 dbHelper.updateLightState(state, name, opName);
                             }
                         }
+
+                        // Deactivate all scenarios
+                        arraySize = scenariosName.size();
+
+                        for (int i = 0; i < arraySize; i++) {
+                            String scenarioName = scenariosName.get(i);
+                            Boolean state = scenariosState.get(i);
+
+                            if(state){
+                                dbHelper.updateScenarioState(true, scenarioName);
+                            }
+                        }
+
+
                         // Try to notifyDataSetChanged in Lights Fragment main adapter
-                        LightsFragment fragment = (LightsFragment) adapter.getFragments().get(1);
+                        LightsFragment lightsFragment = (LightsFragment) adapter.getFragments().get(1);
                         try {
-                            fragment.getMainRecyclerAdapter().notifyDataSetChanged();
+                            lightsFragment.getMainRecyclerAdapter().notifyDataSetChanged();
+                        } catch (NullPointerException exception) {
+
+                        }
+
+                        // Try to notifyDataSetChanged in Scenarios Fragment adapter
+                        ScenariosFragment scenariosFragment = (ScenariosFragment) adapter.getFragments().get(0);
+                        try {
+                            scenariosFragment.getAdapter().updateRecycle("group");
                         } catch (NullPointerException exception) {
 
                         }
