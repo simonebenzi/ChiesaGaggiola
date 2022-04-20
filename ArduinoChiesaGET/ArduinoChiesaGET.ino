@@ -3,15 +3,17 @@
 /* Controllo Relè App Chiesa Gaggiola (La Spezia) */
 
 // Load Wi-Fi library
-#include <WiFiNINA.h>
 #include <utility/wifi_drv.h>
 
 // the IP address for the shield:
 IPAddress ip(192, 168, 1, 124);
 
 // Wifi network credentials
+// Credenziali WiFi casa
+//const char* ssid = "TIM-18143925"; // CASA
+//const char* pass = "CN2ltmwLXDvmVfWtC1ogJU95";
 const char* ssid = "GaggiolaC-LC";
-const char* pass = "FraGiacomo1";
+const char* pass = "00ofmsp00";
 
 int status = WL_IDLE_STATUS;
 
@@ -59,7 +61,7 @@ const int ch9 = 8;
 const int ch10 = 9;
 const int ch11 = 10;
 const int ch12a = 11;
-const int ch12b = 12;
+const int ch12b = 12; 
 const int ch15 = 13;
 const int ch30 = 19; // Faretti LED quadri navata
 

@@ -16,11 +16,7 @@
   <component name="ChangeListManager">
     <list default="true" id="01169386-7320-49fb-9141-1a339e9bdf78" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Light.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Light.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Switch.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/or/appchiesa/Switch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/card_lights.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/card_lights.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/card_scenarios.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/card_scenarios.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArduinoChiesaGET/ArduinoChiesaGET.ino" beforeDir="false" afterPath="$PROJECT_DIR$/../ArduinoChiesaGET/ArduinoChiesaGET.ino" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +42,6 @@
     <option name="EXPORT_PRIVATE_KEY" value="false" />
     <option name="KEY_STORE_PATH" value="C:\Users\simob\Desktop\OR+\OR.jks" />
     <option name="KEY_ALIAS" value="chiesagaggiola" />
-    <option name="REMEMBER_PASSWORDS" value="true" />
     <option name="BUILD_TARGET_KEY" value="apk" />
   </component>
   <component name="Git.Settings">
