@@ -1,7 +1,12 @@
 package com.or.appchiesa;
 
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.sqlite.SQLiteDatabase;
+import android.hardware.usb.UsbDevice;
+import android.hardware.usb.UsbManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -22,6 +28,8 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity
         implements TabLayoutMediator.TabConfigurationStrategy,
@@ -31,18 +39,22 @@ public class MainActivity extends AppCompatActivity
         AddScenarioDialogFragment.AddScenarioDialogInterface,
         AddLightDialogFragment.AddLightDialogInterface,
         ScenariosFragment.UpdateLightsRecycle,
-        PasswordDialogFragment.PasswordDialogInterface {
+        PasswordDialogFragment.PasswordDialogInterface,
+        Serial.Graphics, Serial.Actions {
 
     private boolean isRotate = false;
     private final FragmentManager fm = getSupportFragmentManager();
     private ScenariosFragment scenariosFragment;
     private LightsFragment lightsFragment;
     private Switch aSwitch;
+    private Serial aSerial;
     private DBHelper dbHelper;
 
     private ViewPager2 viewPager;
     private TabLayout tabLayout;
     private ArrayList<String> titles;
+
+    private FloatingActionButton startSerialFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +82,11 @@ public class MainActivity extends AppCompatActivity
         final FloatingActionButton addGroupFab = (FloatingActionButton) findViewById(R.id.add_group);
         final FloatingActionButton addLightFab = (FloatingActionButton) findViewById(R.id.add_light);
         final FloatingActionButton updateIpAddressFab = (FloatingActionButton) findViewById(R.id.update_ip);
+        startSerialFab = (FloatingActionButton) findViewById(R.id.start_serial);
         ViewAnimation.init(addGroupFab);
         ViewAnimation.init(addLightFab);
         ViewAnimation.init(updateIpAddressFab);
+        ViewAnimation.init(startSerialFab);
 
         // Add animation to FABs
         final FloatingActionButton mainFab = (FloatingActionButton) findViewById(R.id.add_floating_action_button);
@@ -84,10 +98,12 @@ public class MainActivity extends AppCompatActivity
                     ViewAnimation.showIn(addGroupFab);
                     ViewAnimation.showIn(addLightFab);
                     ViewAnimation.showIn(updateIpAddressFab);
+                    ViewAnimation.showIn(startSerialFab);
                 } else {
                     ViewAnimation.showOut(addGroupFab);
                     ViewAnimation.showOut(addLightFab);
                     ViewAnimation.showOut(updateIpAddressFab);
+                    ViewAnimation.showOut(startSerialFab);
                 }
             }
         });
@@ -100,6 +116,7 @@ public class MainActivity extends AppCompatActivity
                 ViewAnimation.showOut(v);
                 ViewAnimation.showOut(addGroupFab);
                 ViewAnimation.showOut(updateIpAddressFab);
+                ViewAnimation.showOut(startSerialFab);
                 isRotate = ViewAnimation.rotateFloatingButton(mainFab, !isRotate);
 
             }
@@ -112,6 +129,7 @@ public class MainActivity extends AppCompatActivity
                 ViewAnimation.showOut(v);
                 ViewAnimation.showOut(addLightFab);
                 ViewAnimation.showOut(updateIpAddressFab);
+                ViewAnimation.showOut(startSerialFab);
                 isRotate = ViewAnimation.rotateFloatingButton(mainFab, !isRotate);
             }
         });
@@ -123,9 +141,31 @@ public class MainActivity extends AppCompatActivity
                 ViewAnimation.showOut(v);
                 ViewAnimation.showOut(addLightFab);
                 ViewAnimation.showOut(addGroupFab);
+                ViewAnimation.showOut(startSerialFab);
                 isRotate = ViewAnimation.rotateFloatingButton(mainFab, !isRotate);
             }
         });
+
+        startSerialFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickStart(startSerialFab);
+                ViewAnimation.showOut(v);
+                ViewAnimation.showOut(addLightFab);
+                ViewAnimation.showOut(addGroupFab);
+                ViewAnimation.showOut(updateIpAddressFab);
+                isRotate = ViewAnimation.rotateFloatingButton(mainFab, !isRotate);
+            }
+        });
+
+        // Start connection
+        aSerial = new Serial(this);
+        enableStartButton(false);
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(aSerial.ACTION_USB_PERMISSION);
+        filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
+        filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
+        registerReceiver(aSerial.getBroadcastReceiver(), filter);
     }
 
     @Override
@@ -316,5 +356,57 @@ public class MainActivity extends AppCompatActivity
         } catch (NullPointerException exception) {
 
         }
+    }
+
+    @Override
+    public void enableStartButton(boolean state) {
+        startSerialFab.setEnabled(!state);
+    }
+
+    @Override
+    public void showToast(Context context, CharSequence text) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
+        });
+    }
+
+    public void onClickStart(View view) {
+        HashMap<String, UsbDevice> usbDevices = aSerial.getUsbManager().getDeviceList();
+        if (!usbDevices.isEmpty()) {
+            boolean keep = true;
+            for (Map.Entry<String, UsbDevice> entry : usbDevices.entrySet()) {
+                aSerial.setDevice(entry.getValue());
+                int deviceVID = aSerial.getDevice().getVendorId();
+                if (deviceVID == 0x2341)//Arduino Vendor ID
+                {
+                    PendingIntent pi = PendingIntent.getBroadcast(this, 0,
+                            new Intent(aSerial.ACTION_USB_PERMISSION), 0);
+                    aSerial.getUsbManager().requestPermission(aSerial.getDevice(), pi);
+                    keep = false;
+                } else {
+                    aSerial.setConnection(null);
+                    aSerial.setDevice(null);
+                }
+
+                if (!keep)
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public void start() {
+        onClickStart(startSerialFab);
+    }
+
+    @Override
+    public void write(String command) {
+        aSerial.getSerialPort().write(command.getBytes());
     }
 }

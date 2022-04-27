@@ -70,10 +70,10 @@
             android:id="@+id/tab_layout"/>
 
         <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:id="@+id/view_pager"/>
+            android:layout_weight="1" />
 
     </LinearLayout>
 
@@ -93,7 +93,7 @@
         android:id="@+id/add_light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="10dp"
         android:contentDescription="@string/add_light_floating_button"
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/update_ip"
@@ -105,13 +105,26 @@
         android:id="@+id/update_ip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="10dp"
         android:contentDescription="@string/update_ip_floating_button"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/start_serial"
+        app:layout_constraintEnd_toEndOf="@+id/start_serial"
+        app:layout_constraintStart_toStartOf="@+id/start_serial"
+        app:srcCompat="@drawable/outline_router_24" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/start_serial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:contentDescription="@string/start_serial"
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/add_floating_action_button"
         app:layout_constraintEnd_toEndOf="@+id/add_floating_action_button"
         app:layout_constraintStart_toStartOf="@+id/add_floating_action_button"
-        app:srcCompat="@drawable/outline_router_24" />
+        app:srcCompat="@drawable/usb"
+        android:onClick="onClickStart"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_floating_action_button"

@@ -28,6 +28,7 @@ public class LightsFragment extends Fragment {
     private Switch aSwitch;
     private DBHelper dbHelper;
     private SQLiteDatabase db;
+    private Serial serialSwitch;
 
     private ArrayList<String> sectionList = new ArrayList<>();
 
@@ -53,6 +54,8 @@ public class LightsFragment extends Fragment {
 
         // Initialize switch
         aSwitch = new Switch(getContext());
+        // Initialize serial switch
+        serialSwitch = new Serial(getContext());
 
         this.mainRecyclerAdapter = new MainRecyclerAdapter(sectionList, getContext());
         // Initialize sections with corresponding lights
@@ -72,9 +75,11 @@ public class LightsFragment extends Fragment {
                 name = lightsName.get(position);
 
                 if (!state) {
-                    aSwitch.switchLightOn(ipAddress, name, opName, imageView);
+//                    aSwitch.switchLightOn(ipAddress, name, opName, imageView);
+                    serialSwitch.lightSerialSwitch(name, opName, true, imageView);
                 } else {
-                    aSwitch.switchLightOff(ipAddress, name, opName, imageView);
+//                    aSwitch.switchLightOff(ipAddress, name, opName, imageView);
+                    serialSwitch.lightSerialSwitch(name, opName, false, imageView);
                 }
             }
 
