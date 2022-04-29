@@ -186,8 +186,52 @@ public class Serial {
             Log.e("SCENARIO COMMAND: ", scenarioCommand);
             actions.write(scenarioCommand);
         }
+    }
 
+    public void switchAllLights(ArrayList<String> allLightsOpName, ArrayList<String> scenariosName,
+                                ArrayList<Boolean> lightsState, ArrayList<Boolean> scenariosState,
+                                boolean state, ViewPagerAdapter adapter) {
+        // Define the lights to switch on/off
+        ArrayList<String> lightsToSwitch = new ArrayList<>();
+        int size = allLightsOpName.size();
+        for(int i = 0; i < size; i++) {
+            Boolean lightState = lightsState.get(i);
+            if(lightState != state) {
+                String opName = allLightsOpName.get(i);
+                lightsToSwitch.add(opName);
+            }
+        }
 
+        String command = createScenarioCommands(lightsToSwitch, state);
+        Log.e("ALL LIGHTS COMMAND: ", command);
+        actions.write(command);
+
+        // Deactivate all scenarios
+        size = scenariosName.size();
+
+        for(int i = 0; i < size; i++){
+            String scenarioName = scenariosName.get(i);
+            Boolean scenarioState = scenariosState.get(i);
+
+            if(scenarioState)
+                dbHelper.updateScenarioState(true, scenarioName);
+        }
+
+        // Try to notifyDataSetChanged in Lights Fragment main adapter
+        LightsFragment lightsFragment = (LightsFragment) adapter.getFragments().get(1);
+        try {
+            lightsFragment.getMainRecyclerAdapter().notifyDataSetChanged();
+        } catch (NullPointerException exception) {
+
+        }
+
+        // Try to notifyDataSetChanged in Scenarios Fragment adapter
+        ScenariosFragment scenariosFragment = (ScenariosFragment) adapter.getFragments().get(0);
+        try {
+            scenariosFragment.getAdapter().updateRecycle("group");
+        } catch (NullPointerException exception) {
+
+        }
     }
 
     private String createScenarioCommands(ArrayList<String> lights, boolean state) {

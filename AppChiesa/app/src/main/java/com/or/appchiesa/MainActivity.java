@@ -314,27 +314,27 @@ public class MainActivity extends AppCompatActivity
     public void onClickCloseAll(View view) {
         ArrayList<Boolean> lightsState = dbHelper.getAllLightsState();
         ArrayList<String> lightsOpName = dbHelper.getAllLightsOpNameFromSection();
-        ArrayList<String> lightsName = dbHelper.getAllLightsNameFromSection();
         ArrayList<String> scenariosName = dbHelper.getAllScenariosName();
         ArrayList<Boolean> scenariosState = dbHelper.getAllScenariosState();
-        String ipAddress = dbHelper.getIpAddress();
 
         ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
-        aSwitch.switchAllLightsOff(ipAddress, lightsName, lightsOpName, scenariosName, lightsState,
-                scenariosState, adapter);
+        //aSwitch.switchAllLightsOff(ipAddress, lightsName, lightsOpName, scenariosName, lightsState,
+                //scenariosState, adapter);
+        aSerial.switchAllLights(lightsOpName, scenariosName, lightsState, scenariosState, false,
+                adapter);
     }
 
     public void onClickOpenAll(View view) {
         ArrayList<Boolean> lightsState = dbHelper.getAllLightsState();
         ArrayList<String> lightsOpName = dbHelper.getAllLightsOpNameFromSection();
-        ArrayList<String> lightsName = dbHelper.getAllLightsNameFromSection();
         ArrayList<String> scenariosName = dbHelper.getAllScenariosName();
         ArrayList<Boolean> scenariosState = dbHelper.getAllScenariosState();
-        String ipAddress = dbHelper.getIpAddress();
 
         ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
-        aSwitch.switchAllLightsOn(ipAddress, lightsName, lightsOpName, scenariosName, lightsState,
-                scenariosState, adapter);
+        //aSwitch.switchAllLightsOn(ipAddress, lightsName, lightsOpName, scenariosName, lightsState,
+                //scenariosState, adapter);
+        aSerial.switchAllLights(lightsOpName, scenariosName, lightsState, scenariosState, true,
+                adapter);
     }
 
     @Override
@@ -425,6 +425,6 @@ public class MainActivity extends AppCompatActivity
     public void onClickStop(View view) {
         enableStartButton(false);
         aSerial.getSerialPort().close();
-        showToast(this, "Sistema disconnesso!");
+        showToast(this, "Sistema disconnesso da USB!");
     }
 }
