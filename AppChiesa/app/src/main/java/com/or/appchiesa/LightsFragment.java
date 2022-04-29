@@ -76,10 +76,10 @@ public class LightsFragment extends Fragment {
 
                 if (!state) {
 //                    aSwitch.switchLightOn(ipAddress, name, opName, imageView);
-                    serialSwitch.lightSerialSwitch(name, opName, true, imageView);
+                    serialSwitch.lightSerialSwitch(opName, true, imageView);
                 } else {
 //                    aSwitch.switchLightOff(ipAddress, name, opName, imageView);
-                    serialSwitch.lightSerialSwitch(name, opName, false, imageView);
+                    serialSwitch.lightSerialSwitch(opName, false, imageView);
                 }
             }
 

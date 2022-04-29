@@ -27,9 +27,10 @@ public class ScenariosFragment extends Fragment {
     private UpdateLightsRecycle updateLightsRecycleInter;
 
     private ChildRecyclerAdapter adapter;
-    private Switch aSwitch;
+    //private Switch aSwitch;
     private DBHelper dbHelper;
     private SQLiteDatabase db;
+    private Serial serial;
 
     interface SwitchFragment {
         void groupFragmentSwitch();
@@ -68,8 +69,11 @@ public class ScenariosFragment extends Fragment {
 
         }
 
+        // Initialize serial switch
+        serial = new Serial(getContext());
 
-        aSwitch = new Switch(getContext());
+
+        //aSwitch = new Switch(getContext());
 
         this.adapter = new ChildRecyclerAdapter(getContext(), scenariosName, scenariosImages, "scenario");
         groupRecycler.setAdapter(this.adapter);
@@ -140,12 +144,14 @@ public class ScenariosFragment extends Fragment {
         String[] scenarioLightsArray = convertStringToArray(scenarioLightsStr);
         ArrayList<String> scenarioLightsList = new ArrayList<>(Arrays.asList(scenarioLightsArray));
 
-        String ipAddress = dbHelper.getIpAddress();
+        //String ipAddress = dbHelper.getIpAddress();
 
         if (!state) {
-            aSwitch.switchScenarioOn(scenario, scenarioLightsList, ipAddress, imageView, getAdapter());
+            //aSwitch.switchScenarioOn(scenario, scenarioLightsList, ipAddress, imageView, getAdapter());
+            serial.scenarioSerialSwitch(scenario, scenarioLightsList, true, imageView, adapter);
         } else {
-            aSwitch.switchScenarioOff(scenario, scenarioLightsList, ipAddress, imageView);
+            //aSwitch.switchScenarioOff(scenario, scenarioLightsList, ipAddress, imageView);
+            serial.scenarioSerialSwitch(scenario, scenarioLightsList, false, imageView, adapter);
         }
 
         updateLightsRecycleInter.updateLightsRecycle();

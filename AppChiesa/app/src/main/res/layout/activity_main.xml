@@ -96,35 +96,34 @@
         android:layout_marginBottom="10dp"
         android:contentDescription="@string/add_light_floating_button"
         app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/update_ip"
-        app:layout_constraintEnd_toEndOf="@+id/update_ip"
-        app:layout_constraintStart_toStartOf="@+id/update_ip"
-        app:srcCompat="@drawable/ic_light_icon" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/update_ip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:contentDescription="@string/update_ip_floating_button"
-        app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/start_serial"
         app:layout_constraintEnd_toEndOf="@+id/start_serial"
         app:layout_constraintStart_toStartOf="@+id/start_serial"
-        app:srcCompat="@drawable/outline_router_24" />
+        app:srcCompat="@drawable/ic_light_icon" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/start_serial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="10dp"
         android:contentDescription="@string/start_serial"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/stop_serial"
+        app:layout_constraintEnd_toEndOf="@+id/stop_serial"
+        app:layout_constraintStart_toStartOf="@+id/stop_serial"
+        app:srcCompat="@drawable/usb" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/stop_serial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:contentDescription="@string/stop_serial"
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/add_floating_action_button"
         app:layout_constraintEnd_toEndOf="@+id/add_floating_action_button"
         app:layout_constraintStart_toStartOf="@+id/add_floating_action_button"
-        app:srcCompat="@drawable/usb"
-        android:onClick="onClickStart"/>
+        app:srcCompat="@drawable/usb_off" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_floating_action_button"

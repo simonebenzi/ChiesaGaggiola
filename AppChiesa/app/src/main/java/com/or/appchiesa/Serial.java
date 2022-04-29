@@ -16,6 +16,8 @@ import com.felhr.usbserial.UsbSerialDevice;
 import com.felhr.usbserial.UsbSerialInterface;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Serial {
     private Context context;
@@ -33,13 +35,16 @@ public class Serial {
 
     public interface Graphics {
         public void showToast(Context context, CharSequence text);
+
         public void enableStartButton(boolean state);
     }
 
     public interface Actions {
         public void start();
+
         public void write(String command);
-        //public void stop();
+
+        public void stop();
     }
 
     public Serial(Context context) {
@@ -60,7 +65,7 @@ public class Serial {
                 try {
                     data = new String(arg0, "UTF-8");
                     data.concat("/n");
-                    Log.e("RECEIVED DATA: ", data);
+                    //Log.e("RECEIVED DATA: ", data);
                     //graphics.showToast(context, data);
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
@@ -77,32 +82,14 @@ public class Serial {
                 if (intent.getAction().equals(ACTION_USB_PERMISSION)) {
                     boolean granted = intent.getExtras().getBoolean(UsbManager.EXTRA_PERMISSION_GRANTED);
                     if (granted) {
-                        connection = usbManager.openDevice(device);
-                        serialPort = UsbSerialDevice.createUsbSerialDevice(device, connection);
-                        if (serialPort != null) {
-                            if (serialPort.open()) { //Set Serial Connection Parameters.
-                                graphics.enableStartButton(true);
-                                serialPort.setBaudRate(9600);
-                                serialPort.setDataBits(UsbSerialInterface.DATA_BITS_8);
-                                serialPort.setStopBits(UsbSerialInterface.STOP_BITS_1);
-                                serialPort.setParity(UsbSerialInterface.PARITY_NONE);
-                                serialPort.setFlowControl(UsbSerialInterface.FLOW_CONTROL_OFF);
-                                serialPort.read(mCallback);
-                                graphics.showToast(context, "Serial Connection Opened!\n");
-
-                            } else {
-                                Log.d("SERIAL", "PORT NOT OPEN");
-                            }
-                        } else {
-                            Log.d("SERIAL", "PORT IS NULL");
-                        }
+                        openConnection();
                     } else {
                         Log.d("SERIAL", "PERM NOT GRANTED");
                     }
                 } else if (intent.getAction().equals(UsbManager.ACTION_USB_DEVICE_ATTACHED)) {
                     actions.start();
                 } else if (intent.getAction().equals(UsbManager.ACTION_USB_DEVICE_DETACHED)) {
-                    //actions.stop();
+                    actions.stop();
                 }
             }
         };
@@ -133,7 +120,7 @@ public class Serial {
     }
 
     // Switch a light ON using the serial communication --> true-ON false-OFF
-    public void lightSerialSwitch(String lightName, String lightOpName, boolean state, ImageView imageView) {
+    public void lightSerialSwitch(String lightOpName, boolean state, ImageView imageView) {
         String stateStr, command;
         Drawable drawable;
 
@@ -147,8 +134,112 @@ public class Serial {
         command = lightOpName + stateStr;
         // Write the arduino command on the serial and update ImageView and DB
         actions.write(command);
-//        this.getSerialPort().write(command.getBytes());
         imageView.setImageDrawable(drawable);
-        dbHelper.updateLightState(!state, lightName, lightOpName);
+        dbHelper.updateLightState(!state, lightOpName);
+    }
+
+    public void scenarioSerialSwitch(String scenario, ArrayList<String> lightsOpName, boolean state,
+                                     ImageView imageView, ChildRecyclerAdapter adapter) {
+        Drawable drawable;
+        String scenarioCommand;
+
+        if (state) {
+            drawable = ContextCompat.getDrawable(context, R.drawable.ic_bulb_group_on);
+        } else {
+            drawable = ContextCompat.getDrawable(context, R.drawable.ic_bulb_group);
+        }
+        // Update scenario
+        imageView.setImageDrawable(drawable);
+        dbHelper.updateScenarioState(!state, scenario);
+
+        // Create the serial command for the scenario
+        scenarioCommand = createScenarioCommands(lightsOpName, state);
+
+        if (state) {
+            // Get all other scenarios
+            ArrayList<String> scenariosList = dbHelper.getScenariosExceptOne(scenario);
+
+            // Update only lights that are not in common
+            ArrayList<String> toSwitchOffLights = new ArrayList<>();
+            for (int i = 0; i < scenariosList.size(); i++) {
+                String scenarioName = scenariosList.get(i);
+                // Switch off other scenarios
+                dbHelper.updateScenarioState(true, scenarioName);
+
+                String[] scenarioLightsArray = convertStringToArray(dbHelper.
+                        getAllScenarioLights(scenarioName));
+                ArrayList<String> scenarioLights = new ArrayList<>(Arrays.asList(scenarioLightsArray));
+                for (int j = 0; j < scenarioLights.size(); j++) {
+                    if (!(lightsOpName.contains(scenarioLights.get(j)))) {
+                        toSwitchOffLights.add(scenarioLights.get(j));
+                    }
+                }
+            }
+            adapter.updateRecycle("group");
+
+            String switchOffCommand = createScenarioCommands(toSwitchOffLights, false);
+            scenarioCommand += switchOffCommand;
+            Log.e("SCENARIO COMMAND: ", scenarioCommand);
+            actions.write(scenarioCommand);
+        } else {
+            Log.e("SCENARIO COMMAND: ", scenarioCommand);
+            actions.write(scenarioCommand);
+        }
+
+
+    }
+
+    private String createScenarioCommands(ArrayList<String> lights, boolean state) {
+        // List of commands
+        String command = "";
+        String stateStr;
+
+        for (int i = 0; i < lights.size(); i++) {
+            if (state) {
+                stateStr = " ON";
+            } else {
+                stateStr = " OFF";
+            }
+            // Command to switch the single light on/off
+            if ((i != (lights.size() - 1)) || state)
+                command += lights.get(i) + stateStr + "\n";
+            else
+                command += lights.get(i) + stateStr;
+
+            Boolean lightState = dbHelper.getLightState(lights.get(i));
+            if (lightState != state)
+                dbHelper.updateLightState(lightState, lights.get(i));
+        }
+
+        return command;
+    }
+
+    private static String[] convertStringToArray(String str) {
+        String strSeparator = "__,__";
+        String[] arr = str.split(strSeparator);
+        return arr;
+    }
+
+    // Open the serial connection with Arduino
+    public void openConnection() {
+        connection = usbManager.openDevice(device);
+        serialPort = UsbSerialDevice.createUsbSerialDevice(device, connection);
+        if (serialPort != null) {
+            if (serialPort.open()) { //Set Serial Connection Parameters.
+                graphics.enableStartButton(true);
+                serialPort.setBaudRate(9600);
+                serialPort.setDataBits(UsbSerialInterface.DATA_BITS_8);
+                serialPort.setStopBits(UsbSerialInterface.STOP_BITS_1);
+                serialPort.setParity(UsbSerialInterface.PARITY_NONE);
+                serialPort.setFlowControl(UsbSerialInterface.FLOW_CONTROL_OFF);
+                serialPort.read(mCallback);
+                graphics.showToast(context, "Serial Connection Opened!\n");
+
+            } else {
+                Log.d("SERIAL", "PORT NOT OPEN");
+            }
+        } else {
+            Log.d("SERIAL", "PORT IS NULL");
+        }
     }
 }

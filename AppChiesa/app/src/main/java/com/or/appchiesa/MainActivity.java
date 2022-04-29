@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity
     private TabLayout tabLayout;
     private ArrayList<String> titles;
 
-    private FloatingActionButton startSerialFab;
+    private FloatingActionButton startSerialFab, stopSerialFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,12 +81,12 @@ public class MainActivity extends AppCompatActivity
         // Hide mini-FAB (add light/group buttons)
         final FloatingActionButton addGroupFab = (FloatingActionButton) findViewById(R.id.add_group);
         final FloatingActionButton addLightFab = (FloatingActionButton) findViewById(R.id.add_light);
-        final FloatingActionButton updateIpAddressFab = (FloatingActionButton) findViewById(R.id.update_ip);
         startSerialFab = (FloatingActionButton) findViewById(R.id.start_serial);
+        stopSerialFab = (FloatingActionButton) findViewById(R.id.stop_serial);
         ViewAnimation.init(addGroupFab);
         ViewAnimation.init(addLightFab);
-        ViewAnimation.init(updateIpAddressFab);
         ViewAnimation.init(startSerialFab);
+        ViewAnimation.init(stopSerialFab);
 
         // Add animation to FABs
         final FloatingActionButton mainFab = (FloatingActionButton) findViewById(R.id.add_floating_action_button);
@@ -97,13 +97,13 @@ public class MainActivity extends AppCompatActivity
                 if (isRotate) {
                     ViewAnimation.showIn(addGroupFab);
                     ViewAnimation.showIn(addLightFab);
-                    ViewAnimation.showIn(updateIpAddressFab);
                     ViewAnimation.showIn(startSerialFab);
+                    ViewAnimation.showIn(stopSerialFab);
                 } else {
                     ViewAnimation.showOut(addGroupFab);
                     ViewAnimation.showOut(addLightFab);
-                    ViewAnimation.showOut(updateIpAddressFab);
                     ViewAnimation.showOut(startSerialFab);
+                    ViewAnimation.showOut(stopSerialFab);
                 }
             }
         });
@@ -115,8 +115,8 @@ public class MainActivity extends AppCompatActivity
                 displayLightDialog();
                 ViewAnimation.showOut(v);
                 ViewAnimation.showOut(addGroupFab);
-                ViewAnimation.showOut(updateIpAddressFab);
                 ViewAnimation.showOut(startSerialFab);
+                ViewAnimation.showOut(stopSerialFab);
                 isRotate = ViewAnimation.rotateFloatingButton(mainFab, !isRotate);
 
             }
@@ -128,20 +128,8 @@ public class MainActivity extends AppCompatActivity
                 displayAddGroupDialog();
                 ViewAnimation.showOut(v);
                 ViewAnimation.showOut(addLightFab);
-                ViewAnimation.showOut(updateIpAddressFab);
                 ViewAnimation.showOut(startSerialFab);
-                isRotate = ViewAnimation.rotateFloatingButton(mainFab, !isRotate);
-            }
-        });
-
-        updateIpAddressFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                displayUpdateIpAddressDialog();
-                ViewAnimation.showOut(v);
-                ViewAnimation.showOut(addLightFab);
-                ViewAnimation.showOut(addGroupFab);
-                ViewAnimation.showOut(startSerialFab);
+                ViewAnimation.showOut(stopSerialFab);
                 isRotate = ViewAnimation.rotateFloatingButton(mainFab, !isRotate);
             }
         });
@@ -153,7 +141,19 @@ public class MainActivity extends AppCompatActivity
                 ViewAnimation.showOut(v);
                 ViewAnimation.showOut(addLightFab);
                 ViewAnimation.showOut(addGroupFab);
-                ViewAnimation.showOut(updateIpAddressFab);
+                ViewAnimation.showOut(stopSerialFab);
+                isRotate = ViewAnimation.rotateFloatingButton(mainFab, !isRotate);
+            }
+        });
+
+        stopSerialFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickStop(stopSerialFab);
+                ViewAnimation.showOut(v);
+                ViewAnimation.showOut(addLightFab);
+                ViewAnimation.showOut(addGroupFab);
+                ViewAnimation.showOut(startSerialFab);
                 isRotate = ViewAnimation.rotateFloatingButton(mainFab, !isRotate);
             }
         });
@@ -166,6 +166,7 @@ public class MainActivity extends AppCompatActivity
         filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
         filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
         registerReceiver(aSerial.getBroadcastReceiver(), filter);
+        //aSerial.openConnection();
     }
 
     @Override
@@ -361,6 +362,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void enableStartButton(boolean state) {
         startSerialFab.setEnabled(!state);
+        stopSerialFab.setEnabled(state);
     }
 
     @Override
@@ -406,7 +408,18 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public void stop() {
+        onClickStop(stopSerialFab);
+    }
+
+    @Override
     public void write(String command) {
         aSerial.getSerialPort().write(command.getBytes());
+    }
+
+    public void onClickStop(View view) {
+        enableStartButton(false);
+        aSerial.getSerialPort().close();
+        showToast(this, "Sistema disconnesso!");
     }
 }
