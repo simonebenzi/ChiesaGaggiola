@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity
         filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
         filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
         registerReceiver(aSerial.getBroadcastReceiver(), filter);
-        //aSerial.openConnection();
+        start();
     }
 
     @Override
@@ -399,6 +399,11 @@ public class MainActivity extends AppCompatActivity
                 if (!keep)
                     break;
             }
+        } else {
+            CharSequence text = "Sistema non connesso a USB!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(getApplicationContext(), text, duration);
+            toast.show();
         }
     }
 
