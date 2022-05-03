@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity
     private final FragmentManager fm = getSupportFragmentManager();
     private ScenariosFragment scenariosFragment;
     private LightsFragment lightsFragment;
-    private Switch aSwitch;
     private Serial aSerial;
     private DBHelper dbHelper;
 
@@ -55,6 +54,7 @@ public class MainActivity extends AppCompatActivity
     private ArrayList<String> titles;
 
     private FloatingActionButton startSerialFab, stopSerialFab;
+    private MaterialToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +64,6 @@ public class MainActivity extends AppCompatActivity
         // Initialize DBHelper
         this.dbHelper = new DBHelper(this);
 
-        // Initialize switch
-        aSwitch = new Switch(this);
-
         // Set the view pager
         viewPager = findViewById(R.id.view_pager);
         setViewPagerAdapter();
@@ -75,8 +72,9 @@ public class MainActivity extends AppCompatActivity
         tabLayout = findViewById(R.id.tab_layout);
         new TabLayoutMediator(tabLayout, viewPager, this).attach();
 
-        // Insert overflow menu un the toolbar
-        MaterialToolbar toolbar = (MaterialToolbar) findViewById(R.id.toolbar);
+        // Insert the state of the system on the toolbar
+        toolbar = (MaterialToolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.disconnected);
 
         // Hide mini-FAB (add light/group buttons)
         final FloatingActionButton addGroupFab = (FloatingActionButton) findViewById(R.id.add_group);
@@ -366,14 +364,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void showToast(Context context, CharSequence text) {
+    public void modifyToolbar(Context context, CharSequence text) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+                toolbar.setTitle(text);
             }
         });
     }
@@ -400,10 +395,8 @@ public class MainActivity extends AppCompatActivity
                     break;
             }
         } else {
-            CharSequence text = "Sistema non connesso a USB!";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(getApplicationContext(), text, duration);
-            toast.show();
+            CharSequence text = getResources().getString(R.string.disconnected);
+            toolbar.setTitle(text);
         }
     }
 
@@ -425,6 +418,7 @@ public class MainActivity extends AppCompatActivity
     public void onClickStop(View view) {
         enableStartButton(false);
         aSerial.getSerialPort().close();
-        showToast(this, "Sistema disconnesso da USB!");
+        String text = getResources().getString(R.string.disconnected);
+        modifyToolbar(this, text);
     }
 }

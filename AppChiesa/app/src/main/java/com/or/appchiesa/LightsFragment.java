@@ -25,7 +25,6 @@ import java.util.ArrayList;
 public class LightsFragment extends Fragment {
 
     private MainRecyclerAdapter mainRecyclerAdapter;
-    private Switch aSwitch;
     private DBHelper dbHelper;
     private SQLiteDatabase db;
     private Serial serialSwitch;
@@ -52,8 +51,6 @@ public class LightsFragment extends Fragment {
         // Initialize section list
         sectionList = dbHelper.getAllSectionsName();
 
-        // Initialize switch
-        aSwitch = new Switch(getContext());
         // Initialize serial switch
         serialSwitch = new Serial(getContext());
 

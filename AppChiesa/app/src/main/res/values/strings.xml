@@ -28,4 +28,6 @@
     <string name="connection_error">Sistema non disponibile, riprovare tra pochi secondi!</string>
     <string name="start_serial">Inizializza seriale</string>
     <string name="stop_serial">De-inizializza seriale</string>
+    <string name="disconnected">Chiesa Gaggiola - Stato: disconnesso</string>
+    <string name="connected">Chiesa Gaggiola - Stato: connesso</string>
 </resources>

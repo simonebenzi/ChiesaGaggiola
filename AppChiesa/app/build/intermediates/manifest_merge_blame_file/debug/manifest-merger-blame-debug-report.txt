@@ -10,12 +10,12 @@
 9        android:targetSdkVersion="30" />
 9-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml
 10
-11    <uses-permission android:name="android.permission.INTERNET" />
-11-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:5:5-66
-11-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:5:22-64
+11    <uses-feature android:name="android.hardware.usb.host" />
+11-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:5:5-62
+11-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:5:19-59
 12
 13    <application
-13-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:7:5-22:19
+13-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:7:5-30:19
 14        android:allowBackup="true"
 14-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:8:9-35
 15        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -35,7 +35,7 @@
 23        android:usesCleartextTraffic="true" >
 23-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:12:9-44
 24        <activity android:name="com.or.appchiesa.MainActivity" >
-24-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:15:9-21:20
+24-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:15:9-29:20
 24-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:15:19-47
 25            <intent-filter>
 25-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:16:13-20:29
@@ -47,7 +47,20 @@
 28-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:19:17-77
 28-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:19:27-74
 29            </intent-filter>
-30        </activity>
-31    </application>
-32
-33</manifest>
+30            <intent-filter>
+30-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:22:13-24:29
+31                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+31-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:23:17-90
+31-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:23:25-87
+32            </intent-filter>
+33
+34            <meta-data
+34-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:26:13-28:57
+35                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+35-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:27:17-79
+36                android:resource="@xml/device_filter" />
+36-->C:\Users\simob\Desktop\OR+\ChiesaGaggiola\AppChiesa\app\src\main\AndroidManifest.xml:28:17-54
+37        </activity>
+38    </application>
+39
+40</manifest>

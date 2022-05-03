@@ -9,7 +9,6 @@ import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbManager;
 import android.util.Log;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
@@ -35,7 +34,7 @@ public class Serial {
     public final String ACTION_USB_PERMISSION = "com.or.serialcommunication.USB_PERMISSION";
 
     public interface Graphics {
-        public void showToast(Context context, CharSequence text);
+        public void modifyToolbar(Context context, CharSequence text);
 
         public void enableStartButton(boolean state);
     }
@@ -171,7 +170,8 @@ public class Serial {
                         getAllScenarioLights(scenarioName));
                 ArrayList<String> scenarioLights = new ArrayList<>(Arrays.asList(scenarioLightsArray));
                 for (int j = 0; j < scenarioLights.size(); j++) {
-                    if (!(lightsOpName.contains(scenarioLights.get(j)))) {
+                    if (!(lightsOpName.contains(scenarioLights.get(j))) &&
+                            !(toSwitchOffLights.contains(scenarioLights.get(j)))) {
                         toSwitchOffLights.add(scenarioLights.get(j));
                     }
                 }
@@ -194,9 +194,9 @@ public class Serial {
         // Define the lights to switch on/off
         ArrayList<String> lightsToSwitch = new ArrayList<>();
         int size = allLightsOpName.size();
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             Boolean lightState = lightsState.get(i);
-            if(lightState != state) {
+            if (lightState != state) {
                 String opName = allLightsOpName.get(i);
                 lightsToSwitch.add(opName);
             }
@@ -209,11 +209,11 @@ public class Serial {
         // Deactivate all scenarios
         size = scenariosName.size();
 
-        for(int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             String scenarioName = scenariosName.get(i);
             Boolean scenarioState = scenariosState.get(i);
 
-            if(scenarioState)
+            if (scenarioState)
                 dbHelper.updateScenarioState(true, scenarioName);
         }
 
@@ -278,7 +278,8 @@ public class Serial {
                 serialPort.setParity(UsbSerialInterface.PARITY_NONE);
                 serialPort.setFlowControl(UsbSerialInterface.FLOW_CONTROL_OFF);
                 serialPort.read(mCallback);
-                graphics.showToast(context, "Serial Connection Opened!\n");
+                String connectedStr = context.getResources().getString(R.string.connected);
+                graphics.modifyToolbar(context, connectedStr);
 
             } else {
                 Log.d("SERIAL", "PORT NOT OPEN");
