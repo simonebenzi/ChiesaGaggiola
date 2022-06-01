@@ -30,6 +30,7 @@ public class Serial {
     private Graphics graphics;
     private Actions actions;
     private DBHelper dbHelper;
+    
 
     public final String ACTION_USB_PERMISSION = "com.or.serialcommunication.USB_PERMISSION";
 
@@ -191,23 +192,14 @@ public class Serial {
     public void switchAllLights(ArrayList<String> allLightsOpName, ArrayList<String> scenariosName,
                                 ArrayList<Boolean> lightsState, ArrayList<Boolean> scenariosState,
                                 boolean state, ViewPagerAdapter adapter) {
-        // Define the lights to switch on/off
-        ArrayList<String> lightsToSwitch = new ArrayList<>();
-        int size = allLightsOpName.size();
-        for (int i = 0; i < size; i++) {
-            Boolean lightState = lightsState.get(i);
-            if (lightState != state) {
-                String opName = allLightsOpName.get(i);
-                lightsToSwitch.add(opName);
-            }
-        }
+        // Switch all lights on/off
+        int size = scenariosName.size();
 
-        String command = createScenarioCommands(lightsToSwitch, state);
+        String command = createScenarioCommands(allLightsOpName, state);
         Log.e("ALL LIGHTS COMMAND: ", command);
         actions.write(command);
 
         // Deactivate all scenarios
-        size = scenariosName.size();
 
         for (int i = 0; i < size; i++) {
             String scenarioName = scenariosName.get(i);
@@ -272,7 +264,7 @@ public class Serial {
         if (serialPort != null) {
             if (serialPort.open()) { //Set Serial Connection Parameters.
                 graphics.enableStartButton(true);
-                serialPort.setBaudRate(9600);
+                serialPort.setBaudRate(14400);
                 serialPort.setDataBits(UsbSerialInterface.DATA_BITS_8);
                 serialPort.setStopBits(UsbSerialInterface.STOP_BITS_1);
                 serialPort.setParity(UsbSerialInterface.PARITY_NONE);

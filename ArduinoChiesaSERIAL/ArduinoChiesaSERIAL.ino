@@ -5,8 +5,8 @@
 String command;
 
 // Logic changed in logic-low
-const int low = LOW;
-const int high = HIGH;
+const int low = HIGH;
+const int high = LOW;
 
 // Auxiliar variables to store the current output state
 bool ch1State = false;
@@ -51,8 +51,11 @@ const int greenPin = 25;
 const int redPin = 26;
 const int bluePin = 27;
 
+// Variable to check if the serial is ready
+bool isReady = true;
+
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(14400);
 
   // Initialize the output variables as outputs
   pinMode(ch1, OUTPUT);
@@ -111,6 +114,9 @@ void loop() {
   //  WiFiDrv::analogWrite(bluePin, 0);
 
   while (Serial.available() > 0) {
+    Serial.end();
+    // The serial is not ready to receive new commands
+    isReady = false;
     // Read command from serial
     command = Serial.readStringUntil('\n');
     Serial.print("Command: ");
@@ -519,5 +525,6 @@ void loop() {
     else {
       Serial.println("Invalid command");
     }
+    Serial.begin(14400);
   }
 }
